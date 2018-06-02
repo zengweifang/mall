@@ -3,10 +3,10 @@
     <image class='admin_banner_bgr_img' src='http://p95v2ft9v.bkt.clouddn.com/admin/banner%E8%83%8C%E6%99%AF@2x.png'></image>
     <view class='admin_banner_title'>
       <view class='admin_user'>
-        <view class='admin_name'>曾大大</view>
-        <view class='admin_moons'>
+        <view class='admin_name'>yolanda</view>
+        <!-- <view class='admin_moons'>
           <view bindtap='toRanking'>月星值666</view>
-        </view>
+        </view> -->
       </view>
     </view>
     <image class='admin_banner_login' mode="widthFix" src='../images/nav_@2x/login@2x.png'></image>

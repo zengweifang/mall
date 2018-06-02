@@ -20,7 +20,7 @@
   line-height: 38px
 }
 .address_opera{
-  color: #b22222
+  color: #CE3C39
 }
 
 .address_button{
@@ -28,7 +28,7 @@
   background-color: #ffffff;
   line-height: 45px;
   text-align: center;
-  color: #b22222;
+  color: #CE3C39;
   position: fixed;
   bottom: 0;
   width: 100%

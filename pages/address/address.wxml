@@ -3,7 +3,7 @@
   <radio-group class="radio-group" bindchange="radioChange">
     <label class="radio" wx:for="{{items}}" style='display:block'>
       <view class="flex-wrp" style="flex-direction:row;">
-        <radio class="flex-item address_radio" value="{{item.name}}" checked="{{item.checked}}" color="#b22222" />
+        <radio class="flex-item address_radio" value="{{item.name}}" checked="{{item.checked}}" color="#CE3C39" />
         <view class="flex-item address_content">
           <view style='font-weight:bold'>{{item.userName}} {{item.phone}}</view>
           <view>{{item.address}}</view>

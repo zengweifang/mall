@@ -103,7 +103,7 @@
 }
 
 .order_goods_price{
-  color: #b22222
+  color: #CE3C39
 }
 
 .order_margin{
@@ -123,7 +123,7 @@
 
 .order_content_r_prc text{
   padding-left:10px;
-  color:#b22222;
+  color:#CE3C39;
 }
 
 .order_content_buttom{

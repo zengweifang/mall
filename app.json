@@ -20,7 +20,7 @@
   },
   "tabBar": {
     "color": "#6e6d6b",
-    "selectedColor": "#0464f0",
+    "selectedColor": "#CE3C39",
     "borderStyle": "white",
     "backgroundColor": "#fff",
     "box-shadow": "0 0 6px 0",
@@ -33,8 +33,8 @@
       },
       {
         "pagePath": "pages/category/category",
-        "iconPath": "pages/images/icon_off/service.png",
-        "selectedIconPath": "pages/images/icon_on/service_fill.png",
+        "iconPath": "pages/images/icon_off/category.png",
+        "selectedIconPath": "pages/images/icon_on/category_fill.png",
         "text": "分类"
       },
       {
