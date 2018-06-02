@@ -12,7 +12,7 @@
 }
 .flex-item input{
   position:relative;
-  top:20%;
+  top:23%;
 }
 .flex-wrp{
   height:45px;

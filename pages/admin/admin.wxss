@@ -1,8 +1,4 @@
 /* pages/admin/admin.wxss */
-.page{
-  font-size: 12px;
-}
-
 .page .admin_image{
   background-color: #4b5ea3;
   height: 110px;
