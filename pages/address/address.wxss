@@ -1,0 +1,35 @@
+/* pages/adrress/address.wxss */
+.radio-group radio{
+  float: left;
+}
+
+.radio-group label{
+  padding: 15px;
+  background-color: #ffffff;
+  margin-bottom: 1px
+}
+
+.address_radio{
+  width: 12%;
+}
+.address_content{
+  width: 78%
+}
+
+.address_opera,.address_radio{
+  line-height: 38px
+}
+.address_opera{
+  color: #b22222
+}
+
+.address_button{
+  height: 45px;
+  background-color: #ffffff;
+  line-height: 45px;
+  text-align: center;
+  color: #b22222;
+  position: fixed;
+  bottom: 0;
+  width: 100%
+}

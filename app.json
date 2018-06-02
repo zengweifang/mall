@@ -8,7 +8,9 @@
     "pages/admin/admin",
     "pages/list/list",
     "pages/ranking/ranking",
-    "pages/category/category"
+    "pages/category/category",
+    "pages/address/address",
+    "pages/address_operate/address_operate"
   ],
   "window": {
     "backgroundTextStyle": "light",

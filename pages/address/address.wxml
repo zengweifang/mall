@@ -1,0 +1,16 @@
+<!--pages/adrress/address.wxml-->
+<view class='address_list'>
+  <radio-group class="radio-group" bindchange="radioChange">
+    <label class="radio" wx:for="{{items}}" style='display:block'>
+      <view class="flex-wrp" style="flex-direction:row;">
+        <radio class="flex-item address_radio" value="{{item.name}}" checked="{{item.checked}}" color="#b22222" />
+        <view class="flex-item address_content">
+          <view style='font-weight:bold'>{{item.userName}} {{item.phone}}</view>
+          <view>{{item.address}}</view>
+        </view>
+        <view class="flex-item address_opera">编辑</view>
+      </view>
+    </label>
+  </radio-group>
+  <view class='address_button' bindtap='addressOperate'>新增收货地址</view>
+</view>

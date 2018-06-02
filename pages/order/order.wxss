@@ -1,21 +1,7 @@
 /* pages/order/order.wxss */
 .order_content{
-  padding-bottom:  60px
+  padding-bottom:  60px;
 }
-
-.order_content,.order_content .order_addr,.order_content .order_activ{
-  font-size: 12px
-}
-
-.order_content .order_activ{
-  padding-bottom: 80px
-}
-
-
-.order_content .order_addr span{
-  background-color: orange
-}
-
 .order_content .order_goods{
   background-color: #ffffff;
   margin-top: 1px;
@@ -26,9 +12,13 @@
   color: #d2d2d2
 }
 
+.order_goods_l{
+  width:110px;
+  padding-left:15px;
+}
+
 .order_content .order_goods .order_goods_l image{
-  width: 110px;
-  /* height: 80px */
+  width: 100%;
 }
 
 .order_content .order_goods .order_goods_m{
@@ -41,42 +31,6 @@
   width: 10%;
   line-height: 80px
 }
-.order_content .order_content_stru{
-  background-color: #ffffff;
-  height: 36px;
-  padding: 0 15px;
-  line-height: 36px
-}
-
-.order_content .order_content_sd{
-  background-color: #ffffff;
-  padding: 0 15px;
-  line-height: 25px;
-  border-top: 1px solid ghostwhite
-}
-
-.order_content .order_activ_l{
-  width: 90%
-}
-
-.order_content .order_activ_r{
-  width: 10%
-}
-
-.order_content .order_remark_r{
-  height: 36px;
-}
-.order_content .order_remark_r input{
-  margin-left: 15px;
-}
-
-.textarea-wrp {
-  margin: 0 15px;
-  height: 36px;
-  background-color: #fff;
-  border: 1px solid ghostwhite;
-}
-
 .footer-box {
   width: 100%;
   height: 100rpx;
@@ -96,24 +50,7 @@
   padding-top: 26rpx;
   color: #FF6A6A;
   box-sizing: border-box;
-  font-size: 14px
-}
-
-.footer-box .shop-cart-btn .shop-num {
-  position: absolute;
-  color: #e64340;
-  left: 80rpx;
-  top: -20rpx;
-}
-
-.footer-box .join-shop-cart {
-  text-align: center;
-  width: 300rpx;
-  height: 100%;
-  line-height: 100rpx;
-  background-color: #ff6850;
-  color: #fff;
-  font-size: 34rpx;
+  font-size: 14px;
 }
 
 .footer-box .now-buy {
@@ -124,10 +61,6 @@
   background-color: #e64340;
   color: #fff;
   font-size: 34rpx;
-}
-
-.shop-cart-btn{
-  color: #FF6A6A
 }
 
 .order_height{
@@ -146,10 +79,6 @@
   line-height: 25px
 }
 
-.order_height .order_codes_l view span{
-  background-color: #EE7942
-}
-
 .order_content_height{
   height: 36px;
   line-height: 36px;
@@ -163,14 +92,9 @@
   margin-left: 0
 }
 
-.order_content_sender{
-  background-color: #ffffff;
-  padding: 10px 15px;
-  line-height: 25px;
-}
-
 .order_textarea{
   background-color: #ffffff;
+  margin-top: 1px
 }
 
 .order_textarea textarea{
@@ -178,11 +102,39 @@
   padding: 15px
 }
 
+.order_goods_price{
+  color: #b22222
+}
+
 .order_margin{
   margin-top: 10px
 }
-
-.order_goods_price{
-  color: #FF6A6A
+.order_content_prc_t{
+  background-color: #ffffff
 }
 
+.order_content_r_prc{
+  height:36px;
+  line-height:36px;
+  text-align:right;
+  padding-right:15px;
+  margin-top: 1px
+}
+
+.order_content_r_prc text{
+  padding-left:10px;
+  color:#b22222;
+}
+
+.order_content_buttom{
+  padding: 15px;
+}
+
+.order_content_buttom button{
+  font-size: 14px;
+  padding: 5px
+}
+
+.order_content_text_f{
+  font-weight: bold
+}

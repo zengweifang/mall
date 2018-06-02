@@ -1,0 +1,42 @@
+<!--pages/address_operate/address_operate.wxml-->
+<view class='address_operate'>
+  <view class="flex-wrp" style="flex-direction:row;">
+    <view class="flex-item address_operate_label">
+      收货人
+    </view>
+    <view class="flex-item address_operate_value">
+      <input placeholder="姓名" />
+    </view>
+  </view>
+  <view class="flex-wrp" style="flex-direction:row;">
+    <view class="flex-item address_operate_label">
+      联系方式
+    </view>
+    <view class="flex-item address_operate_value">
+      <input type="number" placeholder="手机号码" />
+    </view>
+  </view>
+  <view class="flex-wrp" style="flex-direction:row;">
+    <view class="flex-item address_operate_label">
+      所在区域
+    </view>
+    <view class="flex-item address_operate_value">
+      <picker mode="region" bindchange="bindRegionChange" value="{{region}}" custom-item="{{customItem}}">
+        <view class="picker">
+          {{region[0]}}{{region[1]}}{{region[2]}}
+        </view>
+      </picker>
+    </view>
+  </view>
+  <view class="flex-wrp" style="flex-direction:row;border-bottom:none">
+    <view class="flex-item address_operate_label">
+      详细地址
+    </view>
+    <view class="flex-item address_operate_value">
+      <input placeholder="详细地址需天蝎楼栋楼层或房间号信息" />
+    </view>
+  </view>
+</view>
+<view class='order_content_buttom'>
+  <button type="warn" size="{{warnSize}}" loading="{{loading}}" plain="{{plain}}" bindtap="warn">确认</button>
+</view>

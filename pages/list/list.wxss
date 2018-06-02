@@ -1,8 +1,4 @@
 /* pages/list/list.wxss */
-.page{
-  font-size: 12px
-}
-
 .page .page_list{
   background-color: #ffffff;
   margin-bottom: 1px;

@@ -20,8 +20,8 @@
   text-align: center;
 }
 .item_hasbgr{
-  color:red;
-  border-bottom:1px solid red;
+  color:#b22222;
+  border-bottom:1px solid #b22222;
 }
 
 .page_personal{
