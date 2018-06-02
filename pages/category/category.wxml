@@ -1,0 +1,18 @@
+<view class='disc_detail'>
+  <view class='dic_detail_swiper'>
+    <scroll-view scroll-x class="dic_detail_swiper_scroll">
+      <view class='dic_detail_swiper_item {{item.item_hasbgr}}' wx:for="{{list}}" style='display: inline-block' bindtap='showResult' data-id="{{item.id}}">{{item.label}}</view>
+    </scroll-view>
+  </view>
+  <view class='page_personal'>
+    <view class="page_personal_b">
+      <view class="flex-item  page_bgr  page_comm_images" bindtap='toDetail' wx:for="{{result.recomm_infos}}">
+        <image src='{{item.url}}'></image>
+        <view class='page_price'>
+          <view>{{item.title}}</view>
+          <text>￥{{item.price}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

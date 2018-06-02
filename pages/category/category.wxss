@@ -1,0 +1,54 @@
+/* pages/category/category.wxss */
+.disc_detail{
+  width: 100%;
+  background-color: #ffffff
+}
+.dic_detail_swiper{
+  white-space: nowrap;
+  display: flex;
+  margin-left: 15px;
+}
+.dic_detail_swiper_scroll{
+  width: 100%;
+  height: 50px;
+}
+
+.dic_detail_swiper_item{
+  width: 65px;
+  height: 45px;
+  line-height: 45px;
+  text-align: center;
+}
+.item_hasbgr{
+  color:red;
+  border-bottom:1px solid red;
+}
+
+.page_personal{
+  background-color: #ffffff;
+  margin-top: 10px
+}
+
+.page_personal_b{
+  padding-left : 3%;
+  overflow: hidden;
+}
+.page_personal_b image{ 
+   width: 100% 
+}
+
+.page_price text{
+  color: #000000;
+  font-weight: bold
+}
+
+.page_comm_images{
+  width: 47%;
+  height: 180px;
+  float: left;
+  margin-right:3% 
+}
+
+.page_comm_images image{
+  height: 70%
+}

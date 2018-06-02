@@ -1,0 +1,106 @@
+/* pages/detail/detail.wxss */
+
+.page {
+  padding-bottom: 50px;
+}
+
+.slide-image {
+  width: 100%;
+  height: inherit;
+}
+
+.swiper-image {
+  height: 238px;
+}
+
+.footer-box {
+  width: 100%;
+  height: 100rpx;
+  background-color: #fff;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  box-shadow: 0 0 8rpx 0;
+}
+
+.footer-box .shop-cart-btn {
+  position: relative;
+  width: 150rpx;
+  height: 100%;
+  line-height: 100rpx;
+  text-align: center;
+  padding-top: 26rpx;
+  font-size: 20rpx;
+  color: #acacb7;
+  box-sizing: border-box;
+  background: url("https://cdn.it120.cc/images/weappshop/cart.png") no-repeat center 21rpx;
+  background-size: 44rpx auto;
+  border-right: 1px solid #dedede;
+}
+
+.footer-box .shop-cart-btn .shop-num {
+  position: absolute;
+  color: #ffffff;
+  left: 80rpx;
+  top: 5px;
+  width: 10px;
+  height: 10px;
+  background-color: #e64340;
+  line-height: 10px;
+  border-radius: 50%;
+  padding: 2px
+}
+
+.footer-box .join-shop-cart {
+  text-align: center;
+  width: 300rpx;
+  height: 100%;
+  line-height: 100rpx;
+  background-color: #b22222;
+  color: #fff;
+  font-size: 12px;
+}
+
+.footer-box .now-buy {
+  text-align: center;
+  height: 100%;
+  width: 300rpx;
+  line-height: 100rpx;
+  font-size: 12px;
+}
+
+.detail_content {
+  font-size: 12px;
+}
+
+.detail_contents {
+  background-color: #fff;
+}
+
+.detail_contents .detail_contents_c .detail_contents_title {
+  padding: 10px;
+}
+
+.detail_contents .detail_contents_image image {
+  width: 100%;
+}
+
+.detail_margin {
+  margin-top: 15px;
+}
+
+.detail_title {
+  background-color: #fff;
+  padding: 10px;
+}
+
+.detail_label {
+  font-weight: blod;
+  font-size: 12px;
+}
+
+.detail_price {
+  font-size: 16px;
+  color: #b22222;
+}

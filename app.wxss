@@ -1,0 +1,14 @@
+@import 'style/weui.wxss';
+
+page{
+    width: 100%;
+    color: #353535;
+    overflow-x: hidden; 
+    background-color: #F8F8F8;
+    font-size: 14px;
+    font-family: -apple-system-font,Helvetica Neue,Helvetica,sans-serif;
+}
+
+.flex-wrp {
+  display: flex;
+}

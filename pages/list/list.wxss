@@ -1,0 +1,45 @@
+/* pages/list/list.wxss */
+.page{
+  font-size: 12px
+}
+
+.page .page_list{
+  background-color: #ffffff;
+  margin-bottom: 1px;
+  padding: 20px 0;
+  border-radius:10px;
+  margin:15px;
+}
+
+.page .page_list .page_list_r{
+   padding-right: 15px
+}
+
+.page .page_list .page_list_r image{
+    width: 110px;
+    /* height: 80px */
+}
+
+.page .page_list .page_list_l{
+    margin: 0 auto;
+    text-align: center;
+    padding-top: 20px
+}
+
+.page .page_list .page_list_title_m{
+  color: #d4d4d4;
+  font-size: 10px
+}
+
+.page .page_list .page_list_price{
+  color: #FF6A6A
+}
+
+.slide-image {
+  width: 100%;
+  height: inherit;
+}
+
+.swiper-image {
+  height: 165px;
+}

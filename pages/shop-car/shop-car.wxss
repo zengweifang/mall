@@ -1,0 +1,82 @@
+/* pages/shop-car/shop-car.wxss */
+.car_goods{
+  background-color:#ffffff;
+  font-size: 12px;
+  margin-top: 1px;
+  padding: 20px 0
+}
+.car_goods .car_goods_l{
+  padding-left: 15px;
+  line-height: 80px
+}
+.car_goods .car_goods_m image{
+  width: 110px;
+  /* height: 80px; */
+}
+
+.car_goods .car_goods_mm{
+  line-height: 25px
+}
+
+.car_goods_cb{
+  margin-top: 2px;
+  height: 36px;
+  line-height: 36px;
+  padding-left: 15px
+}
+
+.footer-box {
+  width: 100%;
+  height: 100rpx;
+  background-color: #fff;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  box-shadow: 0 0 8rpx 0;
+}
+
+.footer-box .shop-cart-btn {
+  position: relative;
+  width: 450rpx;
+  height: 100%;
+  text-align: center;
+  padding-top: 26rpx;
+  color: #FF6A6A;
+  box-sizing: border-box;
+}
+
+.footer-box .shop-cart-btn .shop-num {
+  position: absolute;
+  color: #e64340;
+  left: 80rpx;
+  top: -20rpx;
+}
+
+.footer-box .join-shop-cart {
+  text-align: center;
+  width: 300rpx;
+  height: 100%;
+  line-height: 100rpx;
+  background-color: #ff6850;
+  color: #fff;
+  font-size: 34rpx;
+}
+
+.footer-box .now-buy {
+  text-align: center;
+  height: 100%;
+  width: 300rpx;
+  line-height: 100rpx;
+  background-color: #e64340;
+  color: #fff;
+  font-size: 34rpx;
+}
+
+.car_attr{
+  color: #dedede
+}
+
+.car_price{
+  color: #FF6A6A
+}

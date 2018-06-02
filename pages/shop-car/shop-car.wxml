@@ -1,0 +1,22 @@
+<view class="page">
+  <view class="flex-wrp car_goods" style="flex-direction:row;" wx:for="{{cars}}">
+    <view class="flex-item car_goods_l">
+      <checkbox checked='true'></checkbox>
+    </view>
+    <view class="flex-item car_goods_m">
+      <image src='{{item.url}}' mode='widthFix'></image>
+    </view>
+    <view class="flex-item car_goods_mm">
+      <view>{{item.goodsName}}</view>
+      <view class='car_attr'>{{item.attr}}</view>
+      <view class='car_price'>￥{{item.price}}</view>
+    </view>
+  </view>
+</view>
+
+<view class="footer-box">
+  <view class="shop-cart-btn" bindtap="goShopCar">
+    合计 ￥999
+  </view>
+  <view class="now-buy" bindtap="tobuy">去结算</view>
+</view>

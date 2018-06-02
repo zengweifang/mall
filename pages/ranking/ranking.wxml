@@ -1,0 +1,53 @@
+<!--pages/ranking/ranking.wxml-->
+<view class='ranking'>
+  <view class='ranking-card'>
+    <view>
+      <text class='ranking-text-n'>我的月星值</text>
+      <text class='ranking-text-v'>666</text>
+    </view>
+    <view>超过
+      <text style='color:#e64340'>80%</text> 用户</view>
+    <view>可享权益:可享
+      <text style='color:#e64340'>2</text>次免费抽奖</view>
+  </view>
+  <view class='ranking-content'>
+    <view class='ranking-content-title'>好友排行榜</view>
+
+    <scroll-view scroll-y style="height: 300px;" bindscrolltoupper="upper" bindscrolltolower="lower" bindscroll="scroll" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
+      <view class='ranking-content-rank'>
+        <view class="flex-wrp ranking-content-item" wx:for="{{list}}">
+          <view class="flex-item" style='width:10%'>
+            {{item.rank}}
+          </view>
+          <view class="flex-item" style='width:15%'>
+            <image src='{{item.url}}' style='width:30px;' mode='widthFix'></image>
+          </view>
+          <view class="flex-item" style='width:50%'>
+            {{item.name}}
+          </view>
+          <view class="flex-item">
+            {{item.integral}}
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+
+
+    <!-- <view class='ranking-content-rank'>
+      <view class="flex-wrp ranking-content-item" wx:for="{{list}}">
+        <view class="flex-item" style='width:10%'>
+          {{item.rank}}
+        </view>
+        <view class="flex-item" style='width:15%'>
+          <image src='{{item.url}}' style='width:30px;height:30px'></image>
+        </view>
+        <view class="flex-item" style='width:50%'>
+          {{item.name}}
+        </view>
+        <view class="flex-item">
+          {{item.integral}}
+        </view>
+      </view>
+    </view> -->
+  </view>
+</view>

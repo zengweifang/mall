@@ -1,0 +1,65 @@
+<view class='page order_content'>
+  <view class="flex-wrp order_codes order_height" style="flex-direction:row;">
+    <view class="flex-item order_codes_l">
+      <view>曾女士 18888888888</view>
+      <view>
+        <span>默认</span> 深圳市南山区腾讯大厦</view>
+    </view>
+    <!-- <view class="weui-cell__ft weui-cell__ft_in-access order_codes_r"></view> -->
+  </view>
+
+  <view class="flex-wrp order_goods" style="flex-direction:row;" wx:for="{{goods}}">
+    <view class="flex-item order_goods_l">
+      <image src='{{item.url}}' mode='widthFix'></image>
+    </view>
+    <view class="flex-item order_goods_m">
+      <view>{{item.goodsName}}</view>
+      <view class='order_goods_attr'>{{item.attr}}</view>
+      <view class='order_goods_price'>￥{{item.price}}</view>
+    </view>
+    <view class="flex-item order_goods_r">
+      x {{item.nums}}
+    </view>
+  </view>
+
+  <view class="flex-wrp order_content_height order_margin" style="flex-direction:row;">
+    <view class="flex-item order_content_l">优惠券：暂无可用</view>
+    <!-- <view class="weui-cell__ft weui-cell__ft_in-access order_content_r">0张</view> -->
+  </view>
+  <view class="flex-wrp order_content_height" style="flex-direction:row;">
+    <view class="flex-item order_content_l">积分：共1600积分 可用1000积分抵扣 20元</view>
+    <view class="weui-cell__ft order_content_r">
+      <checkbox checked="'false'" />
+    </view>
+  </view>
+  <view class="flex-wrp order_content_height order_margin" style="flex-direction:row;">
+    <view class="flex-item order_content_l">商品金额</view>
+    <view class="flex-item order_content_r order_goods_price">￥29.99</view>
+  </view>
+  <view class="flex-wrp order_content_height" style="flex-direction:row;">
+    <view class="flex-item order_content_l">运费</view>
+    <view class="flex-item order_content_r order_goods_price">￥0.00</view>
+  </view>
+  <view class="flex-wrp order_content_height" style="flex-direction:row;">
+    <view class="flex-item order_content_l">退换无忧</view>
+    <view class="flex-item order_content_r order_goods_price">￥0.00</view>
+  </view>
+
+  <view class="flex-wrp order_content_sender order_margin" style="flex-direction:row;">
+    <view class="flex-item order_content_l">
+      <view>快递配送</view>
+      <view>工作日，双休节假日均配送</view>
+      <view>退换无忧：7天无理由退换货</view>
+    </view>
+  </view>
+
+  <view class="flex-wrp order_textarea order_margin">
+    <textarea placeholder='备注' auto-height />
+  </view>
+  <view class="footer-box">
+    <view class="shop-cart-btn order_goods_price" bindtap="goShopCar">
+      合计 ￥9.99
+    </view>
+    <view class="now-buy" bindtap="tobuy">提交订单</view>
+  </view>
+</view>

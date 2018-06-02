@@ -1,0 +1,32 @@
+<view class="page">
+  <swiper class='swiper-image' indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+    <block wx:for="{{imageUrl}}">
+      <swiper-item>
+        <image src="{{item.url}}" class="slide-image" />
+      </swiper-item>
+    </block>
+  </swiper>
+  <view class='detail_title'>
+    <view class='detail_label'>人气推荐商品</view>
+    <view class='detail_price'>￥29.99</view>
+  </view>
+
+  <view class='detail_content'>
+    <view class='detail_contents detail_margin'>
+      <view class='detail_contents_c'>
+        <view class='detail_contents_title'>商品详情</view>
+        <view class='detail_contents_image'>
+          <image src='http://p95v2ft9v.bkt.clouddn.com/xf/images/sucai12.jpeg' mode="widthFix"></image>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="footer-box">
+    <view class="shop-cart-btn" bindtap="goShopCar">
+      <view class="shop-num">{{shopNum}}</view>
+      购物车
+    </view>
+    <view class="now-buy" bindtap="tobuy">立即购买</view>
+    <view class="join-shop-cart" bindtap="addShopCar">加入购物车</view>
+  </view>
+</view>

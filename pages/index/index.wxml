@@ -1,0 +1,52 @@
+<view class="page">
+  <view class="page__hd">
+    <swiper class='swiper-image' indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+      <block wx:for="{{imageUrl}}">
+        <swiper-item>
+          <image src="{{item.url}}" class="slide-image" mode='widthFix' />
+        </swiper-item>
+      </block>
+    </swiper>
+
+    <view class="page__bd">
+      <view class="weui-grids">
+        <block wx:for="{{grids}}" wx:key="*this">
+          <navigator url="/pages/detail/detail" class="weui-grid" hover-class="weui-grid_active">
+            <image class="weui-grid__icon" src="{{item.url}}" />
+          </navigator>
+        </block>
+      </view>
+    </view>
+  </view>
+
+  <view class='page_personal'>
+    <view class='page_label'>
+      人气推荐
+    </view>
+    <view class="page_personal_b">
+      <view class="flex-item  page_bgr  page_comm_images" bindtap='toDetail' wx:for="{{recomm_infos}}">
+        <image src='{{item.url}}'></image>
+        <view class='page_price'>
+          <view>{{item.title}}</view>
+          <text>￥{{item.price}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+
+  <view class='page_personal'>
+    <view class='page_label'>
+      新品推荐
+    </view>
+    <view class="page_personal_b">
+      <view class="flex-item  page_comm_images" bindtap='toDetail' wx:for="{{newp_infos}}">
+        <image src='{{item.url}}'></image>
+        <view class='page_price'>
+          <view>{{item.title}}</view>
+          <text>￥{{item.price}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
