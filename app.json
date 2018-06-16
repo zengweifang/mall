@@ -10,7 +10,8 @@
     "pages/ranking/ranking",
     "pages/category/category",
     "pages/address/address",
-    "pages/address_operate/address_operate"
+    "pages/address_operate/address_operate",
+    "pages/login/login"
   ],
   "window": {
     "backgroundTextStyle": "light",

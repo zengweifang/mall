@@ -1,0 +1,12 @@
+/* pages/login/login.wxss */
+.login{
+  width:100px;
+  margin:0 auto;
+  margin-top:25%;
+  text-align:center;
+  margin-bottom:20px;
+}
+
+.login-button{
+  margin: 0 20px
+}

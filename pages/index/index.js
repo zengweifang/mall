@@ -8,15 +8,17 @@ Page({
     duration: 1000,
     indicatorDots: false,
     autoplay: true,
-    imageUrl: [
+    bannerUrls: [],//banner定义
+    bannerUrlsTemp : [//测试数据
       { id: 1, url: 'http://p95v2ft9v.bkt.clouddn.com/xf/imags/banner01.jpeg' },
       { id: 2, url: 'http://p95v2ft9v.bkt.clouddn.com/xf/imags/banner02.jpeg' },
       { id: 3, url: 'http://p95v2ft9v.bkt.clouddn.com/xf/imags/banner03.jpeg' }
     ],
-    grids: [
+    grids: [],//九宫格定义
+    gridsTemp:[//测试数据
       {
-        id:1,
-        url:'http://p95v2ft9v.bkt.clouddn.com/xf/images/jiugongge02_06.jpg'
+        id: 1,
+        url: 'http://p95v2ft9v.bkt.clouddn.com/xf/images/jiugongge02_06.jpg'
       },
       {
         id: 2,
@@ -56,12 +58,13 @@ Page({
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     inputShowed: false,
     inputVal: "",
-    recomm_infos:[
+    recomm_infos:[],//人气推荐定义
+    recomm_infosTemp:[//测试数据
       {
-        id:1,
-        url:'http://p95v2ft9v.bkt.clouddn.com/xf/images/sucai07.jpeg',
-        title:'人气推荐商品',
-        price:'29.99'
+        id: 1,
+        url: 'http://p95v2ft9v.bkt.clouddn.com/xf/images/sucai07.jpeg',
+        title: '人气推荐商品',
+        price: '29.99'
       },
       {
         id: 2,
@@ -94,7 +97,8 @@ Page({
         price: '29.99'
       }
     ],
-    newp_infos: [
+    newp_infos: [],//新品推荐定义
+    newp_infosTemp:[//测试数据
       {
         id: 1,
         url: 'http://p95v2ft9v.bkt.clouddn.com/xf/images/sucai07.jpeg',
@@ -161,6 +165,11 @@ Page({
     })
   },
   onLoad: function () {
+    this.getBanner();
+    this.getGrids();
+    this.getRecommInfos();
+    this.getNewp_infos();
+    
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
@@ -189,7 +198,7 @@ Page({
     }
   },
   getUserInfo: function(e) {
-    console.log(e)
+    // console.log(e)
     app.globalData.userInfo = e.detail.userInfo
     this.setData({
       userInfo: e.detail.userInfo,
@@ -208,5 +217,79 @@ Page({
     wx.navigateTo({
       url: '/pages/list/list'
     })
+  },
+  getBanner:function(){
+    var _self = this;
+    wx.request({
+      url: 'https://test-app.wang-guanjia.com/background-manage/apartment/editor', //仅为示例，并非真实的接口地址
+      data: {
+        id: '9cd16a8b-d3b7-4cc6-a8d7-68d8e19d38eb'
+      },
+      method:'GET',
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success: function (res) {
+        _self.setData({
+          bannerUrls: _self.data.bannerUrlsTemp
+        });
+      }
+    })
+  },
+  getGrids: function () {
+    var _self = this;
+    wx.request({
+      url: 'https://test-app.wang-guanjia.com/background-manage/apartment/editor', //仅为示例，并非真实的接口地址
+      data: {
+        id: '9cd16a8b-d3b7-4cc6-a8d7-68d8e19d38eb'
+      },
+      method: 'GET',
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success: function (res) {
+        // console.log(res.data);
+        _self.setData({
+          grids: _self.data.gridsTemp
+        });
+      }
+    })
+  },
+  getRecommInfos: function () {
+    var _self = this;
+    wx.request({
+      url: 'https://test-app.wang-guanjia.com/background-manage/apartment/editor', //仅为示例，并非真实的接口地址
+      data: {
+        id: '9cd16a8b-d3b7-4cc6-a8d7-68d8e19d38eb'
+      },
+      method: 'GET',
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success: function (res) {
+        _self.setData({
+          recomm_infos: _self.data.recomm_infosTemp
+        });
+      }
+    })
+  },
+  getNewp_infos: function () {
+    var _self = this;
+    // wx.request({
+    //   url: 'https://test-app.wang-guanjia.com/background-manage/apartment/editor', //仅为示例，并非真实的接口地址
+    //   data: {
+    //     id: '9cd16a8b-d3b7-4cc6-a8d7-68d8e19d38eb'
+    //   },
+    //   method: 'GET',
+    //   header: {
+    //     'content-type': 'application/json' // 默认值
+    //   },
+    //   success: function (res) {
+    //     console.log(res.data);
+    //     _self.setData({
+    //       newp_infos: _self.data.newp_infosTemp
+    //     });
+    //   }
+    // })
   }
 })

@@ -80,5 +80,39 @@ Page({
     wx.navigateTo({
       url: '/pages/address/address',
     })
+  },
+  pay: function(){
+    wx.request({
+      url: 'https://zunxiangviplus.com/pay/unified_order/order',
+      // url:"https://dc69eacf.ngrok.io/pay/unified_order/order",
+      header:{
+        'X-TOKEN': wx.getStorageSync('token')
+      },
+      data:'16',
+      method:'POST',
+      success:function(res){
+        var data = res.data.data;
+        var time = (new Date()).getTime();
+        wx.requestPayment(
+          {
+            'timeStamp': data.timeStamp,
+            'nonceStr': data.nonceStr,
+            'package':  data.package,
+            'signType': data.signType,
+            'paySign': data.paySign,
+            'success': function (res) {
+              console.log(res)
+             },
+            'fail': function (res) {
+              console.log(res)
+             },
+            'complete': function (res) { 
+              console.log(res)
+            }
+          })
+      }
+    })
+
+    
   }
 })

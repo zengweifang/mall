@@ -16,7 +16,53 @@
       <view class='detail_contents_c'>
         <view class='detail_contents_title'>商品详情</view>
         <view class='detail_contents_image'>
-          <image src='http://p95v2ft9v.bkt.clouddn.com/xf/images/sucai12.jpeg' mode="widthFix"></image>
+          <!-- <image src='http://p95v2ft9v.bkt.clouddn.com/xf/images/sucai12.jpeg' mode="widthFix"></image> -->
+          <image src="http://img10.360buyimg.com/imgzone/jfs/t18991/338/2167072096/261286/77cf53bd/5aea69d9N332bfb97.jpg" mode="widthFix" />
+<image src="http://img10.360buyimg.com/imgzone/jfs/t19363/226/1836466363/210543/18115bac/5ad98948N6135ac9e.jpg" mode="widthFix" />
+<image src="http://img10.360buyimg.com/imgzone/jfs/t17602/252/1834659317/269689/89802bdb/5ad98948N41b26fd8.jpg" mode="widthFix" />
+<image src="http://img10.360buyimg.com/imgzone/jfs/t17896/220/1840269972/29711/a604d47a/5ad98948N58b35796.jpg" mode="widthFix" />
+<image src="http://img10.360buyimg.com/imgzone/jfs/t17338/10/1003353386/399620/620f542a/5ab5ab2cN23b020ec.jpg" mode="widthFix" />
+<image src="http://img10.360buyimg.com/imgzone/jfs/t17044/187/2158435163/141653/8255e4d8/5aea69d9N81f0854c.jpg" mode="widthFix" />
+<image src="http://img10.360buyimg.com/imgzone/jfs/t18760/47/1854313241/181493/6d734ba9/5ad98948N0783de25.jpg" mode="widthFix" />
+<image src="http://img10.360buyimg.com/imgzone/jfs/t17104/310/1802460114/476590/2034492a/5ad9894eNd0936847.gif" mode="widthFix" />
+<image src="http://img10.360buyimg.com/imgzone/jfs/t17467/203/1858309705/37896/b653b8e6/5ad98948N192f2515.jpg" mode="widthFix" />
+<image src="http://img10.360buyimg.com/imgzone/jfs/t19303/221/1821593202/207613/9472124e/5ad98949N16cad964.jpg" mode="widthFix" />
+<image src="http://img10.360buyimg.com/imgzone/jfs/t7045/91/359792005/205776/b8f10de5/59759123N4620bad0.gif" mode="widthFix" />
+<image src="http://img10.360buyimg.com/imgzone/jfs/t6823/255/361885925/293263/1d56357f/59759123Nfbe7bb89.gif" mode="widthFix" />
+<image src="http://img10.360buyimg.com/imgzone/jfs/t6838/134/358918455/847722/452d7f80/59759539N3e2b8708.gif" mode="widthFix" />
+<image src="http://img10.360buyimg.com/imgzone/jfs/t6823/258/347981140/461216/feb86a56/59759126N828b792c.gif" mode="widthFix" />
+<image src="http://img10.360buyimg.com/imgzone/jfs/t5950/326/6733240773/33273/b79016d7/59759120N26b35985.gif" mode="widthFix" />
+<image src="http://img10.360buyimg.com/imgzone/jfs/t6106/191/6602696979/238198/4767bdd1/5975912bN338462ac.gif" mode="widthFix" />
+<image src="http://img10.360buyimg.com/imgzone/jfs/t5971/329/6745269369/294760/3feb9f2e/5975911bNa9d238ff.gif" mode="widthFix" />
+<image src="http://img10.360buyimg.com/imgzone/jfs/t5761/29/8048002362/271706/22c5dd27/5975912bNcf6a15d0.gif" mode="widthFix" />
+<image src="http://img10.360buyimg.com/imgzone/jfs/t5668/60/7832772187/382071/99fad436/5975912bN125ac95c.gif" mode="widthFix" />
+<image src="http://img10.360buyimg.com/imgzone/jfs/t5959/282/6742361807/377691/d5a6993a/5975911cN11e5c525.gif" mode="widthFix" />
+<image src="http://img10.360buyimg.com/imgzone/jfs/t5920/300/6787963481/29434/54a8d29b/5975912aN00c04495.gif" mode="widthFix" />
+<image src="http://img10.360buyimg.com/imgzone/jfs/t17650/247/1851792531/37788/5dd7d9d7/5ad98949Nf7048cb6.jpg" mode="widthFix" />
+<image src="http://img10.360buyimg.com/imgzone/jfs/t18490/95/1854324617/100109/952fb3aa/5ad98949N5b06f00a.jpg" mode="widthFix" />
+<image src="http://img10.360buyimg.com/imgzone/jfs/t21655/153/394473209/25778/d1b44f14/5b0be179Ncf91604b.jpg" mode="widthFix" />
+<image src="http://img10.360buyimg.com/imgzone/jfs/t18184/147/1888889346/37196/1cacc1e6/5ad98946Nc0453a95.jpg" mode="widthFix" />
+<image src="http://img10.360buyimg.com/imgzone/jfs/t17113/168/1837631122/45538/dcedd270/5ad98956Nd217a3fc.jpg" mode="widthFix" />
+<image src="http://img10.360buyimg.com/imgzone/jfs/t18550/65/1017942818/32878/179b6ba/5ab5abc9N314ca5fc.jpg" mode="widthFix" />
+<image src="http://img10.360buyimg.com/imgzone/jfs/t17857/139/1017036793/777704/e70e07de/5ab5abcaN086e3e50.gif" mode="widthFix" />
+<image src="http://img10.360buyimg.com/imgzone/jfs/t17704/333/1023215604/633933/ac81d5cd/5ab5abcaN8119b683.gif" mode="widthFix" />
+<image src="http://img10.360buyimg.com/imgzone/jfs/t18688/289/982427233/29559/a32055f7/5ab5ac2bNaf5ea8e9.jpg" mode="widthFix" />
+<image src="http://img10.360buyimg.com/imgzone/jfs/t15607/139/2634014679/617707/955a8597/5ab5ac2cN775f60e4.gif" mode="widthFix" />
+<image src="http://img10.360buyimg.com/imgzone/jfs/t15535/125/2618199625/568242/d5de4f0d/5ab5ac2cN2f0ea3ab.gif" mode="widthFix" />
+<image src="http://img10.360buyimg.com/imgzone/jfs/t17938/296/2197029190/61883/a6344824/5aea69d9N4bef8f74.jpg" mode="widthFix" />
+<image src="http://img10.360buyimg.com/imgzone/jfs/t17134/193/2160236207/77786/8c6dd4e9/5aea69daNcfd26815.jpg" mode="widthFix" />
+<image src="http://img10.360buyimg.com/imgzone/jfs/t18661/264/1825131823/70391/6286fef5/5ad98956N1286b203.jpg" mode="widthFix" />
+<image src="http://img10.360buyimg.com/imgzone/jfs/t18694/289/2155121132/57444/d98e1d49/5aea69d6N65026598.jpg" mode="widthFix" />
+<image src="http://img10.360buyimg.com/imgzone/jfs/t18805/195/2180362207/63108/3f1e9cd/5aea69daNd23ec2c3.jpg" mode="widthFix" />
+<image src="http://img10.360buyimg.com/imgzone/jfs/t18253/282/1816383206/49954/eb37adfb/5ad98957N9419de7d.jpg" mode="widthFix" />
+<image src="http://img10.360buyimg.com/imgzone/jfs/t17152/253/1775894847/65881/35892cce/5ad98957N3d022a4e.jpg" mode="widthFix" />
+<image src="http://img10.360buyimg.com/imgzone/jfs/t16879/314/2113771578/56912/f6543a15/5aea69daN68b45ca4.jpg" mode="widthFix" />
+<image src="http://img10.360buyimg.com/imgzone/jfs/t17725/87/1818797455/92255/68044cb1/5ad98957Nfdbd72a9.jpg" mode="widthFix" />
+<image src="http://img10.360buyimg.com/imgzone/jfs/t19348/161/1858567962/119097/6d2cead3/5ad98957Nc7a4163d.jpg" mode="widthFix" />
+<image src="http://img10.360buyimg.com/imgzone/jfs/t19819/292/209007778/109926/66909c40/5aea69daNa879238a.jpg" mode="widthFix" />
+<image src="http://img10.360buyimg.com/imgzone/jfs/t16657/215/1828909407/51532/b3eaecff/5ad98957N6b3d6290.jpg" mode="widthFix" />
+<image src="http://img10.360buyimg.com/imgzone/jfs/t5878/243/3971063265/282646/dde37aa7/594619d3N15094750.jpg" mode="widthFix" />
+
         </view>
       </view>
     </view>

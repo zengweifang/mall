@@ -39,7 +39,7 @@
       <view class='order_content_r_prc'>实付金额:
         <text>￥29.88</text> </view>
       <view class='order_content_buttom'>
-        <button type="primary" size="{{primarySize}}" loading="{{loading}}" plain="{{plain}}" bindtap="primary">微信支付</button>
+        <button type="primary" size="{{primarySize}}" loading="{{loading}}" plain="{{plain}}" bindtap="pay">微信支付</button>
       </view>
     </view>
 

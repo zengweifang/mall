@@ -78,6 +78,7 @@
 
 .detail_contents .detail_contents_image image {
   width: 100%;
+  display: block;
 }
 
 .detail_margin {
