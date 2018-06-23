@@ -1,23 +1,31 @@
 <view class='page order_content'>
-  <view class="flex-wrp order_codes order_height" style="flex-direction:row;" bindtap='toAddress'>
+  <view class="flex-wrp order_codes order_height" style="flex-direction:row;" bindtap='toAddress' wx:if="{{region}}">
     <view class="flex-item order_codes_l">
-      <view class='order_content_text_f'>曾女士 186****8888</view>
-      <view>深圳市南山区腾讯大厦</view>
+      <view class='order_content_text_f'>{{region.name}} {{region.mobile}}</view>
+      <view>{{region.provinceName}}{{region.cityName}}{{region.countyName}}{{region.address}}</view>
+    </view>
+    <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+  </view>
+  <view class="flex-wrp order_codes order_height" style="flex-direction:row;" bindtap='toAddress' wx:if="{{!region}}">
+    <view class="flex-item order_codes_l">
+      请选择收货地址
     </view>
     <view class="weui-cell__ft weui-cell__ft_in-access"></view>
   </view>
 
-  <view class="flex-wrp order_goods" style="flex-direction:row;" wx:for="{{goods}}">
+  <view class="flex-wrp order_goods" style="flex-direction:row;" wx:for="{{detail}}">
     <view class="flex-item order_goods_l">
-      <image src='{{item.url}}' mode='widthFix'></image>
+      <image src='https://img20.360buyimg.com/vc/{{item.imageUrl}}' mode='widthFix'></image>
     </view>
     <view class="flex-item order_goods_m">
-      <view class='order_content_text_f'>{{item.goodsName}}</view>
+      <view class='order_content_text_f'>{{item.name}}</view>
       <view class='order_goods_attr'>{{item.attr}}</view>
-      <view class='order_goods_price'>￥{{item.price}}</view>
+      <view class='order_goods_price'>￥{{item.thirdPrice}}</view>
+      <!-- <view class='order_goods_price'>￥{{item.sellPrice}}</view>
+      <view class='order_goods_price'>￥{{item.vipPrice}}</view> -->
     </view>
     <view class="flex-item order_goods_r">
-      x {{item.nums}}
+      x {{item.num || 1}}
     </view>
   </view>
   <view class="flex-wrp order_textarea">
@@ -27,19 +35,19 @@
     <view class='order_content_prc_t'>
       <view class="flex-wrp order_content_height order_margin" style="flex-direction:row;">
         <view class="flex-item order_content_l">商品金额</view>
-        <view class="flex-item order_content_r order_goods_price">￥29.99</view>
+        <view class="flex-item order_content_r order_goods_price">￥{{goodsPrice}}</view>
       </view>
       <view class="flex-wrp order_content_height" style="flex-direction:row;">
         <view class="flex-item order_content_l">运费</view>
-        <view class="flex-item order_content_r order_goods_price">+￥0.00</view>
+        <view class="flex-item order_content_r order_goods_price">+￥{{deliverPrice}}</view>
       </view>
     </view>
 
     <view class='order_content_prc_t'>
       <view class='order_content_r_prc'>实付金额:
-        <text>￥29.88</text> </view>
+        <text>￥{{goodsPrice+deliverPrice}}</text> </view>
       <view class='order_content_buttom'>
-        <button type="primary" size="{{primarySize}}" loading="{{loading}}" plain="{{plain}}" bindtap="pay">微信支付</button>
+        <button type="primary" size="{{primarySize}}" loading="{{loading}}" plain="{{plain}}" bindtap="order">微信支付</button>
       </view>
     </view>
 

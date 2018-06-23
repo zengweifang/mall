@@ -15,20 +15,18 @@ Page({
       { id: 3, url: 'http://p95v2ft9v.bkt.clouddn.com/xf/images/sucai08.jpeg' }
     ],
     shopCarInfo:{},
-    shopNum:0
+    shopNum:0,
+    detail:{}
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options)
-    // wx.getStorage({
-    //   key: 'shopCarInfo',
-    //   success: function(res) {
-    //     console.log(res)
-    //   },
-    // })
+    
+    this.getDetail(options);
+    this.getCarsNum();
+    
   },
 
   /**
@@ -56,7 +54,7 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-  
+
   },
 
   /**
@@ -80,42 +78,56 @@ Page({
   
   },
 
-  addShopCar:function(){
-    var shopCarInfo = this.data.shopCarInfo
-    if (!shopCarInfo.shopCarList){
-      shopCarInfo.shopCarList = [];
-    }
+  getDetail: function(options){
+    var _self = this;
+    wx.request({
+      url: 'https://zunxiangviplus.com/sku/' + options.id,
+      method: 'GET',
+      header: {
+        'X-TOKEN': wx.getStorageSync('token')
+      },
+      success: function (res) {
+        _self.setData({
+          detail: res.data.data
+        })
+      }
+    })
+  },
 
-    if (!shopCarInfo.shopNum){
-      shopCarInfo.shopNum = 0;
-    }
-    
-    shopCarInfo.shopNum++;
-    console.log(shopCarInfo)
-    this.setData({
-      shopCarInfo: shopCarInfo,
-      shopNum: shopCarInfo.shopNum
-    })
-    wx.setStorage({
-      key: 'shopCarInfo',
-      data: this.shopCarInfo,
-    })
-    wx.showToast({
-      title: '加入购物车成功！',
-      icon: 'success',
-      image: '',
-      duration: 2000
+  addShopCar:function(){
+    var _self = this;
+    wx.request({
+      url: 'https://zunxiangviplus.com/cart/sku',
+      method: 'POST',
+      data:{
+        skuId: this.data.detail.sku.id,
+        num:1
+      },
+      header: {
+        'X-TOKEN': wx.getStorageSync('token')
+      },
+      success: function (res) {
+        if(res.data.code == 200){
+          wx.showToast({
+            title: '加入购物车成功！',
+            icon: 'success',
+            duration: 2000
+          })
+          _self.getCarsNum();
+        }
+      }
     })
   },
 
   goShopCar:function(){
-    wx.navigateTo({
+    wx.switchTab({
       url: '/pages/shop-car/shop-car',
     })
   },
   tobuy: function(){
+    wx.setStorageSync('checkedItems', JSON.stringify([this.data.detail.sku]))
     wx.navigateTo({
-      url: '/pages/order/order',
+      url: '/pages/order/order'
     })
   },
 
@@ -128,6 +140,27 @@ Page({
     var id = e.currentTarget.dataset.id;
     wx.navigateTo({
       url: '/pages/answers/answers?id=' + id,
+    })
+  },
+  getCarsNum: function(){
+    var _self = this;
+    wx.request({
+      url: 'https://zunxiangviplus.com/cart/sku',
+      method: 'GET',
+      header: {
+        'X-TOKEN': wx.getStorageSync('token')
+      },
+      success: function (res) {
+        if (res.data.code == 200 && res.data.data.length>0) {
+          var shopNum = 0;
+          for(var i=0; i<res.data.data.length;i++){
+            shopNum += res.data.data[i].num;
+          }
+          _self.setData({
+            shopNum: shopNum
+          })
+        }
+      }
     })
   }
 

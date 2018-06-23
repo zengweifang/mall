@@ -8,16 +8,31 @@ Page({
     primarySize:'default',
     loading: false,
     plain:false,
-    goods: [
-      { id: 1, url: 'http://p95v2ft9v.bkt.clouddn.com/xf/images/sucai01.jpeg', goodsName: '人气推荐商品', attr: '1/套', price: '29.99', nums:1}
-    ]
+    detail:[],
+    goodsPrice:0,
+    deliverPrice:0,
+    region:{}
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    var checkedItems = JSON.parse(wx.getStorageSync('checkedItems'));
+    var goodsPrice = 0
+    for (var i = 0; i < checkedItems.length;i++){
+      goodsPrice += checkedItems[i].thirdPrice * (checkedItems[i].num || 1);
+    }
+
+    this.getAddress();
+
+    this.setData({
+      detail: checkedItems,
+      goodsPrice: goodsPrice
+    })
+
+    console.log(this.data.detail)
+
   },
 
   /**
@@ -31,7 +46,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    this.getAddress();
   },
 
   /**
@@ -81,14 +96,61 @@ Page({
       url: '/pages/address/address',
     })
   },
-  pay: function(){
+  getAddress:function(){
+    var _self = this;
+    wx.request({
+      url: 'https://zunxiangviplus.com/deliveries/list',
+      method: 'GET',
+      header: {
+        'X-TOKEN': wx.getStorageSync('token')
+      },
+      success: function (res) {
+        for(var i=0 ; i< res.data.data.length;i++){
+          if(res.data.data[i].isDefault){
+            _self.setData({
+              region:res.data.data[i]
+            })
+          }
+        }
+      }
+    })
+  },
+  order:function(){
+    var _self = this;
+    var skuItemList = [];
+    for(var i = 0; i< this.data.detail.length;i++){
+      skuItemList.push({
+        id:this.data.detail[i].id,
+        num: this.data.detail[i].num || 1,
+        price: this.data.detail[i].thirdPrice
+      })
+    }
+    wx.request({
+      url: 'https://zunxiangviplus.com/orders/ready',
+      header: {
+        'X-TOKEN': wx.getStorageSync('token')
+      },
+      method: 'POST',
+      data:{
+        deliveryId: this.data.region.id,
+        fromCart:false,
+        skuItemList: skuItemList
+      },
+      success: function (res) {
+        console.log(res)
+        if(res.data.code == 200){
+          _self.pay(res.data.data.orderId);
+        }
+      }
+    })
+  },
+  pay: function(orderId){
     wx.request({
       url: 'https://zunxiangviplus.com/pay/unified_order/order',
-      // url:"https://dc69eacf.ngrok.io/pay/unified_order/order",
       header:{
         'X-TOKEN': wx.getStorageSync('token')
       },
-      data:'16',
+      data: orderId,
       method:'POST',
       success:function(res){
         var data = res.data.data;

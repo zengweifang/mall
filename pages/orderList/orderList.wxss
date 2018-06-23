@@ -1,4 +1,4 @@
-/* pages/category/category.wxss */
+/* pages/orderList/orderList.wxss */
 .disc_detail{
   width: 100%;
   background-color: #ffffff

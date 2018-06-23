@@ -13,7 +13,7 @@
   width: 12%;
 }
 .address_content{
-  width: 78%
+  width: 65%
 }
 
 .address_opera,.address_radio{

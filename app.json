@@ -6,12 +6,13 @@
     "pages/shop-car/shop-car",
     "pages/order/order",
     "pages/admin/admin",
-    "pages/list/list",
     "pages/ranking/ranking",
     "pages/category/category",
     "pages/address/address",
     "pages/address_operate/address_operate",
-    "pages/login/login"
+    "pages/login/login",
+    "pages/address_edit/address_edit",
+    "pages/orderList/orderList"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -39,7 +40,7 @@
         "text": "分类"
       },
       {
-        "pagePath": "pages/index/index",
+        "pagePath": "pages/shop-car/shop-car",
         "iconPath": "pages/images/icon_off/service.png",
         "selectedIconPath": "pages/images/icon_on/service_fill.png",
         "text": "购物车"

@@ -69,14 +69,6 @@ Page({
 
   onGotUserInfo: function(e){
     console.log(e)
-    // this.userName = e.detail.userInfo.nickName;
-    // wx.setStorage({
-    //   key: 'userName',
-    //   data: this.userName,
-    // })
-    // wx.navigateTo({
-    //   url: '/pages/admin/admin',
-    // })
     if (!e.detail.userInfo) {
       return;
     }
@@ -87,16 +79,11 @@ Page({
   login:function(){
     wx.login({
       success: function (res) {
-        console.log(res)
         if (res.code) {
-          wx.navigateTo({
-            url: '/pages/index/index',
-          })
           //发起网络请求
           wx.request({
             url: 'https://zunxiangviplus.com/user/login',
-            // url:'https://dc69eacf.ngrok.io/user/login',
-            data: res.code,
+            data: '"'+res.code+'"',
             method: 'POST',
             success: function (res) {
               wx.setStorageSync('token', res.data.data);

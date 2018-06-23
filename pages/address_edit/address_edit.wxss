@@ -1,0 +1,30 @@
+/* pages/address_edit/address_edit.wxss */
+.address_operate{
+  background-color: #ffffff;
+  padding: 0 15px;
+}
+
+.address_operate_label{
+  width: 20%
+}
+.address_operate_value{
+  width: 80%
+}
+.flex-item input{
+  position:relative;
+  top:23%;
+}
+.flex-wrp{
+  height:45px;
+  border-bottom:1px solid #eaeaea; 
+  line-height:45px;
+}
+
+.order_content_buttom{
+  padding: 15px;
+}
+
+.order_content_buttom button{
+  font-size: 14px;
+  padding: 5px
+}

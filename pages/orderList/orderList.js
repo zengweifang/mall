@@ -1,124 +1,125 @@
-// pages/adrress/address.js
+// pages/orderList/orderList.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    addressList:[]
+    list: [{id:0,name:'待付款'}],
+    orderList: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getAddressList();
+    this.getList();
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+  
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.getAddressList();
+  
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-
+  
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
+  
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+  
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+  
   },
 
   /**
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-
+  
   },
-  radioChange: function (e) {
-    console.log('radio发生change事件，携带value值为：', e.detail.value)
-    this.defaultAddress(e.detail.value);
-
-  },
-  addressOperate:function(){
-    wx.navigateTo({
-      url: '/pages/address_operate/address_operate',
-    })
-  },
-  getAddressList:function(){
+  getList: function () {
     var _self = this;
     wx.request({
-      url: 'https://zunxiangviplus.com/deliveries/list',
+      url: 'https://zunxiangviplus.com/category/list',
       method: 'GET',
       header: {
         'X-TOKEN': wx.getStorageSync('token')
       },
       success: function (res) {
+        // res.data.data[0].item_hasbgr = 'item_hasbgr';
+        _self.data.list[0].item_hasbgr = 'item_hasbgr'
         _self.setData({
-          addressList: res.data.data
+          // list: res.data.data
+          list:_self.data.list
         });
+
+        _self.getOrderListApi(res.data.data[0].id);
       }
     })
   },
-  edit:function(e){
-    wx.navigateTo({
-      url: '/pages/address_edit/address_edit?id='+e.currentTarget.dataset.item.id,
-    })
-  },
-  del:function(e){
-    var _self = this;
-    wx.request({
-      url: 'https://zunxiangviplus.com/deliveries/delivery?deliveryId=' + e.currentTarget.dataset.item.id,
-      method:'DELETE',
-      header: {
-        'X-TOKEN': wx.getStorageSync('token')
-      },
-      success: function (res) {
-        _self.getAddressList();
+  getOrderList: function (e) {
+    var item = e.currentTarget.dataset.item;
+    for (var i = 0; i < this.data.list.length; i++) {
+      if (this.data.list[i].id == item.id) {
+        this.data.list[i].item_hasbgr = 'item_hasbgr';
+      } else {
+        this.data.list[i].item_hasbgr = null;
       }
+    }
+    this.setData({
+      list: this.data.list
     })
+    this.getOrderListApi(e.currentTarget.dataset.item.id);
   },
-  defaultAddress: function (deliveryId){
+  getOrderListApi: function (id) {
     var _self = this;
     wx.request({
-      url: 'https://zunxiangviplus.com/deliveries/default?deliveryId=' + deliveryId,
+      url: 'https://zunxiangviplus.com/orders/order',
       method: 'POST',
+      data:{
+
+      },
       header: {
         'X-TOKEN': wx.getStorageSync('token')
       },
       success: function (res) {
-        if(res.data.code == 200){
-          wx.navigateBack();
-        }
+        _self.setData({
+          // orderList: res.data.data.list
+        })
       }
+    })
+  },
+  toDetail: function (event) {
+    var id = event.currentTarget.dataset.item.id
+    wx.navigateTo({
+      url: '/pages/detail/detail?id=' + id
     })
   }
 })

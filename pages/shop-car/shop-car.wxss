@@ -1,28 +1,31 @@
 /* pages/shop-car/shop-car.wxss */
-.car_goods{
-  background-color:#ffffff;
+
+.car_goods {
+  background-color: #fff;
   font-size: 12px;
   margin-top: 1px;
-  padding: 20px 0
+  padding: 20px 0;
 }
-.car_goods .car_goods_l{
+
+.car_goods .car_goods_l {
   padding-left: 15px;
-  line-height: 80px
+  line-height: 80px;
 }
-.car_goods .car_goods_m image{
+
+.car_goods .car_goods_m image {
   width: 110px;
   /* height: 80px; */
 }
 
-.car_goods .car_goods_mm{
-  line-height: 25px
+.car_goods .car_goods_mm {
+  line-height: 25px;
 }
 
-.car_goods_cb{
+.car_goods_cb {
   margin-top: 2px;
   height: 36px;
   line-height: 36px;
-  padding-left: 15px
+  padding-left: 15px;
 }
 
 .footer-box {
@@ -42,7 +45,7 @@
   height: 100%;
   text-align: center;
   padding-top: 26rpx;
-  color: #FF6A6A;
+  color: #ff6a6a;
   box-sizing: border-box;
 }
 
@@ -73,10 +76,72 @@
   font-size: 34rpx;
 }
 
-.car_attr{
-  color: #dedede
+.car_attr {
+  color: #dedede;
 }
 
-.car_price{
-  color: #FF6A6A
+.car_price {
+  color: #ff6a6a;
+}
+
+.car_goods_delete {
+  width: 120px;
+  text-align: center;
+  line-height: 156px;
+  color: #ce3c39;
+}
+
+.buy-num {
+  line-height: 48rpx;
+  display: flex;
+  text-align: center;
+  position: relative;
+  left: 50px;
+  top: -25px;
+  width: 100px
+}
+
+.buy-num .jian-btn {
+  width: 48rpx;
+  height: 100%;
+  border-left: 1rpx solid #ccc;
+  border-bottom: 1rpx solid #ccc;
+  border-top: 1rpx solid #ccc;
+  border-bottom-left-radius: 6rpx;
+  border-top-left-radius: 6rpx;
+}
+
+.buy-num .jian-btn.disabled {
+  background-color: #f5f5f9;
+  border-left: 1rpx solid #eee;
+  border-bottom: 1rpx solid #eee;
+  border-top: 1rpx solid #eee;
+  color: #ccc;
+}
+
+.buy-num .jia-btn {
+  width: 48rpx;
+  height: 100%;
+  border-right: 1rpx solid #ccc;
+  border-bottom: 1rpx solid #ccc;
+  border-top: 1rpx solid #ccc;
+  border-bottom-right-radius: 6rpx;
+  border-top-right-radius: 6rpx;
+}
+
+.buy-num .jia-btn.disabled {
+  background-color: #f5f5f9;
+  border-right: 1rpx solid #eee;
+  border-bottom: 1rpx solid #eee;
+  border-top: 1rpx solid #eee;
+  color: #ccc;
+}
+
+.buy-num input {
+  width: 68rpx;
+  height: 48rpx;
+  min-height: 48rpx;
+  text-align: center;
+  font-size: 24rpx;
+  border: 1rpx solid #ccc;
 }

@@ -1,14 +1,15 @@
 <!--pages/adrress/address.wxml-->
 <view class='address_list'>
   <radio-group class="radio-group" bindchange="radioChange">
-    <label class="radio" wx:for="{{items}}" style='display:block'>
+    <label class="radio" wx:for="{{addressList}}" style='display:block'>
       <view class="flex-wrp" style="flex-direction:row;">
-        <radio class="flex-item address_radio" value="{{item.name}}" checked="{{item.checked}}" color="#CE3C39" />
+        <radio class="flex-item address_radio" value="{{item.id}}" checked="{{item.isDefault}}" color="#CE3C39" />
         <view class="flex-item address_content">
-          <view style='font-weight:bold'>{{item.userName}} {{item.phone}}</view>
-          <view>{{item.address}}</view>
+          <view style='font-weight:bold'>{{item.name}} {{item.mobile}}</view>
+          <view>{{item.provinceName}}{{item.cityName}}{{item.countyName}}{{item.address}}</view>
         </view>
-        <view class="flex-item address_opera">编辑</view>
+        <view class="flex-item address_opera" bindtap='edit' data-item="{{item}}">编辑</view>
+        <view class="flex-item address_opera" bindtap='del' data-item="{{item}}" style='margin-left:10px'>删除</view>
       </view>
     </label>
   </radio-group>

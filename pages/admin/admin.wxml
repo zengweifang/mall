@@ -3,19 +3,24 @@
     <image class='admin_banner_bgr_img' src='http://p95v2ft9v.bkt.clouddn.com/admin/banner%E8%83%8C%E6%99%AF@2x.png'></image>
     <view class='admin_banner_title'>
       <view class='admin_user'>
-        <view class='admin_name'>yolanda</view>
-        <!-- <view class='admin_moons'>
-          <view bindtap='toRanking'>月星值666</view>
-        </view> -->
+        <view class='admin_name'>{{nickName}}</view>
       </view>
     </view>
     <image class='admin_banner_login' mode="widthFix" src='../images/nav_@2x/login@2x.png'></image>
   </view>
-  <view class="flex-wrp discover_codes" style="flex-direction:row;">
+  <view class="flex-wrp discover_codes" style="flex-direction:row;" bindtap='order'>
     <view class="flex-item discover_codes_l admin_height">我的订单</view>
     <view class="weui-cell__ft weui-cell__ft_in-access discover_codes_r"></view>
   </view>
-  <view class="flex-wrp admin_list" style="flex-direction:row;margin-bottom:15px">
+  <view class="flex-wrp discover_codes" style="flex-direction:row;" bindtap='toAddress'>
+    <view class="flex-item discover_codes_l admin_height">地址管理</view>
+    <view class="weui-cell__ft weui-cell__ft_in-access discover_codes_r"></view>
+  </view>
+  <view class="flex-wrp discover_codes" style="flex-direction:row;">
+    <view class="flex-item discover_codes_l admin_height">联系客服</view>
+    <view class="weui-cell__ft weui-cell__ft_in-access discover_codes_r"></view>
+  </view>
+  <!-- <view class="flex-wrp admin_list" style="flex-direction:row;margin-bottom:15px">
     <view class="flex-item admin_images" bindtap='toscience'>
       <image src='http://p95v2ft9v.bkt.clouddn.com/%E5%BE%85%E4%BB%98%E6%AC%BE@2x.png'></image>
       <view>待付款</view>
@@ -45,13 +50,13 @@
     </view>
     <view class="flex-item admin_images" bindtap='toHeatTheory'>
       <image src='http://p95v2ft9v.bkt.clouddn.com/%E5%9C%B0%E5%9D%80%E7%AE%A1%E7%90%86@2x.png'></image>
-      <view>地址管理</view>
+      <view bindtap='toAddress'>地址管理</view>
     </view>
     <view class="flex-item admin_images">
       <image src='http://p95v2ft9v.bkt.clouddn.com/%E8%81%94%E7%B3%BB%E5%AE%A2%E6%9C%8D@2x.png'></image>
       <view>联系客服</view>
     </view>
-  </view>
+  </view> -->
   <!-- <view class="flex-wrp admin_codes admin_height" style="flex-direction:row;">
     <view class="flex-item admin_codes_l">我的积分</view>
     <view class="flex-item admin_codes_r">888999</view>

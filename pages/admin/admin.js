@@ -5,14 +5,17 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+    nickName:''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    var userInfo = wx.getStorageSync('userInfo');
+    this.setData({
+      nickName : userInfo.nickName
+    })
   },
 
   /**
@@ -66,6 +69,17 @@ Page({
   toRanking:function(){
     wx.navigateTo({
       url: '/pages/ranking/ranking',
+    })
+  },
+
+  toAddress:function(){
+    wx.navigateTo({
+      url: '/pages/address/address',
+    })
+  },
+  order:function(){
+    wx.navigateTo({
+      url: '/pages/orderList/orderList',
     })
   }
 })

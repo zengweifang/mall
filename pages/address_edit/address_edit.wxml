@@ -1,11 +1,11 @@
-<!--pages/address_operate/address_operate.wxml-->
+<!--pages/address_edit/address_edit.wxml-->
 <view class='address_operate'>
   <view class="flex-wrp" style="flex-direction:row;">
     <view class="flex-item address_operate_label">
       收货人
     </view>
     <view class="flex-item address_operate_value">
-      <input placeholder="姓名" bindinput="bindKeyInputName" />
+      <input placeholder="姓名" bindinput="bindKeyInputName" value="{{addressInfo.name}}"/>
     </view>
   </view>
   <view class="flex-wrp" style="flex-direction:row;">
@@ -25,7 +25,7 @@
       联系方式
     </view>
     <view class="flex-item address_operate_value">
-      <input type="number" placeholder="手机号码" bindinput="bindKeyInputPhone" />
+      <input type="number" placeholder="手机号码" bindinput="bindKeyInputPhone" value="{{addressInfo.mobile}}" />
     </view>
   </view>
   <view class="flex-wrp" style="flex-direction:row;">
@@ -85,7 +85,7 @@
       详细地址
     </view>
     <view class="flex-item address_operate_value">
-      <input placeholder="详细地址需天蝎楼栋楼层或房间号信息" bindinput="bindKeyInputAddress" />
+      <input placeholder="详细地址需天蝎楼栋楼层或房间号信息" bindinput="bindKeyInputAddress" value="{{addressInfo.address}}"/>
     </view>
   </view>
   <view class="flex-wrp" style="flex-direction:row;border-bottom:none">
@@ -93,10 +93,10 @@
       邮政编码
     </view>
     <view class="flex-item address_operate_value">
-      <input placeholder="邮政编码" bindinput="bindKeyInputZip" />
+      <input placeholder="邮政编码" bindinput="bindKeyInputZip" value="{{addressInfo.zip}}" />
     </view>
   </view>
 </view>
 <view class='order_content_buttom'>
-  <button type="warn" size="{{warnSize}}" loading="{{loading}}" plain="{{plain}}" bindtap="addAddress">确认</button>
+  <button type="warn" size="{{warnSize}}" loading="{{loading}}" plain="{{plain}}" bindtap="editAddress">修改</button>
 </view>

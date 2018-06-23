@@ -1,12 +1,13 @@
+<!--pages/orderList/orderList.wxml-->
 <view class='disc_detail'>
   <view class='dic_detail_swiper'>
     <scroll-view scroll-x class="dic_detail_swiper_scroll">
-      <view class='dic_detail_swiper_item {{item.item_hasbgr}}' wx:for="{{list}}" style='display: inline-block' bindtap='getCategoryList' data-item="{{item}}">{{item.name}}</view>
+      <view class='dic_detail_swiper_item {{item.item_hasbgr}}' wx:for="{{list}}" style='display: inline-block' bindtap='getCategoryList' data-item="{{item}}" wx:key="*this">{{item.name}}</view>
     </scroll-view>
   </view>
   <view class='page_personal'>
     <view class="page_personal_b">
-      <view class="flex-item  page_bgr  page_comm_images" bindtap='toDetail' wx:for="{{categoryList}}" data-item='{{item}}'>
+      <view class="flex-item  page_bgr  page_comm_images" bindtap='toDetail' wx:for="{{orderList}}" data-item='{{item}}' wx:key="*this">
         <image src='https://img11.360buyimg.com/n7/{{item.imageUrl}}' mode='widthFix'></image>
         <view class='page_price'>
           <view class='page_name'>{{item.name}}</view>
