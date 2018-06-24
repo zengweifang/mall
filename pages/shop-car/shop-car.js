@@ -107,7 +107,15 @@ Page({
         this.data.carsList[i].checked = !this.data.carsList[i].checked;
       }
     }
+
+    var price = 0
+    for (var i = 0; i < this.data.carsList.length; i++) {
+      if (this.data.carsList[i].checked){
+        price += this.data.carsList[i].thirdPrice * this.data.carsList[i].num;
+      }
+    }
     this.setData({
+      totalPrice: price,
       carsList: this.data.carsList
     })
   },
