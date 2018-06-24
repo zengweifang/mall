@@ -1,137 +1,123 @@
-// pages/orderList/orderList.js
+// pages/cards/card.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    list: [{ id: null, name: '全部' },{ id: 'created', name: '待付款' },  { id: 'paid', name: '已付款' }, { id: 'sent', name: '已发货' }, { id: 'signed', name: '已签收' }],
-    orderList: []
+    cards: [],
+    selectCard: {}
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getList();
+    this.getCard();
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-  
+
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-  
+
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-  
+
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-  
+
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-  
+
   },
 
   /**
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-  
-  },
-  getList: function () {
-    this.data.list[0].item_hasbgr = 'item_hasbgr'
-    this.setData({
-      list: this.data.list
-    });
 
-    this.getOrderListApi(this.data.list[0].id);
-    
   },
-  getOrderList: function (e) {
-    var item = e.currentTarget.dataset.item;
-    for (var i = 0; i < this.data.list.length; i++) {
-      if (this.data.list[i].id == item.id) {
-        this.data.list[i].item_hasbgr = 'item_hasbgr';
+  getCard: function () {
+    var _self = this;
+    wx.request({
+      url: 'https://zunxiangviplus.com/cards',
+      method: 'GET',
+      header: {
+        'X-TOKEN': wx.getStorageSync('token')
+      },
+      success: function (res) {
+        console.log(res)
+        if (res.data.code == 200 && res.data.data.length>0) {
+          _self.setData({
+            cards: res.data.data
+          })
+        }
+      }
+    })
+  },
+  select: function (e) {
+    console.log(e)
+    var id = e.currentTarget.dataset.item.id;
+    for (var i = 0; i < this.data.cards.length; i++) {
+      if (id == this.data.cards[i].id) {
+        this.data.cards[i].card_item_class = 'card_item_selected'
       } else {
-        this.data.list[i].item_hasbgr = null;
+        this.data.cards[i].card_item_class = null
       }
     }
+
     this.setData({
-      list: this.data.list
+      cards: this.data.cards,
+      selectCard: e.currentTarget.dataset.item
     })
-    this.getOrderListApi(e.currentTarget.dataset.item.id);
+
+    console.log(this.data.cards)
   },
-  getOrderListApi: function (status) {
-    var _self = this;
+  buy: function () {
+    var _self =  this;
+    var id = this.data.selectCard.id;
     wx.request({
-      url: 'https://zunxiangviplus.com/orders/list',
+      url: 'https://zunxiangviplus.com/cards/buy',
       method: 'POST',
-      data:{
-        status: status
-      },
+      data:id,
       header: {
         'X-TOKEN': wx.getStorageSync('token')
       },
       success: function (res) {
-        console.log(res)
-        _self.setData({
-          orderList: res.data.data.list
-        })
-      }
-    })
-  },
-  toDetail: function (event) {
-    var id = event.currentTarget.dataset.item.id
-    wx.navigateTo({
-      url: '/pages/detail/detail?id=' + id
-    })
-  },
-  pay:function(e){
-    var orderId = e.currentTarget.dataset.item.id;
-    var _self = this;
-    wx.request({
-      url: 'https://zunxiangviplus.com/orders/pay',
-      method: 'POST',
-      data: orderId,
-      header: {
-        'X-TOKEN': wx.getStorageSync('token')
-      },
-      success: function (res) {
-        console.log(res)
-        if(res.data.code == 200){
-          _self.payApi(res.data.data);
+        if (res.data.code == 200) {
+          _self.payApi(res.data.data)
         }
       }
     })
   },
   payApi:function(data){
-    var _self = this;
     wx.requestPayment(
       {
         'timeStamp': data.timeStamp,
@@ -140,8 +126,9 @@ Page({
         'signType': data.signType,
         'paySign': data.paySign,
         'success': function (res) {
-          console.log(res)
-          _self.getList();
+          wx.switchTab({
+            url: '/pages/admin/admin',
+          })
         },
         'fail': function (res) {
           console.log(res)

@@ -1,0 +1,47 @@
+/* pages/cards/card.wxss */
+
+.card {
+  width: 100%;
+}
+
+.card_list {
+  margin: 10px;
+  width: 94%;
+}
+
+.card_item {
+  padding: 50px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  background-color: #ffffff;
+}
+
+ /* .card_item_no_selected{
+  background-color: #ffffff;
+}  */
+
+.card_item_selected{
+  background-color: #ffe7ba;
+}
+
+.footer-box {
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  height: 45px;
+  line-height: 45px
+}
+
+.price{
+  float: left;
+  width: 60%;
+  background-color: #ffffff;
+  text-align: center;
+  color: #CE3C39
+}
+
+.buy{
+  background-color: #CE3C39;
+  color: #ffffff;
+  text-align: center
+}

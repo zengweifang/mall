@@ -1,12 +1,13 @@
 /* pages/orderList/orderList.wxss */
 .disc_detail{
   width: 100%;
-  background-color: #ffffff
+  /* background-color: #ffffff */
 }
 .dic_detail_swiper{
   white-space: nowrap;
   display: flex;
-  margin-left: 15px;
+  /* margin-left: 15px; */
+  background-color: #ffffff
 }
 .dic_detail_swiper_scroll{
   width: 100%;
@@ -25,12 +26,12 @@
 }
 
 .page_personal{
-  background-color: #ffffff;
-  margin-top: 10px
+  /* background-color: #ffffff; */
+  /* margin-top: 10px */
 }
 
 .page_personal_b{
-  padding-left : 3%;
+  /* padding-left : 3%; */
   overflow: hidden;
 }
 .page_personal_b image{ 
@@ -60,4 +61,44 @@
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical
+}
+
+
+.order_list_img{
+  width: 20%;
+}
+
+.order_list_title{
+  width: 65%
+}
+
+.order_list_total_price,.order_list_button{
+  text-align: right;
+  padding: 5px;
+  margin-top: 1px
+}
+
+.order_list{
+  background-color: #ffffff;
+  margin-bottom: 1px;
+}
+.order_list_total_price{
+  padding-right: 15px
+}
+
+.order_list_pay{
+  margin-left:15px;
+  color:#CE3C39;
+}
+
+.order_list_button{
+  padding-right: 15px
+}
+
+.order_list_button button{
+  font-size: 12px
+}
+
+.order_list_content{
+  padding: 15px 15px 0 15px
 }

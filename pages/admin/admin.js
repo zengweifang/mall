@@ -1,11 +1,13 @@
 // pages/admin/admin.js
+var utils = require('../../utils/util.js')
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    nickName:''
+    nickName:'',
+    user_card:null
   },
 
   /**
@@ -16,6 +18,7 @@ Page({
     this.setData({
       nickName : userInfo.nickName
     })
+    this.getUserInfo();
   },
 
   /**
@@ -29,7 +32,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    
   },
 
   /**
@@ -66,12 +69,6 @@ Page({
   onShareAppMessage: function () {
   
   },
-  toRanking:function(){
-    wx.navigateTo({
-      url: '/pages/ranking/ranking',
-    })
-  },
-
   toAddress:function(){
     wx.navigateTo({
       url: '/pages/address/address',
@@ -80,6 +77,28 @@ Page({
   order:function(){
     wx.navigateTo({
       url: '/pages/orderList/orderList',
+    })
+  },
+  toCard:function(){
+    wx.navigateTo({
+      url: '/pages/card/card',
+    })
+  },
+  getUserInfo: function(){
+    var _self=  this;
+    wx.request({
+      url: 'https://zunxiangviplus.com/user',
+      method: 'GET',
+      header: {
+        'X-TOKEN': wx.getStorageSync('token')
+      },
+      success: function (res) {
+        console.log(res)
+        res.data.data.expiredAt = utils.formatTime(new Date(res.data.data.expiredAt))
+        _self.setData({
+          user_card:res.data.data
+        })
+      }
     })
   }
 })

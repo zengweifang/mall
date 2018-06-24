@@ -13,19 +13,19 @@
     <view class="weui-cell__ft weui-cell__ft_in-access"></view>
   </view>
 
-  <view class="flex-wrp order_goods" style="flex-direction:row;" wx:for="{{detail}}">
+  <view class="flex-wrp order_goods" style="flex-direction:row;" wx:for="{{detail.skuList}}">
     <view class="flex-item order_goods_l">
       <image src='https://img20.360buyimg.com/vc/{{item.imageUrl}}' mode='widthFix'></image>
     </view>
     <view class="flex-item order_goods_m">
       <view class='order_content_text_f'>{{item.name}}</view>
       <view class='order_goods_attr'>{{item.attr}}</view>
-      <view class='order_goods_price'>￥{{item.thirdPrice}}</view>
-      <!-- <view class='order_goods_price'>￥{{item.sellPrice}}</view>
-      <view class='order_goods_price'>￥{{item.vipPrice}}</view> -->
+      <view class='order_goods_price'>￥{{item.sellPrice}}</view>
+       <!-- <view class='order_goods_price'>￥{{item.thirdPrice}}</view> 
+      <view class='order_goods_price'>￥{{item.vipPrice}}</view>  -->
     </view>
     <view class="flex-item order_goods_r">
-      x {{item.num || 1}}
+      x {{item.num}}
     </view>
   </view>
   <view class="flex-wrp order_textarea">
@@ -35,17 +35,17 @@
     <view class='order_content_prc_t'>
       <view class="flex-wrp order_content_height order_margin" style="flex-direction:row;">
         <view class="flex-item order_content_l">商品金额</view>
-        <view class="flex-item order_content_r order_goods_price">￥{{goodsPrice}}</view>
+        <view class="flex-item order_content_r order_goods_price">￥{{detail.orderPrice}}</view>
       </view>
       <view class="flex-wrp order_content_height" style="flex-direction:row;">
         <view class="flex-item order_content_l">运费</view>
-        <view class="flex-item order_content_r order_goods_price">+￥{{deliverPrice}}</view>
+        <view class="flex-item order_content_r order_goods_price">+￥{{detail.freight}}</view>
       </view>
     </view>
 
     <view class='order_content_prc_t'>
       <view class='order_content_r_prc'>实付金额:
-        <text>￥{{goodsPrice+deliverPrice}}</text> </view>
+        <text>￥{{detail.amount}}</text> </view>
       <view class='order_content_buttom'>
         <button type="primary" size="{{primarySize}}" loading="{{loading}}" plain="{{plain}}" bindtap="order">微信支付</button>
       </view>

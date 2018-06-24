@@ -121,3 +121,9 @@
   color: #ffffff;
   font-size: 14px
 }
+.admin_h{
+  color: #EEB422;
+  display:inline-block;
+  position: absolute;
+  margin-left:20px;
+}

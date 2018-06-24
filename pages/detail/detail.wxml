@@ -2,7 +2,7 @@
   <swiper class='swiper-image' indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
     <block wx:for="{{detail.skuImageList}}" wx:key="*this">
       <swiper-item>
-        <image src="https://img20.360buyimg.com/vc/{{item.path}}" class="slide-image" />
+        <image src="https://img20.360buyimg.com/vc/{{item.path}}" mode='widthFix' class="slide-image" />
       </swiper-item>
     </block>
   </swiper>
