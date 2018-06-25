@@ -1,5 +1,6 @@
 // pages/category/category.js
 var _self = this;
+const app = getApp()
 Page({
 
   /**
@@ -7,7 +8,8 @@ Page({
    */
   data: {
     list: [],
-    categoryList: []
+    categoryList: [],
+    id:''
   },
 
   /**
@@ -15,6 +17,7 @@ Page({
    */
   onLoad: function (options) {
     this.getList();
+    var _self = this;
   },
 
   /**
@@ -28,7 +31,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.getCardInfo();
   },
 
   /**
@@ -74,16 +77,27 @@ Page({
         'X-TOKEN': wx.getStorageSync('token')
       },
       success: function (res) {
+        res.data.data.unshift({id:'',name:'全部'})
         res.data.data[0].item_hasbgr = 'item_hasbgr';
+        
+        //初始化
+        var page={
+          pageNum: 1,
+          pageSize:10
+        }
+
         _self.setData({
-          list: res.data.data
+          list: res.data.data,
+          id: res.data.data[0].id,
+          pageNum:1,
+          pageSize:10
         });
         
-        _self.getCategoryListApi(res.data.data[0].id);
+        _self.getCategoryListApi(res.data.data[0].id, page.pageNum, page.pageSize);
       }
     })
   },
-  getCategoryList: function(e){
+  getCategoryList: function (e){
     var item = e.currentTarget.dataset.item;
     for (var i = 0; i < this.data.list.length; i++) {
       if (this.data.list[i].id == item.id){
@@ -93,15 +107,20 @@ Page({
       }
     }
     this.setData({
-      list: this.data.list
+      list: this.data.list,
+      id: e.currentTarget.dataset.item.id
     })
-    this.getCategoryListApi(e.currentTarget.dataset.item.id);
+    this.getCategoryListApi(e.currentTarget.dataset.item.id, 1, 10);
   },
-  getCategoryListApi: function (id) {
+  getCategoryListApi: function (id, pageNum, pageSize) {
     var _self = this;
     wx.request({
       url: 'https://zunxiangviplus.com/category/sku?categoryId=' + id,
       method: 'GET',
+      data:{
+        pageNum: pageNum,
+        pageSize: pageSize
+      },
       header: {
         'X-TOKEN': wx.getStorageSync('token')
       },
@@ -117,5 +136,33 @@ Page({
     wx.navigateTo({
       url: '/pages/detail/detail?id=' + id
     })
+  },
+
+  getCardInfo: function () {
+    var _self = this;
+    wx.request({
+      url: 'https://zunxiangviplus.com/user',
+      method: 'GET',
+      header: {
+        'X-TOKEN': wx.getStorageSync('token')
+      },
+      success: function (res) {
+        if (res.data.code == 200) {
+          _self.setData({
+            cardInfo: res.data.data
+          })
+        }
+      }
+    })
+  },
+  onReachBottom:function(){
+    var pageNum = this.data.pageNum + 1;
+    var pageSize = 10 * pageNum;
+    this.setData({
+      pageNum: pageNum,
+      pageSize: pageSize
+    })
+    this.getCategoryListApi(this.data.id, pageNum, pageSize);
   }
+  
 })

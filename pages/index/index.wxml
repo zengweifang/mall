@@ -1,4 +1,4 @@
-<view class="page">
+<view class="page" wx:if="{{show}}">
   <view class="page__hd">
     <swiper class='swiper-image' indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
       <block wx:for="{{homePageData.bannerList}}" wx:key="*this">
@@ -7,6 +7,22 @@
         </swiper-item>
       </block>
     </swiper>
+    <view class='page_title'>
+      <view class='flex-wrp' style="flex-direction:row;">
+        <view class='flex-item'>
+          <icon type="success" size="18" color='#FF6A6A'></icon>99元免基础运费(20kg内)</view>
+        <view class='flex-item'>
+          <icon type="success" size="18" color='#FF6A6A'></icon>京东发货&商家售后</view>
+      </view>
+      <view class='flex-wrp' style="flex-direction:row;">
+        <view class='flex-item'>
+          <icon type="success" size="18" color='#FF6A6A'></icon>支持7天无理由退货</view>
+        <view class='flex-item'>
+          <icon type="success" size="18" color='#FF6A6A'></icon>次日达</view>
+        <view class='flex-item'>
+          <icon type="cancel" size="18"></icon>不可使用京东券</view>
+      </view>
+    </view>
 
     <view class="page__bd">
       <view class="weui-grids">
@@ -18,7 +34,7 @@
       </view>
     </view>
   </view>
-  <view class='page_personal'>
+  <view class='page_personal' wx:if="{{homePageData.hotSkuList}}">
     <view class='page_label'>
       人气推荐
     </view>
@@ -27,16 +43,18 @@
         <image src='https://img11.360buyimg.com/n7/{{item.imageUrl}}' mode='widthFix'></image>
         <view class='page_price'>
           <view class='page_name'>{{item.name}}</view>
-          <text>￥{{item.thirdPrice}}</text>
-          <!-- <text>￥{{item.sellPrice}}</text>
-          <text>￥{{item.vipPrice}}</text> -->
+          <view style='padding-top:5px'>
+            <text wx:if="{{!cardInfo.vip}}">￥{{item.sellPrice}}</text>
+            <text wx:if="{{cardInfo.vip}}">会员价￥{{item.vipPrice}}</text>
+            <text class='page_price_delete'>￥{{item.thirdPrice}}</text>
+          </view>
+          <text wx:if="{{!cardInfo.vip}}" class='page_price_card'>会员价￥{{item.vipPrice}}</text>
         </view>
       </view>
     </view>
   </view>
 
-
-  <view class='page_personal'>
+  <view class='page_personal' wx:if="{{homePageData.list}}">
     <view class='page_label'>
       新品推荐
     </view>
@@ -45,9 +63,12 @@
         <image src='https://img11.360buyimg.com/n7/{{item.imageUrl}}' mode='widthFix'></image>
         <view class='page_price'>
           <view class='page_name'>{{item.name}}</view>
-          <text>￥{{item.thirdPrice}}</text>
-          <!-- <text>￥{{item.sellPrice}}</text>
-          <text>￥{{item.vipPrice}}</text> -->
+          <view style='padding-top:5px'>
+            <text wx:if="{{!cardInfo.vip}}">￥{{item.sellPrice}}</text>
+            <text wx:if="{{cardInfo.vip}}">会员价￥{{item.vipPrice}}</text>
+            <text class='page_price_delete'>￥{{item.thirdPrice}}</text>
+          </view>
+          <text wx:if="{{!cardInfo.vip}}" class='page_price_card'>会员价￥{{item.vipPrice}}</text>
         </view>
       </view>
     </view>

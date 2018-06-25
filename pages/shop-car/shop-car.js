@@ -6,14 +6,15 @@ Page({
    */
   data: {
     carsList: [],
-    totalPrice: ''
+    totalPrice: '',
+    show:false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options)
+    this.getCardInfo();
     this.getList();
   },
 
@@ -28,7 +29,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    console.log(11)
+    this.getCardInfo();
     this.getList()
   },
 
@@ -75,11 +76,16 @@ Page({
         'X-TOKEN': wx.getStorageSync('token')
       },
       success: function (res) {
-        console.log(res)
         var price = 0
         for (var i = 0; i < res.data.data.length; i++) {
+          var goodsPrice = 0;
+          if (_self.data.cardInfo.vip) {
+            goodsPrice = res.data.data[i].vipPrice
+          } else {
+            goodsPrice = res.data.data[i].sellPrice
+          }
           res.data.data[i].checked = true;
-          price += res.data.data[i].thirdPrice*res.data.data[i].num;
+          price += goodsPrice * res.data.data[i].num;
         }
         _self.setData({
           totalPrice: price,
@@ -98,7 +104,7 @@ Page({
     }
     wx.setStorageSync('checkedItems', JSON.stringify(items))
     wx.navigateTo({
-      url: '/pages/order/order'
+      url: '/pages/order/order?fromCard=true'
     })
   },
   checkFun: function (e) {
@@ -110,8 +116,14 @@ Page({
 
     var price = 0
     for (var i = 0; i < this.data.carsList.length; i++) {
-      if (this.data.carsList[i].checked){
-        price += this.data.carsList[i].thirdPrice * this.data.carsList[i].num;
+      if (this.data.carsList[i].checked) {
+        var goodsPrice = 0;
+        if (this.data.cardInfo.vip) {
+          goodsPrice = this.data.carsList[i].vipPrice
+        } else {
+          goodsPrice = this.data.carsList[i].sellPrice
+        }
+        price += goodsPrice * this.data.carsList[i].num;
       }
     }
     this.setData({
@@ -140,12 +152,12 @@ Page({
   jiaBtnTap: function (e) {
     console.log(e)
     var item = e.currentTarget.dataset.item;
-    this.updateCars(item.id, item.num+1)
+    this.updateCars(item.id, item.num + 1)
   },
   jianBtnTap: function (e) {
     console.log(e)
     var item = e.currentTarget.dataset.item;
-    this.updateCars(item.id, item.num-1)
+    this.updateCars(item.id, item.num - 1)
   },
 
   updateCars: function (skuId, num) {
@@ -163,6 +175,23 @@ Page({
       success: function (res) {
         console.log(res)
         _self.getList()
+      }
+    })
+  },
+  getCardInfo: function () {
+    var _self = this;
+    wx.request({
+      url: 'https://zunxiangviplus.com/user',
+      method: 'GET',
+      header: {
+        'X-TOKEN': wx.getStorageSync('token')
+      },
+      success: function (res) {
+        if (res.data.code == 200) {
+          _self.setData({
+            cardInfo: res.data.data
+          })
+        }
       }
     })
   }

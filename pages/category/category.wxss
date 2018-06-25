@@ -6,22 +6,26 @@
 .dic_detail_swiper{
   white-space: nowrap;
   display: flex;
-  margin-left: 15px;
+  /* margin-left: 15px; */
 }
 .dic_detail_swiper_scroll{
   width: 100%;
   height: 50px;
+  position:fixed;
+  top:0;
+  background-color:#fff;
+
 }
 
 .dic_detail_swiper_item{
-  width: 65px;
+  width: 21%;
   height: 45px;
   line-height: 45px;
   text-align: center;
 }
 .item_hasbgr{
   color:#CE3C39;
-  border-bottom:1px solid #CE3C39;
+  border-bottom:2px solid #CE3C39;
 }
 
 .page_personal{
@@ -32,6 +36,7 @@
 .page_personal_b{
   padding-left : 3%;
   overflow: hidden;
+  margin-top: 50px
 }
 .page_personal_b image{ 
    width: 100% 
@@ -60,4 +65,18 @@
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical
+}
+
+
+.page_price_delete{
+  text-decoration:line-through;
+  margin-left: 10px;
+  font-weight: normal!important;
+  color: #808080!important
+}
+
+.page_price_card{
+  color:#EEB422!important;
+  border:1px solid #EEB422;
+  padding: 0 5px;
 }

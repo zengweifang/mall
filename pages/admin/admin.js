@@ -7,6 +7,7 @@ Page({
    */
   data: {
     nickName:'',
+    avatarUrl:'',
     user_card:null
   },
 
@@ -15,8 +16,10 @@ Page({
    */
   onLoad: function (options) {
     var userInfo = wx.getStorageSync('userInfo');
+    console.log(userInfo)
     this.setData({
-      nickName : userInfo.nickName
+      nickName : userInfo.nickName,
+      avatarUrl: userInfo.avatarUrl
     })
     this.getUserInfo();
   },
@@ -32,7 +35,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    
+    this.getUserInfo();
   },
 
   /**
@@ -99,6 +102,11 @@ Page({
           user_card:res.data.data
         })
       }
+    })
+  },
+  call:function(){
+    wx.makePhoneCall({
+      phoneNumber: '18666211650'
     })
   }
 })

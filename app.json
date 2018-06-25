@@ -6,7 +6,6 @@
     "pages/shop-car/shop-car",
     "pages/order/order",
     "pages/admin/admin",
-    "pages/ranking/ranking",
     "pages/category/category",
     "pages/address/address",
     "pages/address_operate/address_operate",
@@ -19,7 +18,8 @@
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "商城",
-    "navigationBarTextStyle": "black"
+    "navigationBarTextStyle": "black",
+    "onReachBottomDistance":true
   },
   "tabBar": {
     "color": "#6e6d6b",

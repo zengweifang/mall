@@ -4,7 +4,7 @@
   background-color: #fff;
   font-size: 12px;
   margin-top: 1px;
-  padding: 20px 0;
+  padding-top: 20px;
 }
 
 .car_goods .car_goods_l {
@@ -14,11 +14,11 @@
 
 .car_goods .car_goods_m image {
   width: 110px;
-  /* height: 80px; */
 }
 
 .car_goods .car_goods_mm {
   line-height: 25px;
+  padding-left: 10px
 }
 
 .car_goods_cb {
@@ -87,7 +87,7 @@
 .car_goods_delete {
   width: 120px;
   text-align: center;
-  line-height: 156px;
+  line-height: 80px;
   color: #ce3c39;
 }
 

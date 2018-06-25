@@ -1,4 +1,5 @@
 // pages/order/order.js
+const app = getApp()
 Page({
 
   /**
@@ -9,16 +10,31 @@ Page({
     loading: false,
     plain: false,
     detail: {},
-    region: {},
-    skuItemList: []
+    region: null,
+    skuItemList: [],
+    fromCart:false,
+    remark:''
+  },
+
+  setRemark:function(e){
+    console.log(e)
+    this.setData({
+      remark:e.detail.value
+    })
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    if (options.fromCart){
+      this.setData({
+        fromCart: options.fromCart
+      })
+    }
+    this.getCardInfo();
     var checkedItems = JSON.parse(wx.getStorageSync('checkedItems'));
-    this.orderReady(checkedItems);
+    this.orderReady(checkedItems, options.fromCart);
   },
 
   /**
@@ -32,6 +48,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    this.getCardInfo();
     this.getAddress();
   },
 
@@ -91,24 +108,32 @@ Page({
         'X-TOKEN': wx.getStorageSync('token')
       },
       success: function (res) {
-        for (var i = 0; i < res.data.data.length; i++) {
-          if (res.data.data[i].isDefault) {
-            _self.setData({
-              region: res.data.data[i]
-            })
+        if (res.data.data.length != 0) {
+          for (var i = 0; i < res.data.data.length; i++) {
+            if (res.data.data[i].isDefault) {
+              _self.setData({
+                region: res.data.data[i]
+              })
+            }
           }
         }
       }
     })
   },
-  orderReady: function (checkedItems) {
+  orderReady: function (checkedItems, fromCart) { 
     var _self = this;
     var skuItemList = [];
     for (var i = 0; i < checkedItems.length; i++) {
+      var price = 0
+      if (_self.data.cardInfo){
+        price = checkedItems[i].vipPrice
+      }else{
+        price = checkedItems[i].sellPrice
+      }
       skuItemList.push({
         id: checkedItems[i].id,
         num: checkedItems[i].num || 1,
-        price: checkedItems[i].sellPrice
+        price: price
       })
     }
     this.setData({
@@ -121,8 +146,7 @@ Page({
       },
       method: 'POST',
       data: {
-        // deliveryId: this.data.region.id,
-        fromCart: false,//待改
+        fromCart: fromCart,
         skuItemList: skuItemList
       },
       success: function (res) {
@@ -140,11 +164,12 @@ Page({
     var _self = this;
     var data = {
       deliveryId: this.data.region.id,
-      fromCart: false,
+      fromCart: this.data.fromCart,
       hasInvoice: false,
-      remark: "",
+      remark: this.data.remark,
       skuItemList: this.data.skuItemList
     }
+    console.log(data)
     wx.request({
       url: 'https://zunxiangviplus.com/orders/order',
       header: {
@@ -200,5 +225,24 @@ Page({
           console.log(res)
         }
       })
+  },
+  getCardInfo: function () {
+    var _self = this;
+    wx.request({
+      url: 'https://zunxiangviplus.com/user',
+      method: 'GET',
+      header: {
+        'X-TOKEN': wx.getStorageSync('token')
+      },
+      success: function (res) {
+        if (res.data.code == 200) {
+          _self.setData({
+            cardInfo: res.data.data
+          })
+        }
+        console.log(_self.data.cardInfo)
+      }
+      
+    })
   }
 })

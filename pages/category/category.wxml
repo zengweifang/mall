@@ -10,9 +10,12 @@
         <image src='https://img11.360buyimg.com/n7/{{item.imageUrl}}' mode='widthFix'></image>
         <view class='page_price'>
           <view class='page_name'>{{item.name}}</view>
-          <text>￥{{item.thirdPrice}}</text>
-          <!-- <text>￥{{item.sellPrice}}</text>
-          <text>￥{{item.vipPrice}}</text> -->
+          <view style='padding-top:5px'>
+            <text wx:if="{{!cardInfo.vip}}">￥{{item.sellPrice}}</text>
+            <text wx:if="{{cardInfo.vip}}">会员价￥{{item.vipPrice}}</text>
+            <text class='page_price_delete'>￥{{item.thirdPrice}}</text>
+          </view>
+          <text wx:if="{{!cardInfo.vip}}" class='page_price_card'>会员价￥{{item.vipPrice}}</text>
         </view>
       </view>
     </view>

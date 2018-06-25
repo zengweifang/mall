@@ -98,3 +98,16 @@
   font-size: 16px;
   color: #CE3C39;
 }
+
+.page_price_delete{
+  text-decoration:line-through;
+  margin-left: 10px;
+  font-weight: normal!important;
+  color: #808080!important
+}
+
+.page_price_card{
+  color:#EEB422!important;
+  border:1px solid #EEB422;
+  padding: 0 5px;
+}

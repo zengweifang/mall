@@ -1,4 +1,5 @@
 // pages/detail/detail.js
+const app = getApp()
 Page({
 
   /**
@@ -26,7 +27,6 @@ Page({
     
     this.getDetail(options);
     this.getCarsNum();
-    
   },
 
   /**
@@ -40,7 +40,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    this.getCardInfo()
   },
 
   /**
@@ -161,6 +161,28 @@ Page({
           })
         }
       }
+    })
+  },
+  getCardInfo: function () {
+    var _self = this;
+    wx.request({
+      url: 'https://zunxiangviplus.com/user',
+      method: 'GET',
+      header: {
+        'X-TOKEN': wx.getStorageSync('token')
+      },
+      success: function (res) {
+        if (res.data.code == 200) {
+          _self.setData({
+            cardInfo: res.data.data
+          })
+        }
+      }
+    })
+  },
+  toCard: function(){
+    wx.navigateTo({
+      url: '/pages/card/card',
     })
   }
 

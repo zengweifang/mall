@@ -8,9 +8,12 @@
   </swiper>
   <view class='detail_title'>
     <view class='detail_label'>{{detail.sku.name}}</view>
-    <view class='detail_price'>￥{{detail.sku.thirdPrice}}</view>
-    <!-- <view class='detail_price'>￥{{detail.sku.sellPrice}}</view>
-    <view class='detail_price'>￥{{detail.sku.vipPrice}}</view> -->
+    <view style='padding-top:5px'>
+      <text class='detail_price' wx:if="{{!cardInfo.vip}}">￥{{detail.sku.sellPrice}}</text>
+      <text class='detail_price' wx:if="{{cardInfo.vip}}">￥{{detail.sku.vipPrice}}</text>
+      <text class='page_price_delete'>￥{{detail.sku.thirdPrice}}</text>
+    </view>
+    <text wx:if="{{cardInfo.vip}}" class='page_price_card' bindtap='toCard'>会员价￥{{detail.sku.vipPrice}}</text>
   </view>
 
   <view class='detail_content'>
@@ -18,7 +21,7 @@
       <view class='detail_contents_c'>
         <view class='detail_contents_title'>商品详情</view>
         <view class='detail_contents_image'>
-          <image src="{{item}}" wx:for="{{detail.introduce}}" mode="widthFix" wx:key="*this"/>
+          <image src="{{item}}" wx:for="{{detail.introduce}}" mode="widthFix" wx:key="*this" />
         </view>
       </view>
     </view>

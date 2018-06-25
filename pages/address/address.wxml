@@ -9,7 +9,7 @@
           <view>{{item.provinceName}}{{item.cityName}}{{item.countyName}}{{item.address}}</view>
         </view>
         <view class="flex-item address_opera" bindtap='edit' data-item="{{item}}">编辑</view>
-        <view class="flex-item address_opera" bindtap='del' data-item="{{item}}" style='margin-left:10px'>删除</view>
+        <view class="flex-item address_opera" bindtap='del' data-item="{{item}}" style='margin-left:10px' wx:if="{{!item.isDefault}}">删除</view>
       </view>
     </label>
   </radio-group>

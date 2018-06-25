@@ -14,7 +14,8 @@ Page({
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     inputShowed: false,
-    inputVal: ""
+    inputVal: "",
+    show:false
   },
   showInput: function () {
     this.setData({
@@ -44,6 +45,7 @@ Page({
     })
   },
   onLoad: function () {
+    wx.showNavigationBarLoading();
     if (wx.getStorageSync('token')) {
       this.getHomePageData();
       this.getNewGoodsData();
@@ -74,12 +76,19 @@ Page({
         }
       })
     }
+    
+    wx.hideNavigationBarLoading();
+    this.setData({
+      show: true
+    })
   },
   onShow: function () {
     if (wx.getStorageSync('token')) {
       this.getHomePageData();
       this.getNewGoodsData();
     }
+
+    this.getCardInfo();
   },
   getUserInfo: function (e) {
     app.globalData.userInfo = e.detail.userInfo
@@ -123,5 +132,25 @@ Page({
         });
       }
     })
+  },
+  getCardInfo: function () {
+    var _self = this;
+    wx.request({
+      url: 'https://zunxiangviplus.com/user',
+      method: 'GET',
+      header: {
+        'X-TOKEN': wx.getStorageSync('token')
+      },
+      success: function (res) {
+        if (res.data.code == 200) {
+          _self.setData({
+            cardInfo : res.data.data
+          })
+        }
+      }
+    })
+  },
+  onReachBottom:function(){
+    console.log(11)
   }
 })

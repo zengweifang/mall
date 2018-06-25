@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    addressList:[]
+    addressList: []
   },
 
   /**
@@ -68,12 +68,12 @@ Page({
     this.defaultAddress(e.detail.value);
 
   },
-  addressOperate:function(){
+  addressOperate: function () {
     wx.navigateTo({
       url: '/pages/address_operate/address_operate',
     })
   },
-  getAddressList:function(){
+  getAddressList: function () {
     var _self = this;
     wx.request({
       url: 'https://zunxiangviplus.com/deliveries/list',
@@ -88,16 +88,16 @@ Page({
       }
     })
   },
-  edit:function(e){
+  edit: function (e) {
     wx.navigateTo({
-      url: '/pages/address_edit/address_edit?id='+e.currentTarget.dataset.item.id,
+      url: '/pages/address_edit/address_edit?id=' + e.currentTarget.dataset.item.id,
     })
   },
-  del:function(e){
+  del: function (e) {
     var _self = this;
     wx.request({
       url: 'https://zunxiangviplus.com/deliveries/delivery?deliveryId=' + e.currentTarget.dataset.item.id,
-      method:'DELETE',
+      method: 'DELETE',
       header: {
         'X-TOKEN': wx.getStorageSync('token')
       },
@@ -106,7 +106,7 @@ Page({
       }
     })
   },
-  defaultAddress: function (deliveryId){
+  defaultAddress: function (deliveryId) {
     var _self = this;
     wx.request({
       url: 'https://zunxiangviplus.com/deliveries/default?deliveryId=' + deliveryId,
@@ -115,7 +115,7 @@ Page({
         'X-TOKEN': wx.getStorageSync('token')
       },
       success: function (res) {
-        if(res.data.code == 200){
+        if (res.data.code == 200) {
           wx.navigateBack();
         }
       }

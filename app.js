@@ -10,6 +10,7 @@ App({
       this.goLoginPageTimeOut();
       return;
     }
+    this.getUserInfo();
 
     // 登录
     wx.login({
@@ -39,9 +40,11 @@ App({
         }
       }
     })
+   
   },
   globalData: {
-    userInfo: null
+    userInfo: null,
+    cardInfo:null
   },
   goLoginPageTimeOut: function () {
     setTimeout(function () {
@@ -49,5 +52,21 @@ App({
         url: "/pages/login/login"
       })
     }, 1000)
+  },
+
+  getUserInfo: function () {
+    var _self = this;
+    wx.request({
+      url: 'https://zunxiangviplus.com/user',
+      method: 'GET',
+      header: {
+        'X-TOKEN': wx.getStorageSync('token')
+      },
+      success: function (res) {
+        if(res.data.code == 200){
+          _self.globalData.cardInfo = res.data.data;
+        }
+      }
+    })
   }
 })

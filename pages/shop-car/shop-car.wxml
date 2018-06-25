@@ -1,3 +1,4 @@
+<wxs module="filters" src="../../utils/filter.wxs"></wxs>
 <view class="page">
   <view class="flex-wrp car_goods" style="flex-direction:row;" wx:for="{{carsList}}" wx:key="*this">
     <view class="flex-item car_goods_l">
@@ -9,9 +10,10 @@
     <view class="flex-item car_goods_mm">
       <view>{{item.name}}</view>
       <view class='car_attr'>{{item.attr}}</view>
-      <view class='car_price'>￥{{item.thirdPrice}}</view>
-      <!-- <view class='car_price'>￥{{item.sellPrice}}</view>
-      <view class='car_price'>￥{{item.vipPrice}}</view> -->
+      <view style='padding-top:5px'>
+        <text class='car_price' wx:if="{{!cardInfo.vip}}">￥{{item.sellPrice}}</text>
+        <text class='car_price' wx:if="{{cardInfo.vip}}">￥{{item.vipPrice}}</text>
+      </view>
       <view class="buy-num">
         <view class="jian-btn {{item.num==1? 'disabled' : ''}}" catchtap="jianBtnTap" data-item="{{item}}">-</view>
         <input type="number" value="{{item.num}}" disabled/>
@@ -20,11 +22,11 @@
     </view>
     <view class='car_goods_delete' bindtap='del' data-id="{{item.id}}">删除</view>
   </view>
-</view>
 
-<view class="footer-box">
-  <view class="shop-cart-btn" bindtap="goShopCar">
-    合计 ￥{{totalPrice}}
+  <view class="footer-box" wx:if="{{carsList.length>0}}">
+    <view class="shop-cart-btn" bindtap="goShopCar">
+      合计 ￥{{filters.toFix(totalPrice)}}
+    </view>
+    <view class="now-buy" bindtap="tobuy">去结算</view>
   </view>
-  <view class="now-buy" bindtap="tobuy">去结算</view>
 </view>

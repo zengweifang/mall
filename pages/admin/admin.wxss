@@ -105,6 +105,7 @@
   width:16%;
   left: 42%;
   top: 28px;
+  border-radius: 50%
 }
 
 .admin_user{

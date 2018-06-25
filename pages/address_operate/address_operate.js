@@ -27,7 +27,7 @@ Page({
       town: '',
       townName: '',
       address: '',
-      isDefault:true
+      isDefault:false
     }
   },
 
@@ -148,10 +148,11 @@ Page({
     this.getTown(this.data.countrys[e.detail.value].id);
   },
 
-  bindTownChange:function(){
+  bindTownChange:function(e){
     var town = 'addressInfo.town';
     var townName = 'addressInfo.townName';
     this.setData({
+      index3: e.detail.value,
       [town]: this.data.towns[e.detail.value].id,
       [townName]: this.data.towns[e.detail.value].name
     })
@@ -226,7 +227,7 @@ Page({
   getTown: function (countryId) {
     var _self = this;
     wx.request({
-      url: 'https://zunxiangviplus.com/division/town?countryId='+countryId,
+      url: 'https://zunxiangviplus.com/division/town?countyId='+countryId,
       method: 'GET',
       header: {
         'X-TOKEN': wx.getStorageSync('token')

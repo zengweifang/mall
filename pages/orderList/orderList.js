@@ -67,10 +67,11 @@ Page({
   getList: function () {
     this.data.list[0].item_hasbgr = 'item_hasbgr'
     this.setData({
-      list: this.data.list
+      list: this.data.list,
+      id: this.data.list[0].id
     });
 
-    this.getOrderListApi(this.data.list[0].id);
+    this.getOrderListApi(this.data.list[0].id,1,10);
     
   },
   getOrderList: function (e) {
@@ -83,17 +84,20 @@ Page({
       }
     }
     this.setData({
-      list: this.data.list
+      list: this.data.list,
+      id: e.currentTarget.dataset.item.id
     })
-    this.getOrderListApi(e.currentTarget.dataset.item.id);
+    this.getOrderListApi(e.currentTarget.dataset.item.id,1,10);
   },
-  getOrderListApi: function (status) {
+  getOrderListApi: function (status, pageNum, pageSize) {
     var _self = this;
     wx.request({
       url: 'https://zunxiangviplus.com/orders/list',
       method: 'POST',
       data:{
-        status: status
+        status: status,
+        pageSize:pageSize,
+        pageNum:pageNum
       },
       header: {
         'X-TOKEN': wx.getStorageSync('token')
@@ -101,7 +105,9 @@ Page({
       success: function (res) {
         console.log(res)
         _self.setData({
-          orderList: res.data.data.list
+          orderList: res.data.data.list,
+          pageSize: pageSize,
+          pageNum: pageNum
         })
       }
     })
@@ -150,5 +156,14 @@ Page({
           console.log(res)
         }
       })
+  },
+  onReachBottom: function () {
+    var pageNum = this.data.pageNum + 1;
+    var pageSize = 10 * pageNum;
+    this.setData({
+      pageNum: pageNum,
+      pageSize: pageSize
+    })
+    this.getOrderListApi(this.data.id, pageNum, pageSize);
   }
 })

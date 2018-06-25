@@ -20,16 +20,15 @@
     <view class="flex-item order_goods_m">
       <view class='order_content_text_f'>{{item.name}}</view>
       <view class='order_goods_attr'>{{item.attr}}</view>
-      <view class='order_goods_price'>￥{{item.sellPrice}}</view>
-       <!-- <view class='order_goods_price'>￥{{item.thirdPrice}}</view> 
-      <view class='order_goods_price'>￥{{item.vipPrice}}</view>  -->
+      <text class='order_goods_price' wx:if="{{!cardInfo.vip}}">￥{{item.sellPrice}}</text>
+      <text class='order_goods_price' wx:if="{{cardInfo.vip}}">￥{{item.vipPrice}}</text>
     </view>
     <view class="flex-item order_goods_r">
       x {{item.num}}
     </view>
   </view>
   <view class="flex-wrp order_textarea">
-    <textarea placeholder='备注' auto-height />
+    <textarea placeholder='备注' auto-height bindinput="setRemark" />
   </view>
   <view class='order_content_prc'>
     <view class='order_content_prc_t'>

@@ -103,6 +103,16 @@ Page({
   buy: function () {
     var _self =  this;
     var id = this.data.selectCard.id;
+    console.log(this.data.selectCard)
+    if(!this.data.selectCard.id){
+      wx.showToast({
+        title: '亲，您还没选卡哦',
+        icon: 'none',
+        duration: 2000
+      })
+
+      return;
+    }
     wx.request({
       url: 'https://zunxiangviplus.com/cards/buy',
       method: 'POST',
