@@ -87,28 +87,35 @@ Page({
       list: this.data.list,
       id: e.currentTarget.dataset.item.id
     })
-    this.getOrderListApi(e.currentTarget.dataset.item.id,1,10);
+    this.getOrderListApi(e.currentTarget.dataset.item.id,1);
   },
-  getOrderListApi: function (status, pageNum, pageSize) {
+  getOrderListApi: function (status, pageNum, refresh) {
     var _self = this;
     wx.request({
-      url: 'https://zunxiangviplus.com/orders/list',
+      url: 'https://zunxiangviplus.com/orders/list?pageSize=10&pageNum=' + pageNum,
       method: 'POST',
       data:{
-        status: status,
-        pageSize:pageSize,
-        pageNum:pageNum
+        status: status
       },
       header: {
         'X-TOKEN': wx.getStorageSync('token')
       },
       success: function (res) {
         console.log(res)
-        _self.setData({
-          orderList: res.data.data.list,
-          pageSize: pageSize,
-          pageNum: pageNum
-        })
+        if (refresh == 'refresh'){
+          for (var i = 0; i < res.data.data.list.length; i++) {
+            _self.data.orderList.push(res.data.data.list[i])
+          }
+          _self.setData({
+            orderList: _self.data.orderList,
+            pageNum: pageNum
+          })
+        }else{
+          _self.setData({
+            orderList: res.data.data.list,
+            pageNum: pageNum
+          })
+        } 
       }
     })
   },
@@ -159,11 +166,9 @@ Page({
   },
   onReachBottom: function () {
     var pageNum = this.data.pageNum + 1;
-    var pageSize = 10 * pageNum;
     this.setData({
-      pageNum: pageNum,
-      pageSize: pageSize
+      pageNum: pageNum
     })
-    this.getOrderListApi(this.data.id, pageNum, pageSize);
+    this.getOrderListApi(this.data.id, pageNum,'refresh');
   }
 })

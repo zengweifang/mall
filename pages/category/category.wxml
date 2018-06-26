@@ -11,7 +11,7 @@
         <view class='page_price'>
           <view class='page_name'>{{item.name}}</view>
           <view style='padding-top:5px'>
-            <text wx:if="{{!cardInfo.vip}}">￥{{item.sellPrice}}</text>
+            <text wx:if="{{!cardInfo.vip}}" class='page_price_c'>￥{{item.sellPrice}}</text>
             <text wx:if="{{cardInfo.vip}}">会员价￥{{item.vipPrice}}</text>
             <text class='page_price_delete'>￥{{item.thirdPrice}}</text>
           </view>

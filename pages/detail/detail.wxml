@@ -13,7 +13,7 @@
       <text class='detail_price' wx:if="{{cardInfo.vip}}">￥{{detail.sku.vipPrice}}</text>
       <text class='page_price_delete'>￥{{detail.sku.thirdPrice}}</text>
     </view>
-    <text wx:if="{{cardInfo.vip}}" class='page_price_card' bindtap='toCard'>会员价￥{{detail.sku.vipPrice}}</text>
+    <text wx:if="{{!cardInfo.vip}}" class='page_price_card' bindtap='toCard'>会员价{{detail.sku.vipPrice}}</text>
   </view>
 
   <view class='detail_content'>

@@ -83,7 +83,10 @@ Page({
           //发起网络请求
           wx.request({
             url: 'https://zunxiangviplus.com/user/login',
-            data: '"'+res.code+'"',
+            data: {
+              code:res.code,
+              agentId:''
+            },
             method: 'POST',
             success: function (res) {
               wx.setStorageSync('token', res.data.data);

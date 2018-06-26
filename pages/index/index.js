@@ -48,7 +48,7 @@ Page({
     wx.showNavigationBarLoading();
     if (wx.getStorageSync('token')) {
       this.getHomePageData();
-      this.getNewGoodsData();
+      this.getNewGoodsData(1);
     }
     if (app.globalData.userInfo) {
       this.setData({
@@ -85,7 +85,7 @@ Page({
   onShow: function () {
     if (wx.getStorageSync('token')) {
       this.getHomePageData();
-      this.getNewGoodsData();
+      this.getNewGoodsData(1);
     }
 
     this.getCardInfo();
@@ -118,18 +118,34 @@ Page({
       }
     })
   },
-  getNewGoodsData: function () {//获取新品推荐商品
+  getNewGoodsData: function (pageNum,refresh) {//获取新品推荐商品
     var _self = this;
     wx.request({
       url: 'https://zunxiangviplus.com/index/sku', //仅为示例，并非真实的接口地址
       method: 'GET',
+      data:{
+        pageNum: pageNum,
+        pageSize:10
+      },
       header: {
         'X-TOKEN': wx.getStorageSync('token')
       },
       success: function (res) {
-        _self.setData({
-          newGoodsData: res.data.data
-        });
+        console.log(res)
+        if (refresh == 'refresh') {
+          for (var i = 0; i < res.data.data.list.length; i++) {
+            _self.data.newGoodsData.push(res.data.data.list[i])
+          }
+          _self.setData({
+            pageNum: pageNum,
+            newGoodsData: _self.data.newGoodsData
+          })
+        } else {
+          _self.setData({
+            pageNum:1,
+            newGoodsData: res.data.data.list
+          });
+        } 
       }
     })
   },
@@ -151,6 +167,11 @@ Page({
     })
   },
   onReachBottom:function(){
-    console.log(11)
+    var pageNum = this.data.pageNum + 1;
+    console.log(pageNum)
+    this.setData({
+      pageNum: pageNum
+    })
+    this.getNewGoodsData(pageNum, 'refresh');
   }
 })

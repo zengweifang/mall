@@ -115,3 +115,8 @@
   border:1px solid #EEB422;
   padding: 0 5px;
 }
+
+.page_price_c{
+  color:#CE3C39!important;
+  font-size:18px
+}

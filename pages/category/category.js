@@ -82,18 +82,16 @@ Page({
         
         //初始化
         var page={
-          pageNum: 1,
-          pageSize:10
+          pageNum: 1
         }
 
         _self.setData({
           list: res.data.data,
           id: res.data.data[0].id,
-          pageNum:1,
-          pageSize:10
+          pageNum:1
         });
         
-        _self.getCategoryListApi(res.data.data[0].id, page.pageNum, page.pageSize);
+        _self.getCategoryListApi(res.data.data[0].id, page.pageNum);
       }
     })
   },
@@ -112,22 +110,35 @@ Page({
     })
     this.getCategoryListApi(e.currentTarget.dataset.item.id, 1, 10);
   },
-  getCategoryListApi: function (id, pageNum, pageSize) {
+  getCategoryListApi: function (id, pageNum, refresh) {
     var _self = this;
     wx.request({
       url: 'https://zunxiangviplus.com/category/sku?categoryId=' + id,
       method: 'GET',
       data:{
         pageNum: pageNum,
-        pageSize: pageSize
+        pageSize: 10
       },
       header: {
         'X-TOKEN': wx.getStorageSync('token')
       },
       success: function (res) {
-        _self.setData({
-          categoryList: res.data.data.list
-        })
+
+        if (refresh == 'refresh') {
+          for (var i = 0; i < res.data.data.list.length; i++) {
+            _self.data.categoryList.push(res.data.data.list[i])
+          }
+
+          _self.setData({
+            categoryList: _self.data.categoryList
+          })
+        } else {
+          _self.setData({
+            categoryList: res.data.data.list,
+            pageNum: pageNum
+          })
+        } 
+        
       }
     })
   },
@@ -157,12 +168,10 @@ Page({
   },
   onReachBottom:function(){
     var pageNum = this.data.pageNum + 1;
-    var pageSize = 10 * pageNum;
     this.setData({
-      pageNum: pageNum,
-      pageSize: pageSize
+      pageNum: pageNum
     })
-    this.getCategoryListApi(this.data.id, pageNum, pageSize);
+    this.getCategoryListApi(this.data.id, pageNum,'refresh');
   }
   
 })

@@ -44,7 +44,7 @@
         <view class='page_price'>
           <view class='page_name'>{{item.name}}</view>
           <view style='padding-top:5px'>
-            <text wx:if="{{!cardInfo.vip}}">￥{{item.sellPrice}}</text>
+            <text wx:if="{{!cardInfo.vip}}" class='page_price_c'>￥{{item.sellPrice}}</text>
             <text wx:if="{{cardInfo.vip}}">会员价￥{{item.vipPrice}}</text>
             <text class='page_price_delete'>￥{{item.thirdPrice}}</text>
           </view>
@@ -54,17 +54,17 @@
     </view>
   </view>
 
-  <view class='page_personal' wx:if="{{homePageData.list}}">
+  <view class='page_personal' wx:if="{{homePageData}}">
     <view class='page_label'>
       新品推荐
     </view>
     <view class="page_personal_b">
-      <view class="flex-item  page_comm_images" bindtap='toDetail' wx:for="{{newGoodsData.list}}" data-item='{{item}}' wx:key="*this">
+      <view class="flex-item  page_comm_images" bindtap='toDetail' wx:for="{{newGoodsData}}" data-item='{{item}}' wx:key="*this">
         <image src='https://img11.360buyimg.com/n7/{{item.imageUrl}}' mode='widthFix'></image>
         <view class='page_price'>
           <view class='page_name'>{{item.name}}</view>
           <view style='padding-top:5px'>
-            <text wx:if="{{!cardInfo.vip}}">￥{{item.sellPrice}}</text>
+            <text wx:if="{{!cardInfo.vip}}" class='page_price_c'>￥{{item.sellPrice}}</text>
             <text wx:if="{{cardInfo.vip}}">会员价￥{{item.vipPrice}}</text>
             <text class='page_price_delete'>￥{{item.thirdPrice}}</text>
           </view>
