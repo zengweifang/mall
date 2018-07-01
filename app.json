@@ -12,8 +12,7 @@
     "pages/login/login",
     "pages/address_edit/address_edit",
     "pages/orderList/orderList",
-    "pages/card/card",
-    "pages/orderDetail"
+    "pages/card/card"
   ],
   "window": {
     "backgroundTextStyle": "light",
