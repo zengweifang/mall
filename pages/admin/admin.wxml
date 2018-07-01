@@ -20,8 +20,10 @@
     <view class="flex-item discover_codes_l admin_height">地址管理</view>
     <view class="weui-cell__ft weui-cell__ft_in-access discover_codes_r"></view>
   </view>
-  <view class="flex-wrp discover_codes" style="flex-direction:row;" bindtap='call'>
-    <view class="flex-item discover_codes_l admin_height">联系客服</view>
+  <view class="flex-wrp discover_codes" style="flex-direction:row;">
+    <view class="flex-item discover_codes_l admin_height" style='width:100%'>
+      <button open-type="contact" size='mini' class='admin_contact'>微信客服</button>
+    </view>
     <view class="weui-cell__ft weui-cell__ft_in-access discover_codes_r"></view>
   </view>
 </view>

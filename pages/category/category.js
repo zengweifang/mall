@@ -17,7 +17,6 @@ Page({
    */
   onLoad: function (options) {
     this.getList();
-    var _self = this;
   },
 
   /**
@@ -59,7 +58,11 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    var pageNum = this.data.pageNum + 1;
+    this.setData({
+      pageNum: pageNum
+    })
+    this.getCategoryListApi(this.data.id, pageNum, 'refresh');
   },
 
   /**
@@ -165,13 +168,6 @@ Page({
         }
       }
     })
-  },
-  onReachBottom:function(){
-    var pageNum = this.data.pageNum + 1;
-    this.setData({
-      pageNum: pageNum
-    })
-    this.getCategoryListApi(this.data.id, pageNum,'refresh');
   }
   
 })

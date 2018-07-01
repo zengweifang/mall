@@ -3,14 +3,14 @@
     <swiper class='swiper-image' indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
       <block wx:for="{{homePageData.bannerList}}" wx:key="*this">
         <swiper-item>
-          <image src="{{item.imageUrl}}" class="slide-image" mode='widthFix' />
+          <image src="{{item.imageUrl}}" class="slide-image" mode='widthFix' bindtap='toNewPage' data-item="{{item}}" />
         </swiper-item>
       </block>
     </swiper>
     <view class='page_title'>
       <view class='flex-wrp' style="flex-direction:row;">
         <view class='flex-item'>
-          <icon type="success" size="18" color='#FF6A6A'></icon>99元免基础运费(20kg内)</view>
+          <icon type="success" size="18" color='#FF6A6A'></icon>129元免基础运费(20kg内)</view>
         <view class='flex-item'>
           <icon type="success" size="18" color='#FF6A6A'></icon>京东发货&商家售后</view>
       </view>
@@ -23,12 +23,11 @@
           <icon type="cancel" size="18"></icon>不可使用京东券</view>
       </view>
     </view>
-
     <view class="page__bd">
       <view class="weui-grids">
         <block wx:for="{{homePageData.cubeList}}" wx:key="*this">
-          <navigator url="/pages/detail/detail" class="weui-grid" hover-class="weui-grid_active">
-            <image class="weui-grid__icon" src="{{item.imageUrl}}" mode='widthFix' />
+          <navigator url="/pages/category/category" class="weui-grid" hover-class="weui-grid_active">
+            <image class="weui-grid__icon" src="{{item.imageUrl}}" mode='widthFix' bindtap='toNewPage' data-item="{{item}}" />
           </navigator>
         </block>
       </view>
@@ -40,13 +39,19 @@
     </view>
     <view class="page_personal_b">
       <view class="flex-item  page_bgr  page_comm_images" bindtap='toDetail' wx:for="{{homePageData.hotSkuList}}" data-item='{{item}}' wx:key="*this">
+        <view class='page_label_c'>
+          <text wx:if="{{item.hot}}" style='margin-right:5px'>热销</text>
+          <text wx:if="{{item.news}}">新品</text>
+        </view>
         <image src='https://img11.360buyimg.com/n7/{{item.imageUrl}}' mode='widthFix'></image>
         <view class='page_price'>
           <view class='page_name'>{{item.name}}</view>
           <view style='padding-top:5px'>
             <text wx:if="{{!cardInfo.vip}}" class='page_price_c'>￥{{item.sellPrice}}</text>
-            <text wx:if="{{cardInfo.vip}}">会员价￥{{item.vipPrice}}</text>
+            <text wx:if="{{cardInfo.vip}}" class='page_price_card'>会员价￥{{item.vipPrice}}</text>
             <text class='page_price_delete'>￥{{item.thirdPrice}}</text>
+            <!-- <text wx:if="{{!cardInfo.vip && item.sellPrice/item.thirdPrice<0.85}}" class="page_label_z">8折</text>
+            <text wx:if="{{cardInfo.vip && item.vipPrice/item.thirdPrice<0.85}}" class="page_label_z">8折</text> -->
           </view>
           <text wx:if="{{!cardInfo.vip}}" class='page_price_card'>会员价￥{{item.vipPrice}}</text>
         </view>
@@ -60,13 +65,19 @@
     </view>
     <view class="page_personal_b">
       <view class="flex-item  page_comm_images" bindtap='toDetail' wx:for="{{newGoodsData}}" data-item='{{item}}' wx:key="*this">
+        <view class='page_label_c'>
+          <text wx:if="{{item.hot}}" style='margin-right:5px'>热销</text>
+          <text wx:if="{{item.news}}">新品</text>
+        </view>
         <image src='https://img11.360buyimg.com/n7/{{item.imageUrl}}' mode='widthFix'></image>
         <view class='page_price'>
           <view class='page_name'>{{item.name}}</view>
           <view style='padding-top:5px'>
             <text wx:if="{{!cardInfo.vip}}" class='page_price_c'>￥{{item.sellPrice}}</text>
-            <text wx:if="{{cardInfo.vip}}">会员价￥{{item.vipPrice}}</text>
+            <text wx:if="{{cardInfo.vip}}" class='page_price_card'>会员价￥{{item.vipPrice}}</text>
             <text class='page_price_delete'>￥{{item.thirdPrice}}</text>
+            <!-- <text wx:if="{{!cardInfo.vip && item.sellPrice/item.thirdPrice<0.85}}" class="page_label_z">8折</text>
+            <text wx:if="{{cardInfo.vip && item.vipPrice/item.thirdPrice<0.85}}" class="page_label_z">8折</text> -->
           </view>
           <text wx:if="{{!cardInfo.vip}}" class='page_price_card'>会员价￥{{item.vipPrice}}</text>
         </view>

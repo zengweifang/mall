@@ -105,7 +105,7 @@
 
 .page_price_delete{
   text-decoration:line-through;
-  margin-left: 10px;
+  margin-left: 5px;
   font-weight: normal!important;
   color: #808080!important
 }
@@ -119,4 +119,19 @@
 .page_price_c{
   color:#CE3C39!important;
   font-size:18px
+}
+
+.page_label_z{
+  margin-left:5px;
+  font-weight:normal!important;
+  color: #808080!important;
+}
+
+.page_label_c{
+  position:absolute;
+  color:#ffffff; 
+}
+.page_label_c text{
+  background-color: #CE3C39;
+  padding:5px;
 }

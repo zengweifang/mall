@@ -55,7 +55,11 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-  
+    var pageNum = this.data.pageNum + 1;
+    this.setData({
+      pageNum: pageNum
+    })
+    this.getOrderListApi(this.data.id, pageNum, 'refresh');
   },
 
   /**
@@ -164,11 +168,11 @@ Page({
         }
       })
   },
-  onReachBottom: function () {
-    var pageNum = this.data.pageNum + 1;
-    this.setData({
-      pageNum: pageNum
+
+  orderDetail:function(e){
+    console.log(e)
+    wx.navigateTo({
+      url: '',
     })
-    this.getOrderListApi(this.data.id, pageNum,'refresh');
   }
 })

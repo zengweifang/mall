@@ -10,6 +10,7 @@ App({
       this.goLoginPageTimeOut();
       return;
     }
+
     this.getUserInfo();
 
     // 登录
@@ -63,6 +64,7 @@ App({
         'X-TOKEN': wx.getStorageSync('token')
       },
       success: function (res) {
+        console.log(res)
         if(res.data.code == 200){
           _self.globalData.cardInfo = res.data.data;
         }

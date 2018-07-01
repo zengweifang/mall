@@ -1,5 +1,8 @@
 /* pages/shop-car/shop-car.wxss */
 
+.page{
+  margin-bottom: 100px
+}
 .car_goods {
   background-color: #fff;
   font-size: 12px;
@@ -11,7 +14,6 @@
   padding-left: 15px;
   line-height: 80px;
 }
-
 .car_goods .car_goods_m image {
   width: 110px;
 }
@@ -37,6 +39,7 @@
   left: 0;
   display: flex;
   box-shadow: 0 0 8rpx 0;
+  z-index: 999
 }
 
 .footer-box .shop-cart-btn {

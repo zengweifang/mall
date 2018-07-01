@@ -1,8 +1,29 @@
 var filters = {
   toFix: function (value) {
     return value.toFixed(2)//此处2为保留两位小数
+  },
+
+  orderStatus: function (value) {
+    switch (value) {
+      case 'created':
+        return '待付款';
+      case 'canceled':
+        return '已取消';
+      case 'paid':
+        return '已付款';
+      case 'sent':
+        return '已发货';
+      case 'signed':
+        return '已签收';
+      case 'rejected':
+        return '拒收'
+    }
   }
 }
 module.exports = {
   toFix: filters.toFix
+}
+
+module.exports = {
+  orderStatus: filters.orderStatus
 }

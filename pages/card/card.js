@@ -103,7 +103,6 @@ Page({
   buy: function () {
     var _self =  this;
     var id = this.data.selectCard.id;
-    console.log(this.data.selectCard)
     if(!this.data.selectCard.id){
       wx.showToast({
         title: '亲，您还没选卡哦',

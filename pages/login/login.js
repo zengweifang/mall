@@ -6,13 +6,17 @@ Page({
    */
   data: {
     userName:String,
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    agentId:''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.setData({
+      agentId: wx.getStorageSync('agentId'),
+    })
   },
   bindGetUserInfo: function (e) {
     console.log(e.detail.userInfo)
@@ -77,6 +81,7 @@ Page({
   },
 
   login:function(){
+    var _self = this;
     wx.login({
       success: function (res) {
         if (res.code) {
@@ -84,13 +89,16 @@ Page({
           wx.request({
             url: 'https://zunxiangviplus.com/user/login',
             data: {
-              code:res.code,
-              agentId:''
+              jsCode:res.code,
+              agentId: wx.getStorageSync('agentId'),
+              nickname: wx.getStorageSync('userInfo').nickName
             },
             method: 'POST',
             success: function (res) {
-              wx.setStorageSync('token', res.data.data);
-              wx.navigateBack();
+              if(res.data.code == 200){
+                wx.setStorageSync('token', res.data.data);
+                wx.navigateBack();
+              }
             }
           })
         } else {

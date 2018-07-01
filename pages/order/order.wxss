@@ -138,3 +138,29 @@
 .order_content_text_f{
   font-weight: bold
 }
+
+.page_price_card{
+  color:#EEB422!important;
+  border:1px solid #EEB422;
+  padding: 0 5px;
+}
+
+.page_price_c{
+  color:#CE3C39!important;
+  font-size:18px;
+  font-weight: bold
+}
+
+.order_card{
+  padding-left:15px;
+  height:45px;
+  line-height:45px;
+  margin-bottom:1px;
+}
+
+.page_price_delete{
+  text-decoration:line-through;
+  margin-left: 5px;
+  font-weight: normal!important;
+  color: #808080!important
+}

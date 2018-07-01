@@ -60,6 +60,10 @@
   -webkit-box-orient: vertical
 }
 
+.order_list{
+  padding: 15px
+}
+
 
 .order_list_img{
   width: 20%;
@@ -70,32 +74,38 @@
 }
 
 .order_list_total_price,.order_list_button{
-  text-align: right;
-  padding: 5px;
-  margin-top: 1px
+  /* position:absolute;
+  right:15px; */
+
 }
 
 .order_list{
   background-color: #ffffff;
   margin-bottom: 1px;
 }
-.order_list_total_price{
+/* .order_list_total_price{
   padding-right: 25px
-}
+} */
 
 .order_list_pay{
   margin-left:15px;
   color:#CE3C39;
 }
 
-.order_list_button{
-  padding-right: 25px
-}
+ .order_list_button{
+  /* padding-right: 25px */
+  position: absolute;
+  right: 15px
+} 
 
 .order_list_button button{
   font-size: 12px
 }
 
-.order_list_content{
-  padding: 15px 25px 0 15px
+ .order_list_content{
+  padding-top: 10px
+} 
+.order_list_order-num{
+  padding-bottom: 5px;
+  border-bottom: 1px solid #f2f2f2
 }

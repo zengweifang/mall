@@ -1,5 +1,8 @@
 /* pages/cards/card.wxss */
 
+.card{
+  margin-bottom: 100px
+}
 .card {
   width: 100%;
 }

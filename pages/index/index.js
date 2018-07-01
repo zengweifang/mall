@@ -44,7 +44,8 @@ Page({
       url: '../logs/logs'
     })
   },
-  onLoad: function () {
+  onLoad: function (options) {
+
     wx.showNavigationBarLoading();
     if (wx.getStorageSync('token')) {
       this.getHomePageData();
@@ -81,14 +82,43 @@ Page({
     this.setData({
       show: true
     })
+
+    var pages = getCurrentPages()    //获取加载的页面
+
+    var currentPage = pages[pages.length - 1]    //获取当前页面的对象
+
+    var url = currentPage.route    //当前页面url
+
+    var options = currentPage.options    //如果要获取url中所带的参数可以查看options
+
+    this.setData({
+      currentUrl:url,
+      params: JSON.stringify(options)
+    })
+
+
+    wx.setStorageSync('agentId', options.agentId)
   },
   onShow: function () {
     if (wx.getStorageSync('token')) {
       this.getHomePageData();
       this.getNewGoodsData(1);
-    }
+      this.getCardInfo();
 
-    this.getCardInfo();
+
+      var pages = getCurrentPages()    //获取加载的页面
+
+      var currentPage = pages[pages.length - 1]    //获取当前页面的对象
+
+      var url = currentPage.route    //当前页面url
+
+      var options = currentPage.options    //如果要获取url中所带的参数可以查看options
+
+      this.setData({
+        currentUrl: url,
+        params: JSON.stringify(options)
+      })
+    }
   },
   getUserInfo: function (e) {
     app.globalData.userInfo = e.detail.userInfo
@@ -158,6 +188,7 @@ Page({
         'X-TOKEN': wx.getStorageSync('token')
       },
       success: function (res) {
+        console.log(res)
         if (res.data.code == 200) {
           _self.setData({
             cardInfo : res.data.data
@@ -173,5 +204,30 @@ Page({
       pageNum: pageNum
     })
     this.getNewGoodsData(pageNum, 'refresh');
+  },
+
+  onShareAppMessage: function (res) {
+    console.log(this.data.cardInfo)
+    console.log(this.data.cardInfo.agentId)
+    var _self = this;
+    var agentId = _self.data.cardInfo.userType == 'AGENT' ? _self.data.cardInfo.agentId : '';
+    console.log(agentId)
+    if (res.from === 'button') {
+      // 来自页面内转发按钮
+      console.log(res.target)
+    }
+    if (res.from === 'menu'){
+      console.log(res.target)
+    }
+    return {
+      title: '商城',
+      path: '/pages/index/index?agentId=' + agentId
+    }
+  },
+  toNewPage:function(e){
+    var url = e.currentTarget.dataset.item.url
+    wx.navigateTo({
+      url:  url,
+    })
   }
 })

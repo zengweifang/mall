@@ -7,13 +7,20 @@
   <view class='page_personal'>
     <view class="page_personal_b">
       <view class="flex-item  page_bgr  page_comm_images" bindtap='toDetail' wx:for="{{categoryList}}" data-item='{{item}}'>
+        <view class='page_label_c'>
+          <text wx:if="{{item.hot}}" style='margin-right:5px'>热销</text>
+          <text wx:if="{{item.news}}">新品</text>
+        </view>
         <image src='https://img11.360buyimg.com/n7/{{item.imageUrl}}' mode='widthFix'></image>
+
         <view class='page_price'>
           <view class='page_name'>{{item.name}}</view>
           <view style='padding-top:5px'>
             <text wx:if="{{!cardInfo.vip}}" class='page_price_c'>￥{{item.sellPrice}}</text>
-            <text wx:if="{{cardInfo.vip}}">会员价￥{{item.vipPrice}}</text>
+            <text wx:if="{{cardInfo.vip}}" class='page_price_card'>会员价￥{{item.vipPrice}}</text>
             <text class='page_price_delete'>￥{{item.thirdPrice}}</text>
+            <!-- <text wx:if="{{!cardInfo.vip && item.sellPrice/item.thirdPrice<0.85}}" class="page_label_z">8折</text>
+            <text wx:if="{{cardInfo.vip && item.vipPrice/item.thirdPrice<0.85}}" class="page_label_z">8折</text> -->
           </view>
           <text wx:if="{{!cardInfo.vip}}" class='page_price_card'>会员价￥{{item.vipPrice}}</text>
         </view>

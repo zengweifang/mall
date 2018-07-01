@@ -1,3 +1,5 @@
+<import src="../wxParse/wxParse.wxml" />
+<wxs module="filters" src="../../utils/filter.wxs"></wxs>
 <view class="page">
   <swiper class='swiper-image' indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
     <block wx:for="{{detail.skuImageList}}" wx:key="*this">
@@ -7,28 +9,86 @@
     </block>
   </swiper>
   <view class='detail_title'>
-    <view class='detail_label'>{{detail.sku.name}}</view>
-    <view style='padding-top:5px'>
-      <text class='detail_price' wx:if="{{!cardInfo.vip}}">￥{{detail.sku.sellPrice}}</text>
-      <text class='detail_price' wx:if="{{cardInfo.vip}}">￥{{detail.sku.vipPrice}}</text>
-      <text class='page_price_delete'>￥{{detail.sku.thirdPrice}}</text>
+    <view class='detail_label'>
+      {{detail.sku.name}}
+      <text class='page_label_c' wx:if="{{detail.sku.hot}}" style='margin:0 10px'>新品</text>
+      <text class='page_label_c' wx:if="{{detail.sku.news}}">热销</text>
     </view>
-    <text wx:if="{{!cardInfo.vip}}" class='page_price_card' bindtap='toCard'>会员价{{detail.sku.vipPrice}}</text>
+    <view style='padding-top:5px'>
+      <text class='detail_price page_price_c' wx:if="{{!cardInfo.vip}}">￥{{detail.sku.sellPrice}}</text>
+      <text class='detail_price' wx:if="{{cardInfo.vip}}" class='page_price_card'>会员价￥{{detail.sku.vipPrice}}</text>
+      <text class='page_price_delete'>￥{{detail.sku.thirdPrice}}</text>
+      <!-- <text wx:if="{{!cardInfo.vip && detail.sku.sellPrice/detail.sku.thirdPrice<0.85}}" class="page_label_z">8折</text>
+      <text wx:if="{{cardInfo.vip && detail.sku.vipPrice/detail.sku.thirdPrice<0.85}}" class="page_label_z">8折</text> -->
+      <text wx:if="{{!cardInfo.vip}}" class='page_to_vip' bindtap='toCard'>成为会员</text>
+    </view>
+    <text wx:if="{{!cardInfo.vip}}" class='page_price_card'>会员价￥{{detail.sku.vipPrice}}</text>
   </view>
+  <view class='page_title'>
+      <view class='flex-wrp' style="flex-direction:row;">
+        <view class='flex-item'>
+          <icon type="success" size="18" color='#FF6A6A'></icon>129元免基础运费(20kg内)</view>
+        <view class='flex-item'>
+          <icon type="success" size="18" color='#FF6A6A'></icon>京东发货&商家售后</view>
+      </view>
+      <view class='flex-wrp' style="flex-direction:row;">
+        <view class='flex-item'>
+          <icon type="success" size="18" color='#FF6A6A'></icon>支持7天无理由退货</view>
+        <view class='flex-item'>
+          <icon type="success" size="18" color='#FF6A6A'></icon>次日达</view>
+        <view class='flex-item'>
+          <icon type="cancel" size="18"></icon>不可使用京东券</view>
+      </view>
+    </view>
+  <!-- <view class='disc_deliver'>129元免基础运费</view> -->
+  <view class='disc_comment'>
+    <view class='disc_comment_item' style='line-height:36px'>
+      评价
+    </view>
+    <view class='disc_comment_item disc_comment_item_v'>
+      <text>好评{{filters.toFix(detail.skuScore.goodRate*100)}}%</text>
+      <text>中评{{filters.toFix(detail.skuScore.generalRate*100)}}%</text>
+      <text>差评{{filters.toFix(detail.skuScore.poorRate*100)}}%</text>
+    </view>
 
-  <view class='detail_content'>
-    <view class='detail_contents detail_margin'>
-      <view class='detail_contents_c'>
-        <view class='detail_contents_title'>商品详情</view>
-        <view class='detail_contents_image'>
-          <image src="{{item}}" wx:for="{{detail.introduce}}" mode="widthFix" wx:key="*this" />
+  </view>
+  <view class='disc_detail'>
+    <view class='dic_detail_swiper'>
+      <scroll-view scroll-x class="dic_detail_swiper_scroll">
+        <view class='dic_detail_swiper_item {{item.item_hasbgr}}' wx:for="{{list}}" style='display: inline-block' bindtap='changeDetail' data-item="{{item}}" wx:key="*this">{{item.name}}</view>
+      </scroll-view>
+    </view>
+    <view class='detail_content' wx:if="{{step == 0}}">
+      <view class='detail_contents detail_margin'>
+        <view class='detail_contents_c'>
+          <view class='detail_contents_image'>
+            <image src="{{item}}" wx:for="{{detail.introduce}}" mode="widthFix" wx:key="*this" />
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class='detail_content' wx:if="{{step == 1}}">
+      <view class='detail_contents' style='padding:10px 15px 50px 15px;'>
+        <view class='detail_contents_c'>
+          <view class='detail_contents_image'>
+            <view class="wxParse">
+              <template is="wxParse" data="{{wxParseData:skuinfo.nodes}}" />
+            </view>
+          </view>
         </view>
       </view>
     </view>
   </view>
+
+
+
   <view class="footer-box">
     <view class="shop-cart-btn" bindtap="goShopCar">
-      <view class="shop-num">{{shopNum}}</view>
+      <view class="shop-num" wx:if="{{shopNum!=0}}">
+        <text wx:if="{{shopNum<99}}">{{shopNum}}</text>
+        <text wx:if="{{shopNum>=99}}">99+</text>
+      </view>
       购物车
     </view>
     <view class="now-buy" bindtap="tobuy">立即购买</view>

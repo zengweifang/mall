@@ -76,7 +76,9 @@ Page({
         'X-TOKEN': wx.getStorageSync('token')
       },
       success: function (res) {
-        var price = 0
+        var price = 0;
+        var num = 0;
+        console.log(num)
         for (var i = 0; i < res.data.data.length; i++) {
           var goodsPrice = 0;
           if (_self.data.cardInfo.vip) {
@@ -86,10 +88,12 @@ Page({
           }
           res.data.data[i].checked = true;
           price += goodsPrice * res.data.data[i].num;
+          num += res.data.data[i].num*1;
         }
         _self.setData({
           totalPrice: price,
-          carsList: res.data.data
+          carsList: res.data.data,
+          num : num
         })
       }
     })
@@ -104,7 +108,7 @@ Page({
     }
     wx.setStorageSync('checkedItems', JSON.stringify(items))
     wx.navigateTo({
-      url: '/pages/order/order?fromCard=true'
+      url: '/pages/order/order?fromCart='+true
     })
   },
   checkFun: function (e) {
@@ -193,6 +197,13 @@ Page({
           })
         }
       }
+    })
+  },
+
+  toDetail: function (event){
+    var id = event.currentTarget.dataset.item.id
+    wx.navigateTo({
+      url: '/pages/detail/detail?id=' + id
     })
   }
 })

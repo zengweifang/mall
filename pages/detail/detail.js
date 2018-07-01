@@ -1,4 +1,5 @@
 // pages/detail/detail.js
+var WxParse = require('../wxParse/wxParse.js');
 const app = getApp()
 Page({
 
@@ -6,25 +7,25 @@ Page({
    * 页面的初始数据
    */
   data: {
-    interval:5000,
-    duration:1000,
-    indicatorDots:true,
-    autoplay:true,
-    imageUrl:[
-      { id: 1, url: 'http://p95v2ft9v.bkt.clouddn.com/xf/images/sucai08.jpeg' },
-      { id: 2, url: 'http://p95v2ft9v.bkt.clouddn.com/xf/images/sucai08.jpeg' },
-      { id: 3, url: 'http://p95v2ft9v.bkt.clouddn.com/xf/images/sucai08.jpeg' }
+    interval: 5000,
+    duration: 1000,
+    indicatorDots: true,
+    autoplay: true,
+    shopCarInfo: {},
+    shopNum: 0,
+    detail: {},
+    list: [
+      { id: 0, name: '商品介绍' },
+      { id: 1, name: '规格参数' },
+      // { id: 2, name: '售后保障' }
     ],
-    shopCarInfo:{},
-    shopNum:0,
-    detail:{}
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+
     this.getDetail(options);
     this.getCarsNum();
   },
@@ -33,7 +34,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-  
+
   },
 
   /**
@@ -47,7 +48,7 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-  
+
   },
 
   /**
@@ -61,24 +62,24 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-  
+
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-  
+
   },
 
   /**
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-  
+
   },
 
-  getDetail: function(options){
+  getDetail: function (options) {
     var _self = this;
     wx.request({
       url: 'https://zunxiangviplus.com/sku/' + options.id,
@@ -87,27 +88,30 @@ Page({
         'X-TOKEN': wx.getStorageSync('token')
       },
       success: function (res) {
+        _self.data.list[0].item_hasbgr = 'item_hasbgr';
         _self.setData({
-          detail: res.data.data
+          detail: res.data.data,
+          list: _self.data.list,
+          step: 0
         })
       }
     })
   },
 
-  addShopCar:function(){
+  addShopCar: function () {
     var _self = this;
     wx.request({
       url: 'https://zunxiangviplus.com/cart/sku',
       method: 'POST',
-      data:{
+      data: {
         skuId: this.data.detail.sku.id,
-        num:1
+        num: 1
       },
       header: {
         'X-TOKEN': wx.getStorageSync('token')
       },
       success: function (res) {
-        if(res.data.code == 200){
+        if (res.data.code == 200) {
           wx.showToast({
             title: '加入购物车成功！',
             icon: 'success',
@@ -119,19 +123,19 @@ Page({
     })
   },
 
-  goShopCar:function(){
+  goShopCar: function () {
     wx.switchTab({
       url: '/pages/shop-car/shop-car',
     })
   },
-  tobuy: function(){
+  tobuy: function () {
     wx.setStorageSync('checkedItems', JSON.stringify([this.data.detail.sku]))
     wx.navigateTo({
       url: '/pages/order/order'
     })
   },
 
-  toQuestions:function(){
+  toQuestions: function () {
     wx.navigateTo({
       url: '/pages/questions/questions',
     })
@@ -142,7 +146,7 @@ Page({
       url: '/pages/answers/answers?id=' + id,
     })
   },
-  getCarsNum: function(){
+  getCarsNum: function () {
     var _self = this;
     wx.request({
       url: 'https://zunxiangviplus.com/cart/sku',
@@ -151,9 +155,9 @@ Page({
         'X-TOKEN': wx.getStorageSync('token')
       },
       success: function (res) {
-        if (res.data.code == 200 && res.data.data.length>0) {
+        if (res.data.code == 200 && res.data.data.length > 0) {
           var shopNum = 0;
-          for(var i=0; i<res.data.data.length;i++){
+          for (var i = 0; i < res.data.data.length; i++) {
             shopNum += res.data.data[i].num;
           }
           _self.setData({
@@ -180,9 +184,39 @@ Page({
       }
     })
   },
-  toCard: function(){
+  toCard: function () {
     wx.navigateTo({
       url: '/pages/card/card',
+    })
+  },
+  changeDetail: function (e) {
+    var _self = this;
+    var id = e.currentTarget.dataset.item.id;
+    switch (id) {
+      case 0:
+        _self.setItem(0);
+        break;
+      case 1:
+        _self.setItem(1);
+        WxParse.wxParse('skuinfo', 'html', _self.data.detail.skuInfo.param, _self, 15);
+        break;
+      case 2:
+        _self.setItem(2);
+        break;
+    }
+  },
+  setItem: function (flag) {
+    var _self = this;
+    for (var i = 0; i < _self.data.list.length > 0; i++) {
+      if (_self.data.list[i].id == flag) {
+        _self.data.list[i].item_hasbgr = 'item_hasbgr';
+      } else {
+        _self.data.list[i].item_hasbgr = null;
+      }
+    }
+    _self.setData({
+      list: _self.data.list,
+      step: flag
     })
   }
 

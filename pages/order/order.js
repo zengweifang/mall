@@ -12,14 +12,14 @@ Page({
     detail: {},
     region: null,
     skuItemList: [],
-    fromCart:false,
-    remark:''
+    fromCart: false,
+    remark: ''
   },
 
-  setRemark:function(e){
+  setRemark: function (e) {
     console.log(e)
     this.setData({
-      remark:e.detail.value
+      remark: e.detail.value
     })
   },
 
@@ -27,14 +27,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    if (options.fromCart){
-      this.setData({
-        fromCart: options.fromCart
-      })
-    }
     this.getCardInfo();
     var checkedItems = JSON.parse(wx.getStorageSync('checkedItems'));
     this.orderReady(checkedItems, options.fromCart);
+    wx.setStorageSync('fromCart', options.fromCart)
   },
 
   /**
@@ -50,6 +46,10 @@ Page({
   onShow: function () {
     this.getCardInfo();
     this.getAddress();
+
+    var checkedItems = JSON.parse(wx.getStorageSync('checkedItems'));
+    this.orderReady(checkedItems, wx.getStorageSync('fromCart'));
+
   },
 
   /**
@@ -120,14 +120,14 @@ Page({
       }
     })
   },
-  orderReady: function (checkedItems, fromCart) { 
+  orderReady: function (checkedItems, fromCart) {
     var _self = this;
     var skuItemList = [];
     for (var i = 0; i < checkedItems.length; i++) {
       var price = 0
-      if (_self.data.cardInfo){
+      if (_self.data.cardInfo) {
         price = checkedItems[i].vipPrice
-      }else{
+      } else {
         price = checkedItems[i].sellPrice
       }
       skuItemList.push({
@@ -161,10 +161,18 @@ Page({
     })
   },
   order: function () {
+    if (!this.data.region){
+      wx.showToast({
+        title:'请先选择收货地址哦',
+        icon: 'none',
+        duration: 2000
+      })
+      return;
+    }
     var _self = this;
     var data = {
       deliveryId: this.data.region.id,
-      fromCart: this.data.fromCart,
+      fromCart: wx.getStorageSync('fromCart'),
       hasInvoice: false,
       remark: this.data.remark,
       skuItemList: this.data.skuItemList
@@ -185,7 +193,7 @@ Page({
       }
     })
   },
-  pay:function(orderId){
+  pay: function (orderId) {
     var _self = this;
     wx.request({
       url: 'https://zunxiangviplus.com/orders/pay',
@@ -212,7 +220,7 @@ Page({
         'paySign': data.paySign,
         'success': function (res) {
           console.log(res)
-          if(res.data.code == 200){
+          if (res.data.code == 200) {
             wx.navigateTo({
               url: '/pages/orderList/orderList',
             })
@@ -240,9 +248,13 @@ Page({
             cardInfo: res.data.data
           })
         }
-        console.log(_self.data.cardInfo)
       }
-      
+
+    })
+  },
+  toCard: function () {
+    wx.navigateTo({
+      url: '/pages/card/card',
     })
   }
 })

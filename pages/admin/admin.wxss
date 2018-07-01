@@ -128,3 +128,22 @@
   position: absolute;
   margin-left:20px;
 }
+
+.admin_phone{
+  position:absolute;
+  right:10px;
+  bottom:5%;
+}
+
+.admin_contact{
+  background-color:#ffffff;
+  padding:0!important;
+  line-height:45px!important;
+  font-size:14px!important;
+  width: 100%;
+  text-align: left
+}
+
+button::after{
+  border: none
+}

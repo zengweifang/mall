@@ -67,7 +67,7 @@
       </picker> 
     </view>
   </view>
-   <view class="flex-wrp" style="flex-direction:row;" wx:if="{{showPicker[3]}}">
+   <view class="flex-wrp" style="flex-direction:row;" wx:if="{{towns.length>0 && showPicker[3]}}">
     <view class="flex-item address_operate_label">
       乡镇／街道
     </view>
@@ -85,7 +85,7 @@
       详细地址
     </view>
     <view class="flex-item address_operate_value">
-      <input placeholder="详细地址需天蝎楼栋楼层或房间号信息" bindinput="bindKeyInputAddress" />
+      <input placeholder="详细地址需填写楼栋楼层或房间号信息" bindinput="bindKeyInputAddress" />
     </view>
   </view>
   <view class="flex-wrp" style="flex-direction:row;border-bottom:none">

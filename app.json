@@ -12,14 +12,15 @@
     "pages/login/login",
     "pages/address_edit/address_edit",
     "pages/orderList/orderList",
-    "pages/card/card"
+    "pages/card/card",
+    "pages/orderDetail"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "商城",
     "navigationBarTextStyle": "black",
-    "onReachBottomDistance":true
+    "onReachBottomDistance": true
   },
   "tabBar": {
     "color": "#6e6d6b",
