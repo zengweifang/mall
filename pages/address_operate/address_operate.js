@@ -1,4 +1,6 @@
 // pages/address_operate/address_operate.js
+var utils = require('../../utils/util.js')
+const service = utils.service
 Page({
 
   /**
@@ -104,13 +106,6 @@ Page({
   onReachBottom: function () {
 
   },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  },
   bindProvinceChange: function (e) {
     var province = 'addressInfo.province';
     var provinceName = 'addressInfo.provinceName';
@@ -166,7 +161,7 @@ Page({
   addAddress: function () {
     var _self = this;
     wx.request({
-      url: 'https://zunxiangviplus.com/deliveries/delivery',
+      url: service+'/deliveries/delivery',
       method: 'POST',
       data: this.data.addressInfo,
       header: {
@@ -182,7 +177,7 @@ Page({
   getProvince:function(){
     var _self = this;
     wx.request({
-      url: 'https://zunxiangviplus.com/division/province',
+      url: service+'/division/province',
       method: 'GET',
       header: {
         'X-TOKEN': wx.getStorageSync('token')
@@ -197,7 +192,7 @@ Page({
   getCity: function (provinceId) {
     var _self = this;
     wx.request({
-      url: 'https://zunxiangviplus.com/division/city?provinceId='+provinceId,
+      url: service+'/division/city?provinceId='+provinceId,
       method: 'GET',
       header: {
         'X-TOKEN': wx.getStorageSync('token')
@@ -212,7 +207,7 @@ Page({
   getCountry: function (cityId) {
     var _self = this;
     wx.request({
-      url: 'https://zunxiangviplus.com/division/county?cityId='+cityId,
+      url: service+'/division/county?cityId='+cityId,
       method: 'GET',
       header: {
         'X-TOKEN': wx.getStorageSync('token')
@@ -227,7 +222,7 @@ Page({
   getTown: function (countryId) {
     var _self = this;
     wx.request({
-      url: 'https://zunxiangviplus.com/division/town?countyId='+countryId,
+      url: service+'/division/town?countyId='+countryId,
       method: 'GET',
       header: {
         'X-TOKEN': wx.getStorageSync('token')

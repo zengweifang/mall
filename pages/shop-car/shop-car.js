@@ -1,4 +1,6 @@
 // pages/shop-car/shop-car.js
+var utils = require('../../utils/util.js')
+const service = utils.service
 Page({
 
   /**
@@ -60,17 +62,10 @@ Page({
   onReachBottom: function () {
 
   },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  },
   getList: function () {
     var _self = this;
     wx.request({
-      url: 'https://zunxiangviplus.com/cart/sku',
+      url: service+'/cart/sku',
       method: 'GET',
       header: {
         'X-TOKEN': wx.getStorageSync('token')
@@ -140,7 +135,7 @@ Page({
     var _self = this;
     var skuId = e.currentTarget.dataset.id;
     wx.request({
-      url: 'https://zunxiangviplus.com/cart/sku',
+      url: service+'/cart/sku',
       method: 'DELETE',
       data: skuId,
       header: {
@@ -167,7 +162,7 @@ Page({
   updateCars: function (skuId, num) {
     var _self = this;
     wx.request({
-      url: 'https://zunxiangviplus.com/cart/sku',
+      url: service+'/cart/sku',
       method: 'PUT',
       data: {
         skuId: skuId,
@@ -185,7 +180,7 @@ Page({
   getCardInfo: function () {
     var _self = this;
     wx.request({
-      url: 'https://zunxiangviplus.com/user',
+      url: service+'/user',
       method: 'GET',
       header: {
         'X-TOKEN': wx.getStorageSync('token')

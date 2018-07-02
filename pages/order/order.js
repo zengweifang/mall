@@ -1,4 +1,6 @@
 // pages/order/order.js
+var utils = require('../../utils/util.js')
+const service = utils.service
 const app = getApp()
 Page({
 
@@ -79,13 +81,7 @@ Page({
   onReachBottom: function () {
 
   },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  },
+  
   tobuy: function () {
     wx.showToast({
       title: '提交订单成功！',
@@ -102,7 +98,7 @@ Page({
   getAddress: function () {
     var _self = this;
     wx.request({
-      url: 'https://zunxiangviplus.com/deliveries/list',
+      url: service+'/deliveries/list',
       method: 'GET',
       header: {
         'X-TOKEN': wx.getStorageSync('token')
@@ -140,7 +136,7 @@ Page({
       skuItemList: skuItemList
     })
     wx.request({
-      url: 'https://zunxiangviplus.com/orders/ready',
+      url: service+'/orders/ready',
       header: {
         'X-TOKEN': wx.getStorageSync('token')
       },
@@ -179,7 +175,7 @@ Page({
     }
     console.log(data)
     wx.request({
-      url: 'https://zunxiangviplus.com/orders/order',
+      url: service+'/orders/order',
       header: {
         'X-TOKEN': wx.getStorageSync('token')
       },
@@ -196,7 +192,7 @@ Page({
   pay: function (orderId) {
     var _self = this;
     wx.request({
-      url: 'https://zunxiangviplus.com/orders/pay',
+      url: service+'/orders/pay',
       method: 'POST',
       data: orderId,
       header: {
@@ -237,7 +233,7 @@ Page({
   getCardInfo: function () {
     var _self = this;
     wx.request({
-      url: 'https://zunxiangviplus.com/user',
+      url: service+'/user',
       method: 'GET',
       header: {
         'X-TOKEN': wx.getStorageSync('token')

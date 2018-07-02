@@ -21,9 +21,6 @@ var filters = {
   }
 }
 module.exports = {
-  toFix: filters.toFix
-}
-
-module.exports = {
+  toFix: filters.toFix,
   orderStatus: filters.orderStatus
 }

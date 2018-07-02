@@ -1,4 +1,4 @@
-// pages/admin/admin.js
+// pages/phone/phone.js
 var utils = require('../../utils/util.js')
 const service = utils.service
 Page({
@@ -7,22 +7,14 @@ Page({
    * 页面的初始数据
    */
   data: {
-    nickName:'',
-    avatarUrl:'',
-    user_card:null
+    phone:''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var userInfo = wx.getStorageSync('userInfo');
-    console.log(userInfo)
-    this.setData({
-      nickName : userInfo.nickName,
-      avatarUrl: userInfo.avatarUrl
-    })
-    this.getUserInfo();
+  
   },
 
   /**
@@ -36,7 +28,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.getUserInfo();
+  
   },
 
   /**
@@ -72,42 +64,42 @@ Page({
    */
   // onShareAppMessage: function () {
   
-  // },
-  toAddress:function(){
-    wx.navigateTo({
-      url: '/pages/address/address',
+  // }
+  bindKeyInputName: function (e) {
+    this.setData({
+      phone: e.detail.value
     })
   },
-  order:function(){
-    wx.navigateTo({
-      url: '/pages/orderList/orderList',
-    })
-  },
-  toCard:function(){
-    wx.navigateTo({
-      url: '/pages/card/card',
-    })
-  },
-  getUserInfo: function(){
-    var _self=  this;
+  confirm: function(){
+    var _self = this;
     wx.request({
-      url: service+'/user',
-      method: 'GET',
+      url: service + '/user/phone',
+      method: 'POST',
+      data: _self.data.phone,
       header: {
         'X-TOKEN': wx.getStorageSync('token')
       },
       success: function (res) {
         console.log(res)
-        res.data.data.expiredAt = utils.formatTime(new Date(res.data.data.expiredAt))
-        _self.setData({
-          user_card:res.data.data
-        })
+        if (res.data.code == 200) {
+          wx.showToast({
+            title: '绑定成功',
+            icon:'none',
+            duration: 2000
+          })
+          setTimeout(function(){
+            wx.switchTab({
+              url: '/pages/admin/admin',
+            })
+          },2000)
+        }else{
+          wx.showToast({
+            title: res.data.message,
+            icon: 'none',
+            duration: 2000
+          })
+        }
       }
-    })
-  },
-  phone:function(){
-    wx.navigateTo({
-      url: '/pages/phone/phone',
     })
   }
 })

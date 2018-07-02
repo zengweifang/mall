@@ -1,4 +1,6 @@
 // pages/cards/card.js
+var utils = require('../../utils/util.js')
+const service = utils.service
 Page({
 
   /**
@@ -57,17 +59,10 @@ Page({
   onReachBottom: function () {
 
   },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  },
   getCard: function () {
     var _self = this;
     wx.request({
-      url: 'https://zunxiangviplus.com/cards',
+      url: service+'/cards',
       method: 'GET',
       header: {
         'X-TOKEN': wx.getStorageSync('token')
@@ -113,7 +108,7 @@ Page({
       return;
     }
     wx.request({
-      url: 'https://zunxiangviplus.com/cards/buy',
+      url: service+'/cards/buy',
       method: 'POST',
       data:id,
       header: {

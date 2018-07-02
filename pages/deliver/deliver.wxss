@@ -1,0 +1,17 @@
+/* pages/deliver/deliver.wxss */
+.deliver-list{
+  background-color: #ffffff;
+  padding: 15px
+}
+
+.deliver-item{
+  margin-bottom: 10px
+}
+.deliver_color{
+  color: #CE3C39
+}
+.deliver-title{
+  background-color: #ffffff;
+  padding:15px;
+  margin-bottom:10px;
+}

@@ -1,4 +1,6 @@
 // pages/category/category.js
+var utils = require('../../utils/util.js')
+const service = utils.service
 var _self = this;
 const app = getApp()
 Page({
@@ -30,7 +32,19 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    this.getList();
     this.getCardInfo();
+
+
+    var pages = getCurrentPages()    //获取加载的页面
+
+    var currentPage = pages[pages.length - 1]    //获取当前页面的对象
+
+    var url = currentPage.route    //当前页面url
+
+    var options = currentPage.options    //如果要获取url中所带的参数可以查看options
+
+    wx.setStorageSync('agentId', options.agentId)
   },
 
   /**
@@ -69,12 +83,17 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-
+    var _self = this;
+    var agentId = _self.data.cardInfo.userType == 'AGENT' ? _self.data.cardInfo.agentId : '';
+    return {
+      title: '商城',
+      path: '/pages/category/category?agentId=' + agentId
+    }
   },
   getList: function () {
     var _self = this;
     wx.request({
-      url: 'https://zunxiangviplus.com/category/list',
+      url: service+'/category/list',
       method: 'GET',
       header: {
         'X-TOKEN': wx.getStorageSync('token')
@@ -116,7 +135,7 @@ Page({
   getCategoryListApi: function (id, pageNum, refresh) {
     var _self = this;
     wx.request({
-      url: 'https://zunxiangviplus.com/category/sku?categoryId=' + id,
+      url: service+'/category/sku?categoryId=' + id,
       method: 'GET',
       data:{
         pageNum: pageNum,
@@ -155,7 +174,7 @@ Page({
   getCardInfo: function () {
     var _self = this;
     wx.request({
-      url: 'https://zunxiangviplus.com/user',
+      url: service+'/user',
       method: 'GET',
       header: {
         'X-TOKEN': wx.getStorageSync('token')

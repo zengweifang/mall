@@ -1,4 +1,6 @@
 //app.js
+var utils = require('/utils/util.js')
+const service = utils.service
 App({
   onLaunch: function () {
     // 展示本地存储能力
@@ -58,7 +60,7 @@ App({
   getUserInfo: function () {
     var _self = this;
     wx.request({
-      url: 'https://zunxiangviplus.com/user',
+      url: service+'/user',
       method: 'GET',
       header: {
         'X-TOKEN': wx.getStorageSync('token')

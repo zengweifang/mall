@@ -12,6 +12,11 @@
     </view>
     <image class='admin_banner_login' mode="widthFix" src='{{avatarUrl}}'></image>
   </view>
+  <view class="flex-wrp discover_codes" style="flex-direction:row;" wx:if="{{user_card.economical}}">
+    <view class="flex-item discover_codes_l admin_height">节省金额
+      <text class='page_price_c'>￥{{user_card.economical}}</text>
+    </view>
+  </view>
   <view class="flex-wrp discover_codes" style="flex-direction:row;" bindtap='order'>
     <view class="flex-item discover_codes_l admin_height">我的订单</view>
     <view class="weui-cell__ft weui-cell__ft_in-access discover_codes_r"></view>
@@ -24,6 +29,10 @@
     <view class="flex-item discover_codes_l admin_height" style='width:100%'>
       <button open-type="contact" size='mini' class='admin_contact'>微信客服</button>
     </view>
+    <view class="weui-cell__ft weui-cell__ft_in-access discover_codes_r"></view>
+  </view>
+  <view class="flex-wrp discover_codes" style="flex-direction:row;" bindtap='phone'>
+    <view class="flex-item discover_codes_l admin_height">绑定手机号</view>
     <view class="weui-cell__ft weui-cell__ft_in-access discover_codes_r"></view>
   </view>
 </view>

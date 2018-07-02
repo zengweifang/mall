@@ -1,7 +1,8 @@
 //index.js
+var utils = require('../../utils/util.js')
 //获取应用实例
 const app = getApp()
-
+const service = utils.service;
 Page({
   data: {
     interval: 8000,
@@ -45,7 +46,6 @@ Page({
     })
   },
   onLoad: function (options) {
-
     wx.showNavigationBarLoading();
     if (wx.getStorageSync('token')) {
       this.getHomePageData();
@@ -91,13 +91,10 @@ Page({
 
     var options = currentPage.options    //如果要获取url中所带的参数可以查看options
 
-    this.setData({
-      currentUrl:url,
-      params: JSON.stringify(options)
-    })
-
-
-    wx.setStorageSync('agentId', options.agentId)
+    var agentId = decodeURIComponent(options.agentId)
+    if (agentId && agentId != 'undefined'){
+      wx.setStorageSync('agentId', agentId)
+    }
   },
   onShow: function () {
     if (wx.getStorageSync('token')) {
@@ -114,10 +111,10 @@ Page({
 
       var options = currentPage.options    //如果要获取url中所带的参数可以查看options
 
-      this.setData({
-        currentUrl: url,
-        params: JSON.stringify(options)
-      })
+      var agentId = decodeURIComponent(options.agentId)
+      if (agentId && agentId!='undefined'){
+        wx.setStorageSync('agentId', agentId)
+      }
     }
   },
   getUserInfo: function (e) {
@@ -136,7 +133,7 @@ Page({
   getHomePageData: function () {//获取首页banner图、九宫格、人气推荐
     var _self = this;
     wx.request({
-      url: 'https://zunxiangviplus.com/index/operation',
+      url: service+'/index/operation',
       method: 'GET',
       header: {
         'X-TOKEN': wx.getStorageSync('token')
@@ -151,7 +148,7 @@ Page({
   getNewGoodsData: function (pageNum,refresh) {//获取新品推荐商品
     var _self = this;
     wx.request({
-      url: 'https://zunxiangviplus.com/index/sku', //仅为示例，并非真实的接口地址
+      url: service+'/index/sku', //仅为示例，并非真实的接口地址
       method: 'GET',
       data:{
         pageNum: pageNum,
@@ -182,7 +179,7 @@ Page({
   getCardInfo: function () {
     var _self = this;
     wx.request({
-      url: 'https://zunxiangviplus.com/user',
+      url: service+'/user',
       method: 'GET',
       header: {
         'X-TOKEN': wx.getStorageSync('token')
@@ -207,18 +204,8 @@ Page({
   },
 
   onShareAppMessage: function (res) {
-    console.log(this.data.cardInfo)
-    console.log(this.data.cardInfo.agentId)
     var _self = this;
     var agentId = _self.data.cardInfo.userType == 'AGENT' ? _self.data.cardInfo.agentId : '';
-    console.log(agentId)
-    if (res.from === 'button') {
-      // 来自页面内转发按钮
-      console.log(res.target)
-    }
-    if (res.from === 'menu'){
-      console.log(res.target)
-    }
     return {
       title: '商城',
       path: '/pages/index/index?agentId=' + agentId

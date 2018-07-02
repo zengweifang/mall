@@ -1,4 +1,6 @@
 // pages/login/login.js
+var utils = require('../../utils/util.js')
+const service = utils.service
 Page({
 
   /**
@@ -64,13 +66,6 @@ Page({
   
   },
 
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
-  },
-
   onGotUserInfo: function(e){
     console.log(e)
     if (!e.detail.userInfo) {
@@ -87,10 +82,10 @@ Page({
         if (res.code) {
           //发起网络请求
           wx.request({
-            url: 'https://zunxiangviplus.com/user/login',
+            url: service+'/user/login',
             data: {
               jsCode:res.code,
-              agentId: wx.getStorageSync('agentId'),
+              agentId: wx.getStorageSync('agentId') ? wx.getStorageSync('agentId'):null,
               nickname: wx.getStorageSync('userInfo').nickName
             },
             method: 'POST',

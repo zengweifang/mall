@@ -1,4 +1,6 @@
 // pages/adrress/address.js
+var utils = require('../../utils/util.js')
+const service = utils.service
 Page({
 
   /**
@@ -57,12 +59,6 @@ Page({
 
   },
 
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  },
   radioChange: function (e) {
     console.log('radio发生change事件，携带value值为：', e.detail.value)
     this.defaultAddress(e.detail.value);
@@ -76,7 +72,7 @@ Page({
   getAddressList: function () {
     var _self = this;
     wx.request({
-      url: 'https://zunxiangviplus.com/deliveries/list',
+      url: service+'/deliveries/list',
       method: 'GET',
       header: {
         'X-TOKEN': wx.getStorageSync('token')
@@ -96,7 +92,7 @@ Page({
   del: function (e) {
     var _self = this;
     wx.request({
-      url: 'https://zunxiangviplus.com/deliveries/delivery?deliveryId=' + e.currentTarget.dataset.item.id,
+      url: service+'/deliveries/delivery?deliveryId=' + e.currentTarget.dataset.item.id,
       method: 'DELETE',
       header: {
         'X-TOKEN': wx.getStorageSync('token')
@@ -109,7 +105,7 @@ Page({
   defaultAddress: function (deliveryId) {
     var _self = this;
     wx.request({
-      url: 'https://zunxiangviplus.com/deliveries/default?deliveryId=' + deliveryId,
+      url: service+'/deliveries/default?deliveryId=' + deliveryId,
       method: 'POST',
       header: {
         'X-TOKEN': wx.getStorageSync('token')

@@ -1,4 +1,6 @@
 // pages/detail/detail.js
+var utils = require('../../utils/util.js')
+const service = utils.service
 var WxParse = require('../wxParse/wxParse.js');
 const app = getApp()
 Page({
@@ -42,6 +44,19 @@ Page({
    */
   onShow: function () {
     this.getCardInfo()
+    
+    this.getCarsNum();
+
+    var pages = getCurrentPages()    //获取加载的页面
+
+    var currentPage = pages[pages.length - 1]    //获取当前页面的对象
+
+    var url = currentPage.route    //当前页面url
+
+    var options = currentPage.options    //如果要获取url中所带的参数可以查看options
+
+    this.getDetail(options);
+    wx.setStorageSync('agentId', options.agentId)
   },
 
   /**
@@ -76,24 +91,45 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-
+    var _self = this;
+    var agentId = _self.data.cardInfo.userType == 'AGENT' ? _self.data.cardInfo.agentId : '';
+    return {
+      title: '商城',
+      path: '/pages/detail/detail?id=' + _self.data.detail.sku.id+'&agentId=' + agentId
+    }
   },
 
   getDetail: function (options) {
     var _self = this;
     wx.request({
-      url: 'https://zunxiangviplus.com/sku/' + options.id,
+      url: service+'/sku/' + options.id,
       method: 'GET',
       header: {
         'X-TOKEN': wx.getStorageSync('token')
       },
       success: function (res) {
-        _self.data.list[0].item_hasbgr = 'item_hasbgr';
-        _self.setData({
-          detail: res.data.data,
-          list: _self.data.list,
-          step: 0
-        })
+        if(res.data.code == 3400){
+          wx.showToast({
+            title: res.data.message,
+            icon: 'none',
+            image: '',
+            duration: 2000
+          })
+          setTimeout(function(){
+            wx.navigateBack({
+              delta:1
+            });
+          },2000)
+          
+        }else{
+          _self.data.list[0].item_hasbgr = 'item_hasbgr';
+          _self.setData({
+            detail: res.data.data,
+            list: _self.data.list,
+            step: 0
+          })
+        }
+       
       }
     })
   },
@@ -101,7 +137,7 @@ Page({
   addShopCar: function () {
     var _self = this;
     wx.request({
-      url: 'https://zunxiangviplus.com/cart/sku',
+      url: service+'/cart/sku',
       method: 'POST',
       data: {
         skuId: this.data.detail.sku.id,
@@ -149,7 +185,7 @@ Page({
   getCarsNum: function () {
     var _self = this;
     wx.request({
-      url: 'https://zunxiangviplus.com/cart/sku',
+      url: service+'/cart/sku',
       method: 'GET',
       header: {
         'X-TOKEN': wx.getStorageSync('token')
@@ -170,7 +206,7 @@ Page({
   getCardInfo: function () {
     var _self = this;
     wx.request({
-      url: 'https://zunxiangviplus.com/user',
+      url: service+'/user',
       method: 'GET',
       header: {
         'X-TOKEN': wx.getStorageSync('token')

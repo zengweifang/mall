@@ -1,0 +1,10 @@
+<!--pages/deliver/deliver.wxml-->
+<view>
+  <view class='deliver-title'>订单编号:{{orderId}}</view>
+  <view class='deliver-list'>
+  <view class='deliver-item {{item.deliverColor}}' wx:for="{{deliver}}" wx:key="*this">
+    <view>{{item.content}}</view>
+    <view>{{item.msgTime}}</view>
+  </view>
+</view>
+</view>

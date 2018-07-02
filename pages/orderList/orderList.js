@@ -1,4 +1,6 @@
 // pages/orderList/orderList.js
+var utils = require('../../utils/util.js')
+const service = utils.service
 Page({
 
   /**
@@ -61,13 +63,6 @@ Page({
     })
     this.getOrderListApi(this.data.id, pageNum, 'refresh');
   },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
-  },
   getList: function () {
     this.data.list[0].item_hasbgr = 'item_hasbgr'
     this.setData({
@@ -96,7 +91,7 @@ Page({
   getOrderListApi: function (status, pageNum, refresh) {
     var _self = this;
     wx.request({
-      url: 'https://zunxiangviplus.com/orders/list?pageSize=10&pageNum=' + pageNum,
+      url: service+'/orders/list?pageSize=10&pageNum=' + pageNum,
       method: 'POST',
       data:{
         status: status
@@ -133,7 +128,7 @@ Page({
     var orderId = e.currentTarget.dataset.item.id;
     var _self = this;
     wx.request({
-      url: 'https://zunxiangviplus.com/orders/pay',
+      url: service+'/orders/pay',
       method: 'POST',
       data: orderId,
       header: {
@@ -171,8 +166,9 @@ Page({
 
   orderDetail:function(e){
     console.log(e)
+    var orderId = e.currentTarget.dataset.item.id
     wx.navigateTo({
-      url: '',
+      url: '/pages/orderDetail/orderDetail?orderId=' + orderId,
     })
   }
 })

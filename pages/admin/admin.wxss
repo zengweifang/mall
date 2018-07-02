@@ -147,3 +147,9 @@
 button::after{
   border: none
 }
+
+.page_price_c{
+  color:#CE3C39!important;
+  font-size:18px;
+  font-weight: bold
+}

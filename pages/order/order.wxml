@@ -35,6 +35,10 @@
   <view class="flex-wrp order_textarea order_card" wx:if="{{!cardInfo.hasCard}}" bindtap='toCard'>
     <text style='color:#EEB422'>1元购买体验会员</text>
   </view>
+  <view class="flex-wrp order_textarea order_card" bindtap='toCard'>
+    <text>节省金额</text>
+    <text class='page_price_c'>￥{{detail.economical}}</text>
+  </view>
   <view class='order_content_prc'>
     <view class='order_content_prc_t'>
       <view class="flex-wrp order_content_height order_margin" style="flex-direction:row;">

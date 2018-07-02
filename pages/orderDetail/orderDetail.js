@@ -1,4 +1,4 @@
-// pages/admin/admin.js
+// pages/orderDetail/orderDetail.js
 var utils = require('../../utils/util.js')
 const service = utils.service
 Page({
@@ -7,22 +7,14 @@ Page({
    * 页面的初始数据
    */
   data: {
-    nickName:'',
-    avatarUrl:'',
-    user_card:null
+  
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var userInfo = wx.getStorageSync('userInfo');
-    console.log(userInfo)
-    this.setData({
-      nickName : userInfo.nickName,
-      avatarUrl: userInfo.avatarUrl
-    })
-    this.getUserInfo();
+    this.getOrderDetail(options.orderId);
   },
 
   /**
@@ -36,7 +28,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.getUserInfo();
+    this.getOrderDetail(options.orderId);
   },
 
   /**
@@ -66,48 +58,42 @@ Page({
   onReachBottom: function () {
   
   },
-
-  /**
-   * 用户点击右上角分享
-   */
-  // onShareAppMessage: function () {
-  
-  // },
-  toAddress:function(){
-    wx.navigateTo({
-      url: '/pages/address/address',
-    })
-  },
-  order:function(){
-    wx.navigateTo({
-      url: '/pages/orderList/orderList',
-    })
-  },
-  toCard:function(){
-    wx.navigateTo({
-      url: '/pages/card/card',
-    })
-  },
-  getUserInfo: function(){
-    var _self=  this;
+  getOrderDetail: function (orderId){
+    console.log(orderId)
+    var _self = this;
     wx.request({
-      url: service+'/user',
+      url: service+'/orders/' + orderId,
       method: 'GET',
       header: {
         'X-TOKEN': wx.getStorageSync('token')
       },
       success: function (res) {
         console.log(res)
-        res.data.data.expiredAt = utils.formatTime(new Date(res.data.data.expiredAt))
-        _self.setData({
-          user_card:res.data.data
-        })
+        if (res.data.code == 200) {
+          res.data.data.order.createTime = utils.formatTime(new Date(res.data.data.order.createTime))
+          _self.setData({
+            orderDetail: res.data.data
+          })
+        }
       }
     })
   },
-  phone:function(){
+  deliver:function(){
+    console.log(this.data.orderDetail)
+    
+    var deliver = {
+      deliverInfo: this.data.orderDetail.trackDetailList,
+      orderId:this.data.orderDetail.order.id
+    }
+    var deliver = JSON.stringify(deliver)
     wx.navigateTo({
-      url: '/pages/phone/phone',
+      url: '/pages/deliver/deliver?deliver=' + deliver,
+    })
+  },
+  toDetail: function (event){
+    var skuId = event.currentTarget.dataset.item.skuId
+    wx.navigateTo({
+      url: '/pages/detail/detail?id=' + skuId
     })
   }
 })

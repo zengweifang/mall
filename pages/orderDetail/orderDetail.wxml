@@ -1,0 +1,55 @@
+<!--pages/orderDetail/orderDetail.wxml-->
+<wxs module="filters" src="../../utils/filter.wxs"></wxs>
+<view>
+  <view class='order-base' style='margin-top:1px'>
+    <view class='flex-wrp' style='flex-direction:row;border-bottom: 1px solid #f2f2f2;' bindtap='deliver'>
+      <view class='order-base-v flex-item'>{{orderDetail.trackDetailList[orderDetail.trackDetailList.length-1].content}}</view>
+      <view class="weui-cell__ft weui-cell__ft_in-access flex-item"></view>
+    </view>
+
+    <view class='order-d-base' style='padding-top:10px'>
+      <view>订单状态:{{filters.orderStatus(orderDetail.order.status)}}</view>
+      <view>订单编号:{{orderDetail.order.id}}</view>
+      <view>下单时间:{{orderDetail.order.createTime}}</view>
+    </view>
+  </view>
+
+  <view class='order-base'>
+    <view>商品金额:￥{{orderDetail.order.amount}}</view>
+    <view>收获地址:{{orderDetail.orderDelivery.provinceName}}{{orderDetail.orderDelivery.cityName}}{{orderDetail.orderDelivery.countyName}}{{orderDetail.orderDelivery.address}}</view>
+    <view>收货人:{{orderDetail.orderDelivery.name}}{{orderDetail.orderDelivery.mobile}}</view>
+  </view>
+  <view class='order-base order-goods'>
+    <view class='flex-wrp' style='flex-direction:row;' wx:for="{{orderDetail.orderItemList}}" wx:key="*this"  bindtap='toDetail' data-item="{{item}}">
+      <view class='flex-item'>
+        <image src='https://img11.360buyimg.com/n7/{{item.imageUrl}}' style='width:110px' mode='widthFix'></image>
+      </view>
+      <view class='flex-item'>
+        <view>{{item.skuName}}</view>
+        <view>￥{{item.price}}</view>
+      </view>
+      <view class='flex-item'>x {{item.num}}</view>
+    </view>
+  </view>
+  <view style='height:36px;line-height:36px;background-color:#ffffff;padding-left:15px;margin-top:10px'> 
+  节省金额<text class='page_price_c'>￥{{orderDetail.order.economical}}</text>
+  </view>
+  <view class='order_content_prc'>
+    <view class='order_content_prc_t'>
+      <view class="flex-wrp order_content_height order_margin" style="flex-direction:row;">
+        <view class="flex-item order_content_l">商品金额</view>
+        <view class="flex-item order_content_r order_goods_price">￥{{orderDetail.order.amount}}</view>
+      </view>
+      <!-- <view class="flex-wrp order_content_height" style="flex-direction:row;">
+        <view class="flex-item order_content_l">运费</view>
+        <view class="flex-item order_content_r order_goods_price">+￥{{detail.freight}}</view>
+      </view>  -->
+    </view>
+
+    <view class='order_content_prc_t'>
+      <view class='order_content_r_prc'>实付金额:
+        <text>￥{{orderDetail.order.amount}}</text> </view>
+    </view>
+
+  </view>
+</view>

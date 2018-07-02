@@ -1,0 +1,5 @@
+<!--pages/phone/phone.wxml-->
+<view class='phone'>
+  <input type='number' placeholder='请输入要绑定的手机号' bindinput="bindKeyInputName"></input>
+  <button type="primary" bindtap="confirm" disabled="{{phone==''}}"> 确认绑定 </button>
+</view>
