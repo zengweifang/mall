@@ -27,9 +27,19 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    if (wx.getStorageSync('token')){
+      this.getDetail(options);
+      this.getCarsNum();
+    }
 
-    this.getDetail(options);
-    this.getCarsNum();
+    var scene = decodeURIComponent(options.scene)
+    if (scene && scene != 'undefined') {
+      var agentId = scene.split('=')[1];
+      console.log(agentId)
+      wx.setStorageSync('agentId', agentId)
+    }else{
+      wx.setStorageSync('agentId', options.agentId)
+    }
   },
 
   /**
@@ -42,11 +52,7 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
-    this.getCardInfo()
-    
-    this.getCarsNum();
-
+  onShow: function (options) {
     var pages = getCurrentPages()    //获取加载的页面
 
     var currentPage = pages[pages.length - 1]    //获取当前页面的对象
@@ -54,9 +60,11 @@ Page({
     var url = currentPage.route    //当前页面url
 
     var options = currentPage.options    //如果要获取url中所带的参数可以查看options
-
-    this.getDetail(options);
-    wx.setStorageSync('agentId', options.agentId)
+    if(wx.getStorageSync('token')){
+      this.getCardInfo()
+      this.getCarsNum();
+      this.getDetail(options);
+    }
   },
 
   /**
@@ -94,7 +102,7 @@ Page({
     var _self = this;
     var agentId = _self.data.cardInfo.userType == 'AGENT' ? _self.data.cardInfo.agentId : '';
     return {
-      title: '商城',
+      title: '尊享viplus',
       path: '/pages/detail/detail?id=' + _self.data.detail.sku.id+'&agentId=' + agentId
     }
   },

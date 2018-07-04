@@ -11,14 +11,16 @@ Page({
   data: {
     list: [],
     categoryList: [],
-    id:''
+    id: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getList();
+    if (wx.getStorageSync('token')){
+      this.getList();
+    }
   },
 
   /**
@@ -32,10 +34,10 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.getList();
-    this.getCardInfo();
-
-
+    if (wx.getStorageSync('token')) {
+      this.getList();
+      this.getCardInfo();
+    }
     var pages = getCurrentPages()    //获取加载的页面
 
     var currentPage = pages[pages.length - 1]    //获取当前页面的对象
@@ -44,7 +46,13 @@ Page({
 
     var options = currentPage.options    //如果要获取url中所带的参数可以查看options
 
-    wx.setStorageSync('agentId', options.agentId)
+    var scene = decodeURIComponent(options.scene)
+    if (scene && scene != 'undefined') {
+      var agentId = scene.split('=')[1];
+      wx.setStorageSync('agentId', agentId)
+    } else {
+      wx.setStorageSync('agentId', options.agentId)
+    }
   },
 
   /**
@@ -86,43 +94,43 @@ Page({
     var _self = this;
     var agentId = _self.data.cardInfo.userType == 'AGENT' ? _self.data.cardInfo.agentId : '';
     return {
-      title: '商城',
+      title: '尊享viplus',
       path: '/pages/category/category?agentId=' + agentId
     }
   },
   getList: function () {
     var _self = this;
     wx.request({
-      url: service+'/category/list',
+      url: service + '/category/list',
       method: 'GET',
       header: {
         'X-TOKEN': wx.getStorageSync('token')
       },
       success: function (res) {
-        res.data.data.unshift({id:'',name:'全部'})
+        res.data.data.unshift({ id: '', name: '全部' })
         res.data.data[0].item_hasbgr = 'item_hasbgr';
-        
+
         //初始化
-        var page={
+        var page = {
           pageNum: 1
         }
 
         _self.setData({
           list: res.data.data,
           id: res.data.data[0].id,
-          pageNum:1
+          pageNum: 1
         });
-        
+
         _self.getCategoryListApi(res.data.data[0].id, page.pageNum);
       }
     })
   },
-  getCategoryList: function (e){
+  getCategoryList: function (e) {
     var item = e.currentTarget.dataset.item;
     for (var i = 0; i < this.data.list.length; i++) {
-      if (this.data.list[i].id == item.id){
+      if (this.data.list[i].id == item.id) {
         this.data.list[i].item_hasbgr = 'item_hasbgr';
-      }else{
+      } else {
         this.data.list[i].item_hasbgr = null;
       }
     }
@@ -135,9 +143,9 @@ Page({
   getCategoryListApi: function (id, pageNum, refresh) {
     var _self = this;
     wx.request({
-      url: service+'/category/sku?categoryId=' + id,
+      url: service + '/category/sku?categoryId=' + id,
       method: 'GET',
-      data:{
+      data: {
         pageNum: pageNum,
         pageSize: 10
       },
@@ -159,12 +167,12 @@ Page({
             categoryList: res.data.data.list,
             pageNum: pageNum
           })
-        } 
-        
+        }
+
       }
     })
   },
-  toDetail: function (event){
+  toDetail: function (event) {
     var id = event.currentTarget.dataset.item.id
     wx.navigateTo({
       url: '/pages/detail/detail?id=' + id
@@ -174,7 +182,7 @@ Page({
   getCardInfo: function () {
     var _self = this;
     wx.request({
-      url: service+'/user',
+      url: service + '/user',
       method: 'GET',
       header: {
         'X-TOKEN': wx.getStorageSync('token')
@@ -188,5 +196,5 @@ Page({
       }
     })
   }
-  
+
 })

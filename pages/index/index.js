@@ -83,6 +83,20 @@ Page({
       show: true
     })
 
+    var scene = decodeURIComponent(options.scene)
+    if (scene && scene != 'undefined'){
+      var agentId = scene.split('=')[1];
+      wx.setStorageSync('agentId', agentId)
+    }else{
+      wx.setStorageSync('agentId', options.agentId)
+    }
+  },
+  onShow: function () {
+    if (wx.getStorageSync('token')) {
+      this.getHomePageData();
+      this.getNewGoodsData(1);
+      this.getCardInfo();
+    }
     var pages = getCurrentPages()    //获取加载的页面
 
     var currentPage = pages[pages.length - 1]    //获取当前页面的对象
@@ -92,29 +106,8 @@ Page({
     var options = currentPage.options    //如果要获取url中所带的参数可以查看options
 
     var agentId = decodeURIComponent(options.agentId)
-    if (agentId && agentId != 'undefined'){
+    if (agentId && agentId != 'undefined') {
       wx.setStorageSync('agentId', agentId)
-    }
-  },
-  onShow: function () {
-    if (wx.getStorageSync('token')) {
-      this.getHomePageData();
-      this.getNewGoodsData(1);
-      this.getCardInfo();
-
-
-      var pages = getCurrentPages()    //获取加载的页面
-
-      var currentPage = pages[pages.length - 1]    //获取当前页面的对象
-
-      var url = currentPage.route    //当前页面url
-
-      var options = currentPage.options    //如果要获取url中所带的参数可以查看options
-
-      var agentId = decodeURIComponent(options.agentId)
-      if (agentId && agentId!='undefined'){
-        wx.setStorageSync('agentId', agentId)
-      }
     }
   },
   getUserInfo: function (e) {
@@ -207,7 +200,7 @@ Page({
     var _self = this;
     var agentId = _self.data.cardInfo.userType == 'AGENT' ? _self.data.cardInfo.agentId : '';
     return {
-      title: '商城',
+      title: '尊享viplus',
       path: '/pages/index/index?agentId=' + agentId
     }
   },

@@ -34,10 +34,17 @@
 			"list": [
 				{
 					"id": 0,
-					"name": "agentId=3091814576831562752",
+					"name": "agentId/detail",
+					"pathName": "pages/detail/detail",
+					"query": "id=3091813208699961344&scene=agentId%3d3091814576831562752",
+					"scene": "1048"
+				},
+				{
+					"id": -1,
+					"name": "agentId/index",
 					"pathName": "pages/index/index",
-					"query": "agentId%3d3091814576831562752",
-					"scene": "1012"
+					"query": "scene=agentId%3d3091814576831562752",
+					"scene": "1047"
 				}
 			]
 		}
