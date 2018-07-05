@@ -27,7 +27,7 @@
   <view class='page_title'>
       <view class='flex-wrp' style="flex-direction:row;">
         <view class='flex-item'>
-          <icon type="success" size="18" color='#FF6A6A'></icon>129元免基础运费(20kg内)</view>
+          <icon type="success" size="18" color='#FF6A6A'></icon>最高129元免基础运费(20kg内)</view>
         <view class='flex-item'>
           <icon type="success" size="18" color='#FF6A6A'></icon>京东发货&商家售后</view>
       </view>
