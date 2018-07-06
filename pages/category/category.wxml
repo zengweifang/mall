@@ -1,8 +1,14 @@
 <view class='disc_detail'>
-  <view class='dic_detail_swiper'>
-    <scroll-view scroll-x class="dic_detail_swiper_scroll">
-      <view class='dic_detail_swiper_item {{item.item_hasbgr}}' wx:for="{{list}}" style='display: inline-block' bindtap='getCategoryList' data-item="{{item}}">{{item.name}}</view>
-    </scroll-view>
+  <view class='page_bar'>
+    <view class='page_search'>
+      <icon type="search" size="20"></icon>
+      <input type='text' bindtap='search' disabled='true'></input>
+    </view>
+    <view class='dic_detail_swiper'>
+      <scroll-view scroll-x class="dic_detail_swiper_scroll">
+        <view class='dic_detail_swiper_item {{item.item_hasbgr}}' wx:for="{{list}}" style='display: inline-block' bindtap='getCategoryList' data-item="{{item}}">{{item.name}}</view>
+      </scroll-view>
+    </view>
   </view>
   <view class='page_personal'>
     <view class="page_personal_b">

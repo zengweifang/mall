@@ -15,7 +15,8 @@
     "pages/card/card",
     "pages/orderDetail/orderDetail",
     "pages/deliver/deliver",
-    "pages/phone/phone"
+    "pages/phone/phone",
+    "pages/search/search"
   ],
   "window": {
     "backgroundTextStyle": "light",

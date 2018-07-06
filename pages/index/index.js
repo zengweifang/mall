@@ -209,5 +209,10 @@ Page({
     wx.navigateTo({
       url:  url,
     })
+  },
+  search: function(){
+    wx.navigateTo({
+      url: '/pages/search/search',
+    })
   }
 })
