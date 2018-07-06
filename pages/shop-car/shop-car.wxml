@@ -1,24 +1,26 @@
 <wxs module="filters" src="../../utils/filter.wxs"></wxs>
 <view class="page">
-  <view class="flex-wrp car_goods" style="flex-direction:row;" wx:for="{{carsList}}" wx:key="*this" bindtap='toDetail' data-item='{{item}}'>
-    <view class="flex-item car_goods_l">
-      <checkbox checked='{{item.checked}}' bindtap='checkFun' data-item="{{item}}"></checkbox>
-    </view>
-    <view class="flex-item car_goods_m">
-      <image src='https://img11.360buyimg.com/n7/{{item.imageUrl}}' mode='widthFix'></image>
-    </view>
-    <view class="flex-item car_goods_mm">
-      <view>{{item.name}}</view>
-      <view class='car_attr'>{{item.attr}}</view>
-      <view style='padding-top:5px'>
-        <text class='car_price' wx:if="{{!cardInfo.vip}}">￥{{item.sellPrice}}</text>
-        <text class='car_price' wx:if="{{cardInfo.vip}}">￥{{item.vipPrice}}</text>
+  <view class="car_goods" wx:for="{{carsList}}" wx:key="*this" >
+    <view class='flex-wrp goods_item' style="flex-direction:row;{{item.txtStyle}}" bindtouchstart="touchS" bindtouchmove="touchM" bindtouchend="touchE" data-index="{{index}}" bindtap='toDetail' data-item='{{item}}'>
+       <view class="flex-item car_goods_l">
+        <checkbox checked='{{item.checked}}' bindtap='checkFun' data-item="{{item}}"></checkbox>
       </view>
-      <view class="buy-num">
-        <view class="jian-btn {{item.num==1? 'disabled' : ''}}" catchtap="jianBtnTap" data-item="{{item}}">-</view>
-        <input type="number" value="{{item.num}}" disabled/>
-        <view class="jia-btn {{item.num==curTouchGoodStore? 'disabled' : ''}}" catchtap="jiaBtnTap" data-item="{{item}}">+</view>
+      <view class="flex-item car_goods_m">
+        <image src='https://img11.360buyimg.com/n7/{{item.imageUrl}}' mode='widthFix'></image>
       </view>
+      <view class="flex-item car_goods_mm">
+        <view class='page_name'>{{item.name}}</view>
+        <view class='car_attr'>{{item.attr}}</view>
+        <view style='padding-top:5px'>
+          <text class='car_price' wx:if="{{!cardInfo.vip}}">￥{{item.sellPrice}}</text>
+          <text class='car_price' wx:if="{{cardInfo.vip}}">￥{{item.vipPrice}}</text>
+        </view>
+        <view class="buy-num">
+          <view class="jian-btn {{item.num==1? 'disabled' : ''}}" catchtap="jianBtnTap" data-item="{{item}}">-</view>
+          <input type="number" value="{{item.num}}" disabled/>
+          <view class="jia-btn {{item.num==curTouchGoodStore? 'disabled' : ''}}" catchtap="jiaBtnTap" data-item="{{item}}">+</view>
+        </view>
+      </view> 
     </view>
     <view class='car_goods_delete' bindtap='del' data-id="{{item.id}}">删除</view>
   </view>
@@ -27,6 +29,7 @@
     <view class="shop-cart-btn" bindtap="goShopCar">
       合计 ￥{{filters.toFix(totalPrice)}}
     </view>
-    <view class="now-buy" bindtap="tobuy">去结算 <text style='font-size:10px'>({{num}}件)</text> </view>
+    <view class="now-buy" bindtap="tobuy">去结算
+      <text style='font-size:10px'>({{num}}件)</text> </view>
   </view>
 </view>

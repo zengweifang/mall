@@ -1,26 +1,26 @@
 /* pages/shop-car/shop-car.wxss */
 
-.page{
-  margin-bottom: 100px
+.page {
+  margin-bottom: 100px;
 }
+
 .car_goods {
-  background-color: #fff;
-  font-size: 12px;
-  margin-top: 1px;
-  padding-top: 20px;
+  position: relative;
+  height: 136px;
+  margin-top: 1px
 }
 
 .car_goods .car_goods_l {
   padding-left: 15px;
-  line-height: 80px;
+  line-height: 110px;
 }
+
 .car_goods .car_goods_m image {
   width: 110px;
 }
 
 .car_goods .car_goods_mm {
-  line-height: 25px;
-  padding-left: 10px
+  padding: 0 10px;
 }
 
 .car_goods_cb {
@@ -39,7 +39,7 @@
   left: 0;
   display: flex;
   /* box-shadow: 0 0 8rpx 0; */
-  z-index: 999
+  z-index: 999;
 }
 
 .footer-box .shop-cart-btn {
@@ -88,10 +88,16 @@
 }
 
 .car_goods_delete {
-  width: 120px;
-  text-align: center;
-  line-height: 80px;
-  color: #ce3c39;
+  color: #fff;
+  justify-content: center;
+  align-items: center;
+  width: 75px;
+  background: #e64340;
+  position: absolute;
+  height: 136px;
+  z-index: 1;
+  right: 0;
+  display: flex;
 }
 
 .buy-num {
@@ -101,7 +107,7 @@
   position: relative;
   left: 50px;
   top: -25px;
-  width: 100px
+  width: 100px;
 }
 
 .buy-num .jian-btn {
@@ -147,4 +153,20 @@
   text-align: center;
   font-size: 24rpx;
   border: 1rpx solid #ccc;
+}
+
+.page_name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.goods_item {
+  position: absolute;
+  z-index: 2;
+  width: 100%;
+  background-color: #fff;
+  padding:10px 0;
 }

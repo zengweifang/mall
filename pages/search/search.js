@@ -9,7 +9,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    cardInfo:null
+    cardInfo:null,
+    dataList:[]
   },
 
   /**
@@ -60,7 +61,8 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-  
+    var pageNum = this.data.pageNum + 1;
+    this.searchApi(pageNum,'reachBottom');
   },
 
   /**
@@ -70,31 +72,70 @@ Page({
   
   // },
   bindInputKey:function(e){
-    console.log(e)
     this.setData({
       keyWords:e.detail.value
     })
-    this.search()
   },
 
   search:function(){
+    this.searchApi(1,'sousuo')
+  },
+
+  searchApi: function (pageNum,type){
     var keyWords = this.data.keyWords;
     var _self = this;
+    // wx.showLoading();
     wx.request({
-      url: service + '/index/sku', //仅为示例，并非真实的接口地址
-      method: 'GET',
+      url: service + '/sku/search?pageNum=' + pageNum+'&pageSize=10',
+      method: 'POST',
       data: {
-        pageNum: 1,
-        pageSize: 10
+        key: keyWords
       },
       header: {
         'X-TOKEN': wx.getStorageSync('token')
       },
       success: function (res) {
-        console.log(res)
-        _self.setData({
-          dataList:res.data.data.list
-        })
+        if(res.data.code == 200){
+          if(res.data.data.list.length !== 0){
+            if (type == 'reachBottom'){
+              for (var i = 0; i < res.data.data.list.length; i++) {
+                _self.data.dataList.push(res.data.data.list[i])
+              }
+              _self.setData({
+                dataList: _self.data.dataList,
+                pageNum: pageNum
+              })
+            }else{
+              _self.data.dataList = res.data.data.list;
+              _self.setData({
+                dataList: _self.data.dataList,
+                pageNum: pageNum
+              })
+            }
+            
+          }else{
+            if (type == 'reachBottom') {
+              wx.showToast({
+                title: '没有更多商品了',
+                duration: 2000,
+                icon: 'none'
+              })
+            } else {
+              _self.setData({
+                dataList: []
+              })
+              wx.showToast({
+                title: '换个条件试试',
+                duration: 2000,
+                icon: 'none'
+              })
+            }
+          }
+          
+        }
+        // setTimeout(function () {
+        //   wx.hideLoading()
+        // }, 2000)
       }
     })
   },

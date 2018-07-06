@@ -151,7 +151,6 @@ Page({
         'X-TOKEN': wx.getStorageSync('token')
       },
       success: function (res) {
-        console.log(res)
         if (refresh == 'refresh') {
           for (var i = 0; i < res.data.data.list.length; i++) {
             _self.data.newGoodsData.push(res.data.data.list[i])
@@ -178,7 +177,6 @@ Page({
         'X-TOKEN': wx.getStorageSync('token')
       },
       success: function (res) {
-        console.log(res)
         if (res.data.code == 200) {
           _self.setData({
             cardInfo : res.data.data
@@ -189,7 +187,6 @@ Page({
   },
   onReachBottom:function(){
     var pageNum = this.data.pageNum + 1;
-    console.log(pageNum)
     this.setData({
       pageNum: pageNum
     })

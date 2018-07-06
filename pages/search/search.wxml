@@ -12,7 +12,7 @@
       <view class='flex-item'>
         <image src='https://img11.360buyimg.com/n7/{{item.imageUrl}}' mode='widthFix' style='width:80px'></image>
       </view>
-      <view class='flex-item'>
+      <view class='flex-item' style='padding-left:10px'>
         <view>{{item.name}}</view>
         <view>
           <text wx:if="{{!cardInfo.vip}}" class='page_price_c'>￥{{item.sellPrice}}</text>
