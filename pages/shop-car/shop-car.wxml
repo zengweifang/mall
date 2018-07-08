@@ -12,15 +12,18 @@
         <view class="flex-item car_goods_mm">
           <view class='page_name'>{{item.name}}</view>
           <view class='car_attr'>{{item.attr}}</view>
-          <view style='padding-top:5px'>
-            <text class='car_price' wx:if="{{!cardInfo.vip}}">￥{{item.sellPrice}}</text>
-            <text class='car_price' wx:if="{{cardInfo.vip}}">￥{{item.vipPrice}}</text>
+          <view class='flex-wrp' style="flex-direction:row;margin-top:40px">
+            <view style='padding-top:5px' class='flex-item'>
+              <text class='car_price' wx:if="{{!cardInfo.vip}}">￥{{item.sellPrice}}</text>
+              <text class='car_price' wx:if="{{cardInfo.vip}}">￥{{item.vipPrice}}</text>
+            </view>
+            <view class="buy-num flex-item flex-wrp" style="flex-direction:row">
+              <view class="flex-item jian-btn {{item.num==1? 'disabled' : ''}}" catchtap="jianBtnTap" data-item="{{item}}">-</view>
+              <input class='flex-item' type="number" value="{{item.num}}" disabled/>
+              <view class="flex-item jia-btn {{item.num==curTouchGoodStore? 'disabled' : ''}}" catchtap="jiaBtnTap" data-item="{{item}}">+</view>
+            </view>
           </view>
-          <view class="buy-num">
-            <view class="jian-btn {{item.num==1? 'disabled' : ''}}" catchtap="jianBtnTap" data-item="{{item}}">-</view>
-            <input type="number" value="{{item.num}}" disabled/>
-            <view class="jia-btn {{item.num==curTouchGoodStore? 'disabled' : ''}}" catchtap="jiaBtnTap" data-item="{{item}}">+</view>
-          </view>
+
         </view>
       </view>
 

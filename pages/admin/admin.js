@@ -22,7 +22,10 @@ Page({
       nickName : userInfo.nickName,
       avatarUrl: userInfo.avatarUrl
     })
-    this.getUserInfo();
+    if (wx.getStorageSync('token')){
+      this.getUserInfo();
+    }
+   
   },
 
   /**
@@ -36,7 +39,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.getUserInfo();
+    if (wx.getStorageSync('token')) {
+      this.getUserInfo();
+    }
   },
 
   /**

@@ -1,36 +1,39 @@
 /* pages/order/order.wxss */
-.order_content{
-  padding-bottom:  60px;
+
+.order_content {
+  padding-bottom: 60px;
 }
-.order_content .order_goods{
-  background-color: #ffffff;
+
+.order_content .order_goods {
+  background-color: #fff;
   margin-top: 1px;
-  padding: 20px 0
+  padding: 20px 0;
 }
 
-.order_content .order_goods .order_goods_attr{
-  color: #d2d2d2
+.order_content .order_goods .order_goods_attr {
+  color: #d2d2d2;
 }
 
-.order_goods_l{
-  width:110px;
-  padding-left:15px;
+.order_goods_l {
+  width: 110px;
+  padding-left: 15px;
 }
 
-.order_content .order_goods .order_goods_l image{
+.order_content .order_goods .order_goods_l image {
   width: 100%;
 }
 
-.order_content .order_goods .order_goods_m{
+.order_content .order_goods .order_goods_m {
   margin: 0 auto;
   margin-left: 15px;
-  line-height: 25px
+  line-height: 25px;
 }
 
-.order_content .order_goods .order_goods_r{
+.order_content .order_goods .order_goods_r {
   width: 10%;
-  line-height: 80px
+  line-height: 80px;
 }
+
 .footer-box {
   width: 100%;
   height: 100rpx;
@@ -48,7 +51,7 @@
   height: 100%;
   text-align: center;
   padding-top: 26rpx;
-  color: #FF6A6A;
+  color: #ff6a6a;
   box-sizing: border-box;
   font-size: 14px;
 }
@@ -63,104 +66,119 @@
   font-size: 34rpx;
 }
 
-.order_height{
-  background-color:#ffffff;
+.order_height {
+  background-color: #fff;
   padding: 0 15px;
-  margin-bottom: 10px
+  margin-bottom: 10px;
 }
-.order_codes{
+
+.order_codes {
   margin-top: 1px;
-  padding: 15px
-}
-
-.order_height .order_codes_l{
-  margin: 0 auto;
-  margin-left: 0;
-  line-height: 25px
-}
-
-.order_content_height{
-  height: 36px;
-  line-height: 36px;
-  background-color: #ffffff;
-  padding: 0 15px;
-  margin-bottom: 1px
-}
-
-.order_content_height .order_content_l{
-  margin: 0 auto;
-  margin-left: 0
-}
-
-.order_textarea{
-  background-color: #ffffff;
-  margin-top: 1px
-}
-
-.order_textarea textarea{
-  width: 100%;
-  padding: 15px
-}
-
-.order_goods_price{
-  color: #CE3C39
-}
-
-.order_margin{
-  margin-top: 10px
-}
-.order_content_prc_t{
-  background-color: #ffffff
-}
-
-.order_content_r_prc{
-  height:36px;
-  line-height:36px;
-  text-align:right;
-  padding-right:15px;
-  margin-top: 1px
-}
-
-.order_content_r_prc text{
-  padding-left:10px;
-  color:#CE3C39;
-}
-
-.order_content_buttom{
   padding: 15px;
 }
 
-.order_content_buttom button{
+.order_height .order_codes_l {
+  margin: 0 auto;
+  margin-left: 0;
+  line-height: 25px;
+}
+
+.order_content_height {
+  height: 36px;
+  line-height: 36px;
+  background-color: #fff;
+  padding: 0 15px;
+  margin-bottom: 1px;
+}
+
+.order_content_height .order_content_l {
+  margin: 0 auto;
+  margin-left: 0;
+}
+
+.order_textarea {
+  background-color: #fff;
+  margin-top: 1px;
+}
+
+.order_textarea textarea {
+  width: 100%;
+  padding: 15px;
+}
+
+.order_goods_price {
+  color: #ce3c39;
+}
+
+.order_margin {
+  margin-top: 10px;
+}
+
+.order_content_prc_t {
+  background-color: #fff;
+}
+
+.order_content_r_prc {
+  height: 36px;
+  line-height: 36px;
+  text-align: right;
+  padding-right: 15px;
+  margin-top: 1px;
+}
+
+.order_content_r_prc text {
+  padding-left: 10px;
+  color: #ce3c39;
+}
+
+.order_content_buttom {
+  padding: 15px;
+}
+
+.order_content_buttom button {
   font-size: 14px;
-  padding: 5px
+  padding: 5px;
 }
 
-.order_content_text_f{
-  font-weight: bold
+.order_content_text_f {
+  font-weight: bold;
 }
 
-.page_price_card{
-  color:#EEB422!important;
-  border:1px solid #EEB422;
+.page_price_card {
+  color: #eeb422 !important;
+  border: 1px solid #eeb422;
   padding: 0 5px;
 }
 
-.page_price_c{
-  color:#CE3C39!important;
-  font-size:18px;
-  font-weight: bold
+.page_price_c {
+  color: #ce3c39 !important;
+  font-size: 18px;
+  font-weight: bold;
 }
 
-.order_card{
-  padding-left:15px;
-  height:45px;
-  line-height:45px;
-  margin-bottom:1px;
+.order_card {
+  padding-left: 15px;
+  height: 45px;
+  line-height: 45px;
+  margin-bottom: 1px;
 }
 
-.page_price_delete{
-  text-decoration:line-through;
+.page_price_delete {
+  text-decoration: line-through;
   margin-left: 5px;
-  font-weight: normal!important;
-  color: #808080!important
+  font-weight: normal !important;
+  color: #808080 !important;
+}
+
+.disable_background {
+  background-color: #eaeaea !important;
+  color: #d4d4d4!important;
+  border: 1px solid #eaeaea
+}
+
+.tips {
+  color: #ff6a6a;
+  display: inline-block;
+  border: 1px solid #ff6a6a;
+  padding: 0 5px;
 }

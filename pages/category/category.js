@@ -18,8 +18,17 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    if (wx.getStorageSync('token')){
+    if (wx.getStorageSync('token')) {
       this.getList();
+      this.getCardInfo();
+    }
+
+    var scene = decodeURIComponent(options.scene)
+    if (scene && scene != 'undefined') {
+      var agentId = scene.split('=')[1];
+      wx.setStorageSync('agentId', agentId)
+    } else {
+      wx.setStorageSync('agentId', options.agentId)
     }
   },
 
@@ -34,10 +43,10 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    if (wx.getStorageSync('token')) {
-      this.getList();
-      this.getCardInfo();
-    }
+    // if (wx.getStorageSync('token')) {
+    //   this.getList();
+    //   this.getCardInfo();
+    // }
     var pages = getCurrentPages()    //获取加载的页面
 
     var currentPage = pages[pages.length - 1]    //获取当前页面的对象
@@ -46,13 +55,13 @@ Page({
 
     var options = currentPage.options    //如果要获取url中所带的参数可以查看options
 
-    var scene = decodeURIComponent(options.scene)
-    if (scene && scene != 'undefined') {
-      var agentId = scene.split('=')[1];
-      wx.setStorageSync('agentId', agentId)
-    } else {
-      wx.setStorageSync('agentId', options.agentId)
-    }
+    // var scene = decodeURIComponent(options.scene)
+    // if (scene && scene != 'undefined') {
+    //   var agentId = scene.split('=')[1];
+    //   wx.setStorageSync('agentId', agentId)
+    // } else {
+    //   wx.setStorageSync('agentId', options.agentId)
+    // }
   },
 
   /**

@@ -13,17 +13,19 @@
     <view class="weui-cell__ft weui-cell__ft_in-access"></view>
   </view>
 
-  <view class="flex-wrp order_goods" style="flex-direction:row;" wx:for="{{detail.skuList}}">
+  <view class="flex-wrp order_goods {{item.disable_background}}" style="flex-direction:row;" wx:for="{{detail.skuList}}">
     <view class="flex-item order_goods_l">
       <image src='https://img20.360buyimg.com/vc/{{item.imageUrl}}' mode='widthFix'></image>
     </view>
     <view class="flex-item order_goods_m">
       <view class='order_content_text_f'>{{item.name}}</view>
       <view class='order_goods_attr'>{{item.attr}}</view>
-      <text class='order_goods_price page_price_c' wx:if="{{!cardInfo.vip}}">￥{{item.sellPrice}}</text>
-      <text class='order_goods_price page_price_c' wx:if="{{cardInfo.vip}}">￥{{item.vipPrice}}</text>
-      <text class='page_price_delete'>￥{{item.thirdPrice}}</text>
-      <text wx:if="{{!cardInfo.vip}}"  bindtap='toCard' style='margin-left:10px' class='page_price_card'>会员更优惠</text>
+      <text class='order_goods_price page_price_c {{item.disable_background}}' wx:if="{{!cardInfo.vip}}">￥{{item.sellPrice}}</text>
+      <text class='order_goods_price page_price_c {{item.disable_background}}' wx:if="{{cardInfo.vip}}">￥{{item.vipPrice}}</text>
+      <text class='page_price_delete {{item.disable_background}}'>￥{{item.thirdPrice}}</text>
+      <text wx:if="{{!cardInfo.vip}}" bindtap='toCard' style='margin-left:10px' class='page_price_card {{item.disable_background}}'>会员更优惠</text>
+      <view wx:if="{{!item.hasStock}}" class='tips'>库存不足</view>
+      <view wx:if="{{item.areaLimit}}" class='tips'>在此区域无法购买</view>
     </view>
     <view class="flex-item order_goods_r">
       x {{item.num}}
@@ -55,7 +57,7 @@
       <view class='order_content_r_prc'>实付金额:
         <text>￥{{detail.amount}}</text> </view>
       <view class='order_content_buttom'>
-        <button type="primary" size="{{primarySize}}" loading="{{loading}}" plain="{{plain}}" bindtap="order">微信支付</button>
+        <button type="primary" size="{{primarySize}}" loading="{{loading}}" plain="{{plain}}" bindtap="order" disabled='{{disabled}}'>微信支付</button>
       </view>
     </view>
 

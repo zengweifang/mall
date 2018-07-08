@@ -125,10 +125,11 @@ Page({
     this.getTown(this.data.countrys[e.detail.value].id);
   },
 
-  bindTownChange: function () {
+  bindTownChange: function (e) {
     var town = 'addressInfo.town';
     var townName = 'addressInfo.townName';
     this.setData({
+      index3: e.detail.value,
       [town]: this.data.towns[e.detail.value].id,
       [townName]: this.data.towns[e.detail.value].name
     })
@@ -229,10 +230,10 @@ Page({
       }
     })
   },
-  getTown: function (countryId) {
+  getTown: function (countyId) {
     var _self = this;
     wx.request({
-      url: service+'/division/town?countryId=' + countryId,
+      url: service + '/division/town?countyId=' + countyId,
       method: 'GET',
       header: {
         'X-TOKEN': wx.getStorageSync('token')
@@ -250,6 +251,7 @@ Page({
             towns: res.data.data
           });
         }
+        console.log(_self.data.towns)
       }
     })
   },

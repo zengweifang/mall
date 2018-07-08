@@ -10,7 +10,9 @@ Page({
    */
   data: {
     cardInfo:null,
-    dataList:[]
+    dataList:[],
+    list: [{ id: 1, name: '综合', orderBy: 'common', item_hasbgr: 'item_hasbgr' }, { id: 2, name: '价格', orderBy:'price'}],
+    sort: ''
   },
 
   /**
@@ -78,10 +80,10 @@ Page({
   },
 
   search:function(){
-    this.searchApi(1,'sousuo')
+    this.searchApi(1,'sousuo');
   },
 
-  searchApi: function (pageNum,type){
+  searchApi: function (pageNum, flag, orderBy, sort){
     var keyWords = this.data.keyWords;
     var _self = this;
     // wx.showLoading();
@@ -89,7 +91,9 @@ Page({
       url: service + '/sku/search?pageNum=' + pageNum+'&pageSize=10',
       method: 'POST',
       data: {
-        key: keyWords
+        key: keyWords,
+        orderBy: orderBy,
+        sort: sort
       },
       header: {
         'X-TOKEN': wx.getStorageSync('token')
@@ -97,7 +101,7 @@ Page({
       success: function (res) {
         if(res.data.code == 200){
           if(res.data.data.list.length !== 0){
-            if (type == 'reachBottom'){
+            if (flag == 'reachBottom'){
               for (var i = 0; i < res.data.data.list.length; i++) {
                 _self.data.dataList.push(res.data.data.list[i])
               }
@@ -114,7 +118,7 @@ Page({
             }
             
           }else{
-            if (type == 'reachBottom') {
+            if (flag == 'reachBottom') {
               wx.showToast({
                 title: '没有更多商品了',
                 duration: 2000,
@@ -162,5 +166,25 @@ Page({
         }
       }
     })
+  },
+  sort: function (e) {
+    var item = e.currentTarget.dataset.item;
+    for (var i = 0; i < this.data.list.length; i++) {
+      if (this.data.list[i].id == item.id) {
+        this.data.list[i].item_hasbgr = 'item_hasbgr';
+      } else {
+        this.data.list[i].item_hasbgr = null;
+      }
+    }
+    this.setData({
+      list: this.data.list
+    })
+
+    if (this.data.sort == 'asc'){
+      this.data.sort = 'desc'
+    }else{
+      this.data.sort = 'asc'
+    }
+    this.searchApi(1, 'sousuo', e.currentTarget.dataset.item.orderBy, this.data.sort);
   },
 })

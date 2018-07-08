@@ -1,75 +1,116 @@
 /* pages/search/search.wxss */
 
-.page{
-  position:absolute;
-  bottom:0;
-  top:0;
-  left:0;
-  right:0;
-  background-color:#ffffff;
+.page {
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: #fff;
 }
 
-.page_content{
+.page_content {
   width: 100%;
   height: 50px;
-  position: fixed;
-  background-color: #ffffff
+  /* position: fixed; */
+  background-color: #fff;
 }
 
-.page_search{
-  position:absolute;
-  height:30px;
-  z-index:99;
-  left:10px;
-  right:80px;
-  top:10px;
-  background-color:#eaeaea;
-  opacity:0.6;
-  border-radius:20px;
-  padding-left:10px;
-}
-
-.page_search icon{
+.page_search {
   position: absolute;
-  padding: 5px
+  height: 30px;
+  z-index: 99;
+  left: 10px;
+  right: 80px;
+  top: 10px;
+  background-color: #eaeaea;
+  opacity: 0.6;
+  border-radius: 20px;
+  padding-left: 10px;
 }
 
-.page_search input{
+.page_search icon {
+  position: absolute;
+  padding: 5px;
+}
+
+.page_search input {
   padding-left: 30px;
-  position:relative;
-  top:5px;
+  position: relative;
+  top: 5px;
 }
 
-button{
-  width:58px;
-  font-size:12px;
-  position:absolute;
-  right:10px;
-  top:10px;
+button {
+  width: 58px;
+  font-size: 12px;
+  position: absolute;
+  right: 10px;
+  top: 10px;
 }
 
-.page_goods{
-  background-color:#ffffff;
-  padding:15px;
+.page_goods {
+  background-color: #fff;
+  padding: 15px;
 }
 
-.page_price_c{
-  color:#CE3C39!important;
-  font-size:18px
+.page_price_c {
+  color: #ce3c39 !important;
+  font-size: 18px;
 }
 
-.page_price_card{
-  color:#EEB422!important;
-  border:1px solid #EEB422;
+.page_price_card {
+  color: #eeb422 !important;
+  border: 1px solid #eeb422;
   padding: 0 5px;
 }
-.page_price_delete{
-  text-decoration:line-through;
+
+.page_price_delete {
+  text-decoration: line-through;
   margin-left: 5px;
-  font-weight: normal!important;
-  color: #808080!important
+  font-weight: normal !important;
+  color: #808080 !important;
 }
 
-.page_list{
-  margin-top: 50px
+.page_list {
+  margin-top: 100px;
+}
+
+.dic_detail_swiper {
+  white-space: nowrap;
+  display: flex;
+}
+
+.dic_detail_swiper_scroll {
+  width: 100%;
+  height: 50px;
+  background-color: #fff;
+}
+
+.dic_detail_swiper_item {
+  width: 50%;
+  height: 45px;
+  line-height: 45px;
+  text-align: center;
+}
+
+.item_hasbgr {
+  color: #ce3c39;
+  border-bottom: 2px solid #ce3c39;
+}
+
+.page_title {
+  position: fixed;
+  width: 100%;
+}
+
+.page_location_up {
+  display: inline-block;
+  -webkit-transform: rotate(90deg);
+}
+
+.page_location_down {
+  display: inline-block;
+  -webkit-transform: rotate(-90deg);
+  margin-left: -13px;
+  padding-top: 5px;
 }

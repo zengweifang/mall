@@ -81,7 +81,7 @@ Page({
   onReachBottom: function () {
 
   },
-  
+
   tobuy: function () {
     wx.showToast({
       title: '提交订单成功！',
@@ -98,7 +98,7 @@ Page({
   getAddress: function () {
     var _self = this;
     wx.request({
-      url: service+'/deliveries/list',
+      url: service + '/deliveries/list',
       method: 'GET',
       header: {
         'X-TOKEN': wx.getStorageSync('token')
@@ -136,7 +136,7 @@ Page({
       skuItemList: skuItemList
     })
     wx.request({
-      url: service+'/orders/ready',
+      url: service + '/orders/ready',
       header: {
         'X-TOKEN': wx.getStorageSync('token')
       },
@@ -146,20 +146,45 @@ Page({
         skuItemList: skuItemList
       },
       success: function (res) {
-        console.log(res)
+        console.log(res.data.data)
         if (res.data.code == 200) {
           _self.detail = res.data.data;
-          _self.setData({
-            detail: res.data.data
-          })
+          var flag = false;
+          for (var i = 0; i < res.data.data.skuList.length; i++) {
+            console.log(res.data.data.skuList[i])
+            if (res.data.data.skuList[i].areaLimit || !res.data.data.skuList[i].hasStock) {
+              flag = true;
+              res.data.data.skuList[i].disable_background = 'disable_background'
+            }else{
+              res.data.data.skuList[i].disable_background=null
+            }
+          }
+          console.log(res.data.data.skuList)
+          if (flag) {
+            wx.showToast({
+              icon: 'none',
+              title: '库存不足/在此区域无法购买',
+              duration: 2000
+            })
+
+            _self.setData({
+              detail: res.data.data,
+              disabled: true
+            })
+          } else {
+            _self.setData({
+              detail: res.data.data
+            })
+          }
+
         }
       }
     })
   },
   order: function () {
-    if (!this.data.region){
+    if (!this.data.region) {
       wx.showToast({
-        title:'请先选择收货地址哦',
+        title: '请先选择收货地址哦',
         icon: 'none',
         duration: 2000
       })
@@ -175,7 +200,7 @@ Page({
     }
     console.log(data)
     wx.request({
-      url: service+'/orders/order',
+      url: service + '/orders/order',
       header: {
         'X-TOKEN': wx.getStorageSync('token')
       },
@@ -192,7 +217,7 @@ Page({
   pay: function (orderId) {
     var _self = this;
     wx.request({
-      url: service+'/orders/pay',
+      url: service + '/orders/pay',
       method: 'POST',
       data: orderId,
       header: {
@@ -217,13 +242,22 @@ Page({
         'success': function (res) {
           console.log(res)
           if (res.data.code == 200) {
-            wx.navigateTo({
-              url: '/pages/orderList/orderList',
+            wx.showToast({
+              title: '支付成功',
+              duration:2000
             })
+            setTimeout(function(){
+              wx.navigateTo({
+                url: '/pages/orderList/orderList',
+              })
+            }, 2000)
+           
           }
         },
         'fail': function (res) {
-          console.log(res)
+          wx.navigateTo({
+            url: '/pages/orderList/orderList',
+          })
         },
         'complete': function (res) {
           console.log(res)
@@ -233,7 +267,7 @@ Page({
   getCardInfo: function () {
     var _self = this;
     wx.request({
-      url: service+'/user',
+      url: service + '/user',
       method: 'GET',
       header: {
         'X-TOKEN': wx.getStorageSync('token')

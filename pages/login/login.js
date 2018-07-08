@@ -92,7 +92,10 @@ Page({
             success: function (res) {
               if(res.data.code == 200){
                 wx.setStorageSync('token', res.data.data);
-                wx.navigateBack();
+                // wx.navigateBack();
+                wx.reLaunch({
+                  url:'/pages/index/index'
+                })
               }
             }
           })

@@ -7,7 +7,7 @@
 .car_goods {
   position: relative;
   height: 136px;
-  margin-top: 1px
+  margin-top: 1px;
 }
 
 .car_goods .car_goods_l {
@@ -101,18 +101,13 @@
 }
 
 .buy-num {
-  line-height: 48rpx;
-  display: flex;
   text-align: center;
-  position: relative;
-  left: 50px;
-  top: -25px;
-  width: 100px;
+  position: absolute;
+  right: 20px;
 }
 
 .buy-num .jian-btn {
   width: 48rpx;
-  height: 100%;
   border-left: 1rpx solid #ccc;
   border-bottom: 1rpx solid #ccc;
   border-top: 1rpx solid #ccc;
@@ -130,7 +125,6 @@
 
 .buy-num .jia-btn {
   width: 48rpx;
-  height: 100%;
   border-right: 1rpx solid #ccc;
   border-bottom: 1rpx solid #ccc;
   border-top: 1rpx solid #ccc;
@@ -148,8 +142,6 @@
 
 .buy-num input {
   width: 68rpx;
-  height: 48rpx;
-  min-height: 48rpx;
   text-align: center;
   font-size: 24rpx;
   border: 1rpx solid #ccc;
@@ -168,5 +160,5 @@
   z-index: 2;
   width: 100%;
   background-color: #fff;
-  padding:10px 0;
+  padding: 10px 0;
 }
