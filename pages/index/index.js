@@ -50,6 +50,7 @@ Page({
     if (wx.getStorageSync('token')) {
       this.getHomePageData();
       this.getNewGoodsData(1);
+      this.getCardInfo();
     }
     if (app.globalData.userInfo) {
       this.setData({

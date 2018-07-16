@@ -53,7 +53,7 @@
           <view style='padding-top:5px'>
             <text wx:if="{{!cardInfo.vip}}" class='page_price_c'>￥{{item.sellPrice}}</text>
             <text wx:if="{{cardInfo.vip}}" class='page_price_card'>会员价￥{{item.vipPrice}}</text>
-            <text class='page_price_delete'>￥{{item.thirdPrice}}</text>
+            <!-- <text class='page_price_delete'>￥{{item.thirdPrice}}</text> -->
             <!-- <text wx:if="{{!cardInfo.vip && item.sellPrice/item.thirdPrice<0.85}}" class="page_label_z">8折</text>
             <text wx:if="{{cardInfo.vip && item.vipPrice/item.thirdPrice<0.85}}" class="page_label_z">8折</text> -->
           </view>
@@ -79,7 +79,7 @@
           <view style='padding-top:5px'>
             <text wx:if="{{!cardInfo.vip}}" class='page_price_c'>￥{{item.sellPrice}}</text>
             <text wx:if="{{cardInfo.vip}}" class='page_price_card'>会员价￥{{item.vipPrice}}</text>
-            <text class='page_price_delete'>￥{{item.thirdPrice}}</text>
+             <!-- <text class='page_price_delete'>￥{{item.thirdPrice}}</text>  -->
             <!-- <text wx:if="{{!cardInfo.vip && item.sellPrice/item.thirdPrice<0.85}}" class="page_label_z">8折</text>
             <text wx:if="{{cardInfo.vip && item.vipPrice/item.thirdPrice<0.85}}" class="page_label_z">8折</text> -->
           </view>

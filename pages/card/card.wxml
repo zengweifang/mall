@@ -1,18 +1,19 @@
 <!--pages/cards/card.wxml-->
 <view class='card'>
   <view class='card_list'>
-    <view class='card_item {{item.card_item_class}}'  wx:for="{{cards}}" wx:key="*this" bindtap='select' data-item="{{item}}">
+    <view class='card_item {{item.card_item_class}}' wx:for="{{cards}}" wx:key="*this" bindtap='select' data-item="{{item}}">
       <text class='card_item_name'>{{item.name}}</text>
       <text class='card_item_c card_item_type' wx:if="{{item.type == 'NORMAL'}}">(普通卡)</text>
-        <text class='card_item_c' wx:if="{{item.type == 'EXPERIENCE'}}">(体验卡)</text>
-      <text style='text-decoration:line-through;float:right;margin-left:10px'>￥{{item.showPrice/100}}</text>
+      <text class='card_item_c' wx:if="{{item.type == 'EXPERIENCE'}}">(体验卡)</text>
+      <text style='text-decoration:line-through;float:right;margin-left:10px' wx:if="{{item.price!=item.showPrice}}">￥{{item.showPrice/100}}</text>
       <text class='card_price' style='font-size:28px'>{{item.price/100}}</text>
-      <text class='card_price'>￥ </text> 
+      <text class='card_price'>￥ </text>
+      <view style='color:#c2c2c2'>({{item.description}})</view>
     </view>
   </view>
 </view>
 
 <view class="footer-box" wx:if="{{cards.length>0}}">
-    <view class="price">金额: ￥{{selectCard.price/100 || 0}}</view>
-    <view class="buy" bindtap="buy">去支付</view>
+  <view class="price">金额: ￥{{selectCard.price/100 || 0}}</view>
+  <view class="buy" bindtap="buy">去支付</view>
 </view>

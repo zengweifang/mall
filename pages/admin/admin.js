@@ -9,7 +9,8 @@ Page({
   data: {
     nickName:'',
     avatarUrl:'',
-    user_card:null
+    user_card:null,
+    phone:''
   },
 
   /**
@@ -17,13 +18,13 @@ Page({
    */
   onLoad: function (options) {
     var userInfo = wx.getStorageSync('userInfo');
-    console.log(userInfo)
     this.setData({
       nickName : userInfo.nickName,
       avatarUrl: userInfo.avatarUrl
     })
     if (wx.getStorageSync('token')){
       this.getUserInfo();
+      this.getPhone()
     }
    
   },
@@ -41,6 +42,7 @@ Page({
   onShow: function () {
     if (wx.getStorageSync('token')) {
       this.getUserInfo();
+      this.getPhone()
     }
   },
 
@@ -113,6 +115,26 @@ Page({
   phone:function(){
     wx.navigateTo({
       url: '/pages/phone/phone',
+    })
+  },
+
+  getPhone: function () {
+    var _self = this;
+    wx.request({
+      url: service + '/user/phone',
+      method: 'GET',
+      header: {
+        'X-TOKEN': wx.getStorageSync('token')
+      },
+      success: function (res) {
+        console.log(res)
+        if (res.data && res.data.data){
+          _self.setData({
+            phone: res.data.data.phone
+          })
+        }
+       
+      }
     })
   }
 })
