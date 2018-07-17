@@ -75,7 +75,7 @@
   width: 46%;
   float: left;
   padding:0 5px; 
-  margin-bottom: 15px 
+  height: 280px
 }
 
 .page_comm_images image{
