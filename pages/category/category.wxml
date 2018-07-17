@@ -6,7 +6,7 @@
     </view>
     <view class='dic_detail_swiper'>
       <scroll-view scroll-x class="dic_detail_swiper_scroll">
-        <view class='dic_detail_swiper_item {{item.item_hasbgr}}' wx:for="{{list}}" style='display: inline-block' bindtap='getCategoryList' data-item="{{item}}" wx:key="*this">{{item.name}}</view>
+        <view class='dic_detail_swiper_item {{item.item_hasbgr}}' wx:for="{{list}}" style='display: inline-block' bindtap='clickCategoryTab' data-item="{{item}}" wx:key="*this">{{item.name}}</view>
       </scroll-view>
     </view>
   </view>

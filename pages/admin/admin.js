@@ -128,7 +128,7 @@ Page({
       },
       success: function (res) {
         console.log(res)
-        if (res.data && res.data.data){
+        if (res.data.data.phone){
           _self.setData({
             phone: res.data.data.phone
           })

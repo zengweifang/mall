@@ -16,7 +16,8 @@
     "pages/orderDetail/orderDetail",
     "pages/deliver/deliver",
     "pages/phone/phone",
-    "pages/search/search"
+    "pages/search/search",
+    "pages/category_home/category_home"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -39,7 +40,7 @@
         "text": "首页"
       },
       {
-        "pagePath": "pages/category/category",
+        "pagePath": "pages/category_home/category_home",
         "iconPath": "pages/images/icon_off/category.png",
         "selectedIconPath": "pages/images/icon_on/category_fill.png",
         "text": "分类"
