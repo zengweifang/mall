@@ -12,7 +12,7 @@
             <view id="{{item.id}}" class="cate-box">
                 <view class="cate-banner">
                      <!-- <image src="{{item.banner}}"></image>  -->
-                    <image src='{{item.imageUrl}}'></image>
+                    <image src='{{category[curIndex].imageUrl}}'></image>
                 </view>
                 <view class="cate-title">
                     <text>{{category[curIndex].name}}</text>
