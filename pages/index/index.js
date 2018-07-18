@@ -16,7 +16,7 @@ Page({
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     inputShowed: false,
     inputVal: "",
-    show:false
+    show: false
   },
   showInput: function () {
     this.setData({
@@ -78,17 +78,17 @@ Page({
         }
       })
     }
-    
+
     wx.hideNavigationBarLoading();
     this.setData({
       show: true
     })
 
     var scene = decodeURIComponent(options.scene)
-    if (scene && scene != 'undefined'){
+    if (scene && scene != 'undefined') {
       var agentId = scene.split('=')[1];
       wx.setStorageSync('agentId', agentId)
-    }else{
+    } else {
       wx.setStorageSync('agentId', options.agentId)
     }
   },
@@ -127,7 +127,7 @@ Page({
   getHomePageData: function () {//获取首页banner图、九宫格、人气推荐
     var _self = this;
     wx.request({
-      url: service+'/index/operation',
+      url: service + '/index/operation',
       method: 'GET',
       header: {
         'X-TOKEN': wx.getStorageSync('token')
@@ -139,14 +139,14 @@ Page({
       }
     })
   },
-  getNewGoodsData: function (pageNum,refresh) {//获取新品推荐商品
+  getNewGoodsData: function (pageNum, refresh) {//获取新品推荐商品
     var _self = this;
     wx.request({
-      url: service+'/index/sku', //仅为示例，并非真实的接口地址
+      url: service + '/index/sku', //仅为示例，并非真实的接口地址
       method: 'GET',
-      data:{
+      data: {
         pageNum: pageNum,
-        pageSize:10
+        pageSize: 10
       },
       header: {
         'X-TOKEN': wx.getStorageSync('token')
@@ -162,17 +162,17 @@ Page({
           })
         } else {
           _self.setData({
-            pageNum:1,
+            pageNum: 1,
             newGoodsData: res.data.data.list
           });
-        } 
+        }
       }
     })
   },
   getCardInfo: function () {
     var _self = this;
     wx.request({
-      url: service+'/user',
+      url: service + '/user',
       method: 'GET',
       header: {
         'X-TOKEN': wx.getStorageSync('token')
@@ -180,13 +180,13 @@ Page({
       success: function (res) {
         if (res.data.code == 200) {
           _self.setData({
-            cardInfo : res.data.data
+            cardInfo: res.data.data
           })
         }
       }
     })
   },
-  onReachBottom:function(){
+  onReachBottom: function () {
     var pageNum = this.data.pageNum + 1;
     this.setData({
       pageNum: pageNum
@@ -202,14 +202,13 @@ Page({
       path: '/pages/index/index?agentId=' + agentId
     }
   },
-  toNewPage:function(e){
-    var url = e.currentTarget.dataset.item.url
-    console.log(url)
+  toNewPage: function (e) {
+    var url = e.currentTarget.dataset.item.url;
     wx.navigateTo({
-      url:  url,
+      url: url.toString(),
     })
   },
-  search: function(){
+  search: function () {
     wx.navigateTo({
       url: '/pages/search/search',
     })

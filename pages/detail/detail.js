@@ -129,7 +129,7 @@ Page({
           wx.showToast({
             title: res.data.message,
             icon: 'none',
-            duration: 1000,
+            duration: 2000,
             success:function(){
               setTimeout(function(){
                 wx.navigateBack()
