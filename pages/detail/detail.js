@@ -117,6 +117,14 @@ Page({
         'X-TOKEN': wx.getStorageSync('token')
       },
       success: function (res) {
+        if(res.data.code == 200){
+          _self.data.list[0].item_hasbgr = 'item_hasbgr';
+          _self.setData({
+            detail: res.data.data,
+            list: _self.data.list,
+            step: 0
+          })
+        }
         if(res.data.code == 3400){
           wx.showToast({
             title: res.data.message,
@@ -127,13 +135,6 @@ Page({
                 wx.navigateBack()
               },2000);
             }
-          })
-        }else{
-          _self.data.list[0].item_hasbgr = 'item_hasbgr';
-          _self.setData({
-            detail: res.data.data,
-            list: _self.data.list,
-            step: 0
           })
         }
        

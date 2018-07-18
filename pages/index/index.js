@@ -204,6 +204,7 @@ Page({
   },
   toNewPage:function(e){
     var url = e.currentTarget.dataset.item.url
+    console.log(url)
     wx.navigateTo({
       url:  url,
     })
