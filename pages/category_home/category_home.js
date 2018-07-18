@@ -22,6 +22,7 @@ Page({
   onLoad: function (options) {
     var _self = this;
     this.getCategory(0);
+    this.getCardInfo()
   },
 
   /**
@@ -69,9 +70,14 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  // onShareAppMessage: function () {
-
-  // },
+  onShareAppMessage: function () {
+    var _self = this;
+    var agentId = _self.data.cardInfo.userType == 'AGENT' ? _self.data.cardInfo.agentId : '';
+    return {
+      title: '尊享viplus',
+      path: '/pages/category_home/category_home?agentId=' + agentId
+    }
+  },
   switchTab(e) {
     const self = this;
     this.setData({
@@ -113,5 +119,22 @@ Page({
         }
       }
     })
-  }
+  },
+  getCardInfo: function () {
+    var _self = this;
+    wx.request({
+      url: service + '/user',
+      method: 'GET',
+      header: {
+        'X-TOKEN': wx.getStorageSync('token')
+      },
+      success: function (res) {
+        if (res.data.code == 200) {
+          _self.setData({
+            cardInfo: res.data.data
+          })
+        }
+      }
+    })
+  },
 })

@@ -22,7 +22,7 @@
       <view class='order_goods_attr'>{{item.attr}}</view>
       <text class='order_goods_price page_price_c {{item.disable_background}}' wx:if="{{!cardInfo.vip}}">￥{{item.sellPrice}}</text>
       <text class='order_goods_price page_price_c {{item.disable_background}}' wx:if="{{cardInfo.vip}}">￥{{item.vipPrice}}</text>
-      <text class='page_price_delete {{item.disable_background}}'>￥{{item.thirdPrice}}</text>
+      <text class='page_price_delete {{item.disable_background}}' wx:if="{{cardInfo.vip}}">￥{{item.thirdPrice}}</text>
       <text wx:if="{{!cardInfo.vip}}" bindtap='toCard' style='margin-left:10px' class='page_price_card {{item.disable_background}}'>会员更优惠</text>
       <view wx:if="{{!item.hasStock}}" class='tips'>库存不足</view>
       <view wx:if="{{item.areaLimit}}" class='tips'>在此区域无法购买</view>

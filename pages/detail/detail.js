@@ -27,15 +27,16 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log(getCurrentPages())
     if (wx.getStorageSync('token')){
       this.getDetail(options);
       this.getCarsNum();
+      this.getCardInfo()
     }
 
     var scene = decodeURIComponent(options.scene)
     if (scene && scene != 'undefined') {
       var agentId = scene.split('=')[1];
-      console.log(agentId)
       wx.setStorageSync('agentId', agentId)
     }else{
       wx.setStorageSync('agentId', options.agentId)
@@ -53,18 +54,18 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function (options) {
-    var pages = getCurrentPages()    //获取加载的页面
+    // var pages = getCurrentPages()    //获取加载的页面
 
-    var currentPage = pages[pages.length - 1]    //获取当前页面的对象
+    // var currentPage = pages[pages.length - 1]    //获取当前页面的对象
 
-    var url = currentPage.route    //当前页面url
+    // var url = currentPage.route    //当前页面url
 
-    var options = currentPage.options    //如果要获取url中所带的参数可以查看options
-    if(wx.getStorageSync('token')){
-      this.getCardInfo()
-      this.getCarsNum();
-      this.getDetail(options);
-    }
+    // var options = currentPage.options    //如果要获取url中所带的参数可以查看options
+    // if(wx.getStorageSync('token')){
+    //   this.getCardInfo()
+    //   this.getCarsNum();
+    //   this.getDetail(options);
+    // }
   },
 
   /**
@@ -120,15 +121,13 @@ Page({
           wx.showToast({
             title: res.data.message,
             icon: 'none',
-            image: '',
-            duration: 2000
+            duration: 1000,
+            success:function(){
+              setTimeout(function(){
+                wx.navigateBack()
+              },2000);
+            }
           })
-          setTimeout(function(){
-            wx.navigateBack({
-              delta:1
-            });
-          },2000)
-          
         }else{
           _self.data.list[0].item_hasbgr = 'item_hasbgr';
           _self.setData({

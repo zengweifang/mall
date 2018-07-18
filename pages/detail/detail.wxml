@@ -17,7 +17,7 @@
     <view style='padding-top:5px'>
       <text class='detail_price page_price_c' wx:if="{{!cardInfo.vip}}">￥{{detail.sku.sellPrice}}</text>
       <text class='detail_price' wx:if="{{cardInfo.vip}}" class='page_price_card'>会员价￥{{detail.sku.vipPrice}}</text>
-      <!-- <text class='page_price_delete'>￥{{detail.sku.thirdPrice}}</text> -->
+      <text class='page_price_delete' wx:if="{{cardInfo.vip}}">￥{{detail.sku.thirdPrice}}</text>
       <!-- <text wx:if="{{!cardInfo.vip && detail.sku.sellPrice/detail.sku.thirdPrice<0.85}}" class="page_label_z">8折</text>
       <text wx:if="{{cardInfo.vip && detail.sku.vipPrice/detail.sku.thirdPrice<0.85}}" class="page_label_z">8折</text> -->
       <text wx:if="{{!cardInfo.vip}}" class='page_to_vip' bindtap='toCard'>成为会员</text>
@@ -25,21 +25,21 @@
     <text wx:if="{{!cardInfo.vip}}" class='page_price_card'>会员价￥{{detail.sku.vipPrice}}</text>
   </view>
   <view class='page_title'>
-      <view class='flex-wrp' style="flex-direction:row;">
-        <view class='flex-item'>
-          <icon type="success" size="18" color='#FF6A6A'></icon>129元免基础运费(20kg内)</view>
-        <view class='flex-item'>
-          <icon type="success" size="18" color='#FF6A6A'></icon>京东发货&商家售后</view>
-      </view>
-      <view class='flex-wrp' style="flex-direction:row;">
-        <view class='flex-item'>
-          <icon type="success" size="18" color='#FF6A6A'></icon>支持7天无理由退货</view>
-        <view class='flex-item'>
-          <icon type="success" size="18" color='#FF6A6A'></icon>次日达</view>
-        <view class='flex-item'>
-          <icon type="cancel" size="18"></icon>不可使用京东券</view>
-      </view>
+    <view class='flex-wrp' style="flex-direction:row;">
+      <view class='flex-item'>
+        <icon type="success" size="18" color='#FF6A6A'></icon>129元免基础运费(20kg内)</view>
+      <view class='flex-item'>
+        <icon type="success" size="18" color='#FF6A6A'></icon>京东发货&商家售后</view>
     </view>
+    <view class='flex-wrp' style="flex-direction:row;">
+      <view class='flex-item'>
+        <icon type="success" size="18" color='#FF6A6A'></icon>支持7天无理由退货</view>
+      <view class='flex-item'>
+        <icon type="success" size="18" color='#FF6A6A'></icon>次日达</view>
+      <view class='flex-item'>
+        <icon type="cancel" size="18"></icon>不可使用京东券</view>
+    </view>
+  </view>
   <!-- <view class='disc_deliver'>129元免基础运费</view> -->
   <view class='disc_comment'>
     <view class='disc_comment_item' style='line-height:36px'>
