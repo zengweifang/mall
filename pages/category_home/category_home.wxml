@@ -12,7 +12,7 @@
             <view id="{{item.id}}" class="cate-box">
                 <view class="cate-banner">
                      <!-- <image src="{{item.banner}}"></image>  -->
-                    <image src='https://img11.360buyimg.com/n7/{{item.url}}'></image>
+                    <image src='{{item.imageUrl}}'></image>
                 </view>
                 <view class="cate-title">
                     <text>{{category[curIndex].name}}</text>
@@ -21,7 +21,7 @@
                     <view class="product-list" wx:for="{{detail}}" wx:key="index" wx:for-item="val">
                         <navigator url="/pages/category/category?categoryId={{val.id}}&parentId={{category[curIndex].id}}">
                             <!-- <image src="{{val.thumb}}"></image> -->
-                            <image src='https://img11.360buyimg.com/n7/{{val.url}}'></image>
+                            <image src='{{val.imageUrl}}'></image>
                             <view class="classname"><text>{{val.name}}</text></view>
                         </navigator>
                     </view>

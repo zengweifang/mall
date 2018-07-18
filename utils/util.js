@@ -14,8 +14,8 @@ const formatNumber = n => {
   return n[1] ? n : '0' + n
 }
 
-// const service = 'https://test.zunxiangviplus.com/crazyvip'
-const service = 'https://app.zunxiangviplus.com/crazyvip'
+const service = 'https://test.zunxiangviplus.com/crazyvip'
+// const service = 'https://app.zunxiangviplus.com/crazyvip'
 
 module.exports = {
   formatTime: formatTime,
